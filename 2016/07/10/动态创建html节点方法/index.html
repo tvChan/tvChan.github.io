@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, tvChan" />
+  <meta name="keywords" content="动态创建html,文档碎片createDocumentFragment," />
 
 
 
@@ -84,19 +84,40 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="常见方法《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： 
+
+crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点
+
+createComment(text)：　　　　　　　创建带文本text的注释节点
+
+createDocumentFragment()：　　　　创建文档碎片节点
+
+createElement(tagnam">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://github.com/tvChan/2016/07/05/hello-world/index.html">
+<meta property="og:title" content="动态创建html节点方法">
+<meta property="og:url" content="https://github.com/tvChan/2016/07/10/动态创建html节点方法/index.html">
 <meta property="og:site_name" content="tvChan's Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-07-05T14:42:24.009Z">
+<meta property="og:description" content="常见方法《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： 
+
+crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点
+
+createComment(text)：　　　　　　　创建带文本text的注释节点
+
+createDocumentFragment()：　　　　创建文档碎片节点
+
+createElement(tagnam">
+<meta property="og:updated_time" content="2016-07-10T16:07:44.114Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="动态创建html节点方法">
+<meta name="twitter:description" content="常见方法《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： 
+
+crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点
+
+createComment(text)：　　　　　　　创建带文本text的注释节点
+
+createDocumentFragment()：　　　　创建文档碎片节点
+
+createElement(tagnam">
 
 
 
@@ -117,9 +138,9 @@ Quick">
 
 
 
-  <link rel="canonical" href="https://github.com/tvChan/2016/07/05/hello-world/"/>
+  <link rel="canonical" href="https://github.com/tvChan/2016/07/10/动态创建html节点方法/"/>
 
-  <title> Hello World | tvChan's Blog </title>
+  <title> 动态创建html节点方法 | tvChan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -229,7 +250,7 @@ Quick">
             
             
               
-                Hello World
+                动态创建html节点方法
               
             
           </h1>
@@ -241,8 +262,8 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T21:14:07+08:00" content="2016-07-05">
-              2016-07-05
+            <time itemprop="dateCreated" datetime="2016-07-10T23:59:09+08:00" content="2016-07-10">
+              2016-07-10
             </time>
           </span>
 
@@ -252,8 +273,8 @@ Quick">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/05/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/05/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2016/07/10/动态创建html节点方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/10/动态创建html节点方法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -276,16 +297,27 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<center> <iframe name="iframe_canvas" src="https://douban.fm/partner/baidu/doubanradio" scrolling="no" frameborder="0" width="400" height="200"></iframe> </center>
+        <h3 id="常见方法"><a href="#常见方法" class="headerlink" title="常见方法"></a>常见方法</h3><p>《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： </p>
+<ul>
+<li><p>crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点</p>
+</li>
+<li><p>createComment(text)：　　　　　　　创建带文本text的注释节点</p>
+</li>
+<li><p>createDocumentFragment()：　　　　创建文档碎片节点</p>
+</li>
+<li><p>createElement(tagname)：　　　　　  创建标签名为tagname的节点</p>
+</li>
+<li><p>createTextNode(text)：　　　　　　   创建包含文本text的文本节点</p>
+</li>
+</ul>
+<p>属于菜鸟的我，在做项目时，通过ajax获取了后台数据做表格数据渲染时，用的是dom节点的拼接append方法。后来才知道这种方法对于前端的性能优化来说是最慢的，虽然说这是最简单的方法。</p>
+<p>举个栗子： 我从后台获取到一个有很多元素的data[]数组，要把里面的数据遍历到ul的li里。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> liNode, i, len;</div><div class="line"><span class="keyword">var</span> ulNode = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; len = data.length; i++) &#123;</div><div class="line">    liNode = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</div><div class="line">    liNode.innerHtml = data[i];</div><div class="line">    ulNode.appendChild(liNode);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段代码是能实现需求的，但是，在循环里调用data.length次的document.xxx.appendChild(),这里就每一次的调用就回产生一次页面渲染，所以对于页面优化来说，这是大打折扣的，这就要说说下面要说的创建碎片啦。</p>
+<p>由于DOM操作会导致浏览器的回流，回流需要花费大量的时间进行样式计算和节点重绘与渲染，所以应当尽量减少回流次数。一种可靠的方法就是加入元素时不要修改页面上已经存在的元素，而是在内存中的节点进行大量的操作，最后再一并将修改运用到页面上。DOM操作本身提供一个创建内存节点片段的功能:document.createDocumentFragment()，我们可以将其运用于上述代码中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oFragment = <span class="built_in">document</span>.createDocumentFragment();</div><div class="line"><span class="keyword">var</span> ulNode = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++)&#123;</div><div class="line">    <span class="keyword">var</span> liNode = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</div><div class="line">    <span class="keyword">var</span> txt = <span class="built_in">document</span>.createTextNode(data[i]);</div><div class="line">    liNode.innerHtml = txt;</div><div class="line">    oFragment.appendChild(liNode);</div><div class="line">&#125;</div><div class="line">ulNode.appendChild(fragment);</div></pre></td></tr></table></figure>
+<p>这样就只会触发一次回流，效率会得到很大的提升。如果需要对一个元素进行复杂的操作（删减、添加子节点），那么我们<strong>应当先将元素从页面中移除，然后再对其进行操作</strong>，或者将其复制一个（cloneNode()），在内存中进行操作后再替换原来的节点。</p>
+
       
     </div>
 
@@ -309,21 +341,29 @@ Quick">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/动态创建html/" rel="tag">#动态创建html</a>
+          
+            <a href="/tags/文档碎片createDocumentFragment/" rel="tag">#文档碎片createDocumentFragment</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/23/test/" rel="next" title="hexo安装问题集">
-                <i class="fa fa-chevron-left"></i> hexo安装问题集
+              <a href="/2016/07/05/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/07/10/动态创建html节点方法/" rel="prev" title="动态创建html节点方法">
-                动态创建html节点方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/07/10/数组迭代方法之reduce/" rel="prev" title="数组迭代方法之reduce">
+                数组迭代方法之reduce <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -449,7 +489,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见方法"><span class="nav-number">1.</span> <span class="nav-text">常见方法</span></a></li></ol></div>
             
           </div>
         </section>
@@ -576,9 +616,9 @@ Quick">
 
     <script type="text/javascript">
       var disqus_shortname = 'tvChan';
-      var disqus_identifier = '2016/07/05/hello-world/';
-      var disqus_title = "Hello World";
-      var disqus_url = 'https://github.com/tvChan/2016/07/05/hello-world/';
+      var disqus_identifier = '2016/07/10/动态创建html节点方法/';
+      var disqus_title = "动态创建html节点方法";
+      var disqus_url = 'https://github.com/tvChan/2016/07/10/动态创建html节点方法/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

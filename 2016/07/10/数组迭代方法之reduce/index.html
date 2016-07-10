@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, tvChan" />
+  <meta name="keywords" content="js,js数组迭代reduce," />
 
 
 
@@ -84,15 +84,25 @@
 
 
 
-<meta name="description" content="Welcome to tvChan&apos;s Blog!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tvChan's Blog">
-<meta property="og:url" content="https://github.com/tvChan/index.html">
+<meta name="description" content="昨天因为数据结构的封装上有点问题，就分别在开源中国和segmentFault上面提了问题，别问为什么不在stackoverflow里面提。。。
+segmentFault里面的大神的答案果然不失所望。
+其中有个答案是结合了reduce和map来编写的。map留着下次再说~请期待O(∩_∩)O~
+所以今晚就看了一下关于reduce()的资料，才发现自己底子不行，之前理解的很多细节都没有注意到。翻回犀牛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组迭代方法之reduce">
+<meta property="og:url" content="https://github.com/tvChan/2016/07/10/数组迭代方法之reduce/index.html">
 <meta property="og:site_name" content="tvChan's Blog">
-<meta property="og:description" content="Welcome to tvChan&apos;s Blog!">
+<meta property="og:description" content="昨天因为数据结构的封装上有点问题，就分别在开源中国和segmentFault上面提了问题，别问为什么不在stackoverflow里面提。。。
+segmentFault里面的大神的答案果然不失所望。
+其中有个答案是结合了reduce和map来编写的。map留着下次再说~请期待O(∩_∩)O~
+所以今晚就看了一下关于reduce()的资料，才发现自己底子不行，之前理解的很多细节都没有注意到。翻回犀牛">
+<meta property="og:updated_time" content="2016-07-10T16:06:53.754Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tvChan's Blog">
-<meta name="twitter:description" content="Welcome to tvChan&apos;s Blog!">
+<meta name="twitter:title" content="数组迭代方法之reduce">
+<meta name="twitter:description" content="昨天因为数据结构的封装上有点问题，就分别在开源中国和segmentFault上面提了问题，别问为什么不在stackoverflow里面提。。。
+segmentFault里面的大神的答案果然不失所望。
+其中有个答案是结合了reduce和map来编写的。map留着下次再说~请期待O(∩_∩)O~
+所以今晚就看了一下关于reduce()的资料，才发现自己底子不行，之前理解的很多细节都没有注意到。翻回犀牛">
 
 
 
@@ -113,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="https://github.com/tvChan/"/>
+  <link rel="canonical" href="https://github.com/tvChan/2016/07/10/数组迭代方法之reduce/"/>
 
-  <title> tvChan's Blog </title>
+  <title> 数组迭代方法之reduce | tvChan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,9 +146,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -205,9 +213,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -227,10 +235,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/07/10/数组迭代方法之reduce/" itemprop="url">
-                  数组迭代方法之reduce
-                </a>
+                数组迭代方法之reduce
               
             
           </h1>
@@ -277,9 +282,7 @@
       
 
       
-        
-          
-            <p>昨天因为数据结构的封装上有点问题，就分别在开源中国和segmentFault上面提了问题，别问为什么不在stackoverflow里面提。。。</p>
+        <p>昨天因为数据结构的封装上有点问题，就分别在开源中国和segmentFault上面提了问题，别问为什么不在stackoverflow里面提。。。</p>
 <p>segmentFault里面的大神的答案果然不失所望。</p>
 <p>其中有个答案是结合了reduce和map来编写的。map留着下次再说~请期待O(∩_∩)O~</p>
 <p>所以今晚就看了一下关于reduce()的资料，才发现自己底子不行，之前理解的很多细节都没有注意到。翻回犀牛书认真读了一遍才茅塞顿开。</p>
@@ -303,371 +306,65 @@
 <h3 id="兼容问题"><a href="#兼容问题" class="headerlink" title="兼容问题"></a>兼容问题</h3><p>虽然reduce大法好用，但是在<code>ie9以下的浏览器</code>是不支持它的噢O__O “…</p>
 <p>所以要请慎用！</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/qrcode.jpg" alt="tvChan wechat" style="width: 200px; max-width: 100%;"/>
+    <div>Welcome to visit!!!</div>
+</div>
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/10/动态创建html节点方法/" itemprop="url">
-                  动态创建html节点方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-10T23:59:09+08:00" content="2016-07-10">
-              2016-07-10
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/js/" rel="tag">#js</a>
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/10/动态创建html节点方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/10/动态创建html节点方法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/js数组迭代reduce/" rel="tag">#js数组迭代reduce</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h3 id="常见方法"><a href="#常见方法" class="headerlink" title="常见方法"></a>常见方法</h3><p>《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： </p>
-<ul>
-<li><p>crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点</p>
-</li>
-<li><p>createComment(text)：　　　　　　　创建带文本text的注释节点</p>
-</li>
-<li><p>createDocumentFragment()：　　　　创建文档碎片节点</p>
-</li>
-<li><p>createElement(tagname)：　　　　　  创建标签名为tagname的节点</p>
-</li>
-<li><p>createTextNode(text)：　　　　　　   创建包含文本text的文本节点</p>
-</li>
-</ul>
-<p>属于菜鸟的我，在做项目时，通过ajax获取了后台数据做表格数据渲染时，用的是dom节点的拼接append方法。后来才知道这种方法对于前端的性能优化来说是最慢的，虽然说这是最简单的方法。</p>
-<p>举个栗子： 我从后台获取到一个有很多元素的data[]数组，要把里面的数据遍历到ul的li里。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> liNode, i, len;</div><div class="line"><span class="keyword">var</span> ulNode = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; len = data.length; i++) &#123;</div><div class="line">    liNode = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</div><div class="line">    liNode.innerHtml = data[i];</div><div class="line">    ulNode.appendChild(liNode);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这段代码是能实现需求的，但是，在循环里调用data.length次的document.xxx.appendChild(),这里就每一次的调用就回产生一次页面渲染，所以对于页面优化来说，这是大打折扣的，这就要说说下面要说的创建碎片啦。</p>
-<p>由于DOM操作会导致浏览器的回流，回流需要花费大量的时间进行样式计算和节点重绘与渲染，所以应当尽量减少回流次数。一种可靠的方法就是加入元素时不要修改页面上已经存在的元素，而是在内存中的节点进行大量的操作，最后再一并将修改运用到页面上。DOM操作本身提供一个创建内存节点片段的功能:document.createDocumentFragment()，我们可以将其运用于上述代码中：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oFragment = <span class="built_in">document</span>.createDocumentFragment();</div><div class="line"><span class="keyword">var</span> ulNode = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++)&#123;</div><div class="line">    <span class="keyword">var</span> liNode = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</div><div class="line">    <span class="keyword">var</span> txt = <span class="built_in">document</span>.createTextNode(data[i]);</div><div class="line">    liNode.innerHtml = txt;</div><div class="line">    oFragment.appendChild(liNode);</div><div class="line">&#125;</div><div class="line">ulNode.appendChild(fragment);</div></pre></td></tr></table></figure>
-<p>这样就只会触发一次回流，效率会得到很大的提升。如果需要对一个元素进行复杂的操作（删减、添加子节点），那么我们<strong>应当先将元素从页面中移除，然后再对其进行操作</strong>，或者将其复制一个（cloneNode()），在内存中进行操作后再替换原来的节点。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/07/10/动态创建html节点方法/" rel="next" title="动态创建html节点方法">
+                <i class="fa fa-chevron-left"></i> 动态创建html节点方法
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/07/05/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T21:14:07+08:00" content="2016-07-05">
-              2016-07-05
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/05/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/05/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<center> <iframe name="iframe_canvas" src="https://douban.fm/partner/baidu/doubanradio" scrolling="no" frameborder="0" width="400" height="200"></iframe> </center>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/23/test/" itemprop="url">
-                  hexo安装问题集
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-23T14:40:05+08:00" content="2016-06-23">
-              2016-06-23
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/23/test/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/23/test/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="hexo-init"><a href="#hexo-init" class="headerlink" title="hexo init"></a>hexo init</h3><p><img src="/img/1.png" alt="1"></p>
-<h3 id="hexo-d-出现的问题"><a href="#hexo-d-出现的问题" class="headerlink" title="hexo d 出现的问题"></a>hexo d 出现的问题</h3><p><img src="/img/2.png" alt="2"></p>
-<h3 id="在-git-bash上出现的问题："><a href="#在-git-bash上出现的问题：" class="headerlink" title="在 git bash上出现的问题："></a>在 git bash上出现的问题：</h3><p><img src="/img/3.png" alt="3"></p>
-<p><img src="/img/4.png" alt="4"></p>
-<p><img src="/img/5.png" alt="5"></p>
-<p><img src="/img/6.png" alt="6"></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -675,6 +372,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -694,8 +402,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -749,6 +466,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce-的参数"><span class="nav-number">1.</span> <span class="nav-text">reduce()的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce-回调函数里面的参数"><span class="nav-number">2.</span> <span class="nav-text">reduce()回调函数里面的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce-和reduceRight"><span class="nav-number">3.</span> <span class="nav-text">reduce()和reduceRight()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#兼容问题"><span class="nav-number">4.</span> <span class="nav-text">兼容问题</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -852,6 +580,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
@@ -868,9 +600,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'tvChan';
-      var disqus_identifier = 'index.html';
-      var disqus_title = "";
-      var disqus_url = '';
+      var disqus_identifier = '2016/07/10/数组迭代方法之reduce/';
+      var disqus_title = "数组迭代方法之reduce";
+      var disqus_url = 'https://github.com/tvChan/2016/07/10/数组迭代方法之reduce/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -881,6 +613,8 @@
       }
 
       run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
       
     </script>
   
