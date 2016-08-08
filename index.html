@@ -228,6 +228,166 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/08/webpack学习一之配置环境/" itemprop="url">
+                  webpack学习一之配置环境
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-08T21:42:21+08:00" content="2016-08-08">
+              2016-08-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/08/webpack学习一之配置环境/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/08/webpack学习一之配置环境/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="起始篇"><a href="#起始篇" class="headerlink" title="起始篇"></a>起始篇</h3><ol>
+<li>模块是你需要哪个模块才自己手动当初模块，包括jq也一样。</li>
+<li>配环境步骤  <a href="https://zhuanlan.zhihu.com/p/20367175?refer=FrontendMagazine" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/20367175?refer=FrontendMagazine</a>  傻瓜式教程</li>
+</ol>
+<h4 id="我会遇到的坑："><a href="#我会遇到的坑：" class="headerlink" title="我会遇到的坑："></a>我会遇到的坑：</h4><ul>
+<li><p>在进行css预编译时，换成sass写，教程没说要安装什么东西，但是就是一直出现这个问题，后来查了一下是还要安装 node-sass</p>
+<p>  <img src="/img/webpack-1.jpg" alt="webpack-1"></p>
+<p>  <code>npm install node-sass --save-dev</code></p>
+</li>
+<li><p>在二“加载jQuery plugin或者其他legacy第三方库”中，第一种方法，使用webpack.ProvidePlugin,在config中加入代码时，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"> plugins: [</div><div class="line">   <span class="keyword">new</span> HtmlwebpackPlugin(&#123;</div><div class="line">     title: <span class="string">'Hello World app'</span></div><div class="line">   &#125;),</div><div class="line">   <span class="comment">//provide $, jQuery and window.jQuery to every script</span></div><div class="line">   <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</div><div class="line">     $: <span class="string">"jquery"</span>,</div><div class="line">     jQuery: <span class="string">"jquery"</span>,</div><div class="line">     <span class="string">"window.jQuery"</span>: <span class="string">"jquery"</span></div><div class="line">   &#125;)</div><div class="line"> ]</div><div class="line"> ...</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>出现了以下的错误：</p>
+<pre><code>![webpack-2](/img/webpack-2.jpg)
+</code></pre><p>原来是，在config开始时没有对引入webpack，引入代码并定义：<br><code>var webpack = require(&#39;webpack&#39;);</code></p>
+<h4 id="webpack理解："><a href="#webpack理解：" class="headerlink" title="webpack理解："></a>webpack理解：</h4><p>webpack其实就是一个配置文件，所有东西都放在一个config文件里。配置文件主要分为三大块：</p>
+<ol>
+<li>entry，入口文件 让webpack用哪个文件作为项目的入口</li>
+<li>output 出口 让webpack把处理完成的文件放在哪里</li>
+<li>module 模块 要用什么不同的模块来处理各种类型的文件</li>
+</ol>
+<h4 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h4><ul>
+<li>安装webpack <code>npm install webpack --save-dev</code></li>
+<li>初始化项目 <code>npm init</code></li>
+<li>新增项目需要的文件</li>
+<li><p>配置webpack ，安装一个plugin，可以自动快速在对应文件夹里生成html，把webpack将多个js合并成一个js文件，然后把它引用到build文件夹里的html文件里（每安装一个工具，都要在config文件里进行配置）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">plugin: [</div><div class="line">    <span class="keyword">new</span> HtmlwebpackPlugin(&#123;</div><div class="line">         title: <span class="string">"hello webpack app!"</span></div><div class="line">     &#125;)</div><div class="line">]</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置webpack-dev-server，新建一个开发服务器，可以serve我们打包后的代码，并在代码更新时，自动刷新浏览器<br>安装webpack-dev-server<br><code>npm install webpack-dev-server --save-dev</code></p>
+</li>
+</ul>
+<p>修改config配置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    ...</div><div class="line">    devServer: &#123;</div><div class="line">         historyApiFallback: <span class="literal">true</span>,</div><div class="line">         hot: <span class="literal">true</span>,</div><div class="line">         inline: <span class="literal">true</span>,</div><div class="line">         progress: <span class="literal">true</span></div><div class="line"></div><div class="line">     &#125;,</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后在package.json里配置一下运行的命令，npm支持自定义的一些命令<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">    <span class="string">"start"</span>: <span class="string">"webpack-dev-server --hot --inline"</span></div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>在命令行里输入<code>npm start</code>,然后浏览器输入 localhost:8080</p>
+<ul>
+<li>添加CSS样式，<strong>webpack使用loader的方式来处理各种各样的资源</strong>，如样式文件，会用css-loader和style-loader，css-loader会遍历css文件，找到所有的url(…)并处理，style.loader会吧所有的样式插入到你页面的style tag中<br>安装loader<br><code>npm install css-loader style-loader --save-dev</code></li>
+</ul>
+<p>在config文件中，配置loader<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">devServer: &#123;</div><div class="line">    historyApiFallback: <span class="literal">true</span>,</div><div class="line">    hot: <span class="literal">true</span>,</div><div class="line">    inline: <span class="literal">true</span>,</div><div class="line">    progress: <span class="literal">true</span></div><div class="line">&#125;,</div><div class="line">...</div><div class="line">module: &#123;</div><div class="line">    loaders: [</div><div class="line">        &#123;</div><div class="line">            test: <span class="regexp">/\.css$/</span>,</div><div class="line">            loaders: [<span class="string">'style'</span>, <span class="string">'css'</span>],</div><div class="line">            include: APP_PATH</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;,</div><div class="line">...</div><div class="line">plugins: [</div><div class="line">    <span class="keyword">new</span> HtmlwebpackPlugin(&#123;</div><div class="line">        title: <span class="string">"hello world app"</span></div><div class="line">    &#125;)</div><div class="line">]</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>新建main.css文件，并把css在入口文件中引用：<br><code>require(&#39;./main.css&#39;);</code></p>
+<ul>
+<li>css预编译程序，sass，其实再添加一个loader就行啦，但是，在我实践之后，出现了上面的坑1，就要按照上面的方法解决，即可</li>
+</ul>
+<p><code>npm install sass-loader --save-dev</code></p>
+<p>修改config文件，删去之前添加的css规则，加上下面的loader<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    test: <span class="regexp">/\.scss$/</span>,</div><div class="line">    loaders: [<span class="string">'style'</span>, <span class="string">'css'</span>, <span class="string">'sass'</span>],</div><div class="line">    include: APP_PATH</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>再添加两个sass文件，variables.sass和main.scss<br>variables.scss<br><code>$red: red</code></p>
+<p>main.scss<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">import</span> <span class="string">"./variables.scss"</span>;</div><div class="line"><span class="selector-tag">h1</span> &#123;</div><div class="line">    <span class="attribute">color</span>: $red;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>处理图片和其他静态文件 和上面一样，安装loader，处理文件。eg: 图片，字体等等，图片可以根据你的需求，将一些图片自动转成base64编码的，减轻不少网络请求吧<br>安装url-loader:<br><code>npm install url-loader --save-dev</code></li>
+</ul>
+<p>配置config文件：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    test: <span class="regexp">/\.(png|jpg)$/</span>,</div><div class="line">    loader: <span class="string">'url?limit=40000'</span> <span class="comment">// 当图片大小小于这个限制时，就会自动转成base64编码</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>添加第三方库 当你需要jquery，moment，underscore等库时，webpack很容易就能做到这点<br>安装jq，moment<br><code>npm install jquery moment --save-dev</code></li>
+</ul>
+<p>在js中引用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $ = <span class="built_in">require</span>(<span class="string">'jquery'</span>);</div><div class="line"><span class="keyword">var</span> moment = <span class="built_in">require</span>(<span class="string">'moment'</span>);</div><div class="line">$(<span class="string">'p'</span>).append(<span class="string">'&lt;p&gt; hello world '</span> + moment().format() + <span class="string">'&lt;/p&gt;'</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>添加ES6的支持，用babel转译</li>
+</ul>
+<p>装各种loader<br><code>npm install babel-loader babel-preset-es2015 --save-dev</code><br>配置config文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&#123;</div><div class="line">    test: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">    loader: <span class="string">'babel'</span>,</div><div class="line">    include: APP_PATH,</div><div class="line">    query: &#123;</div><div class="line">        presets: [<span class="string">'es2015'</span>]</div><div class="line">    &#125;</div><div class="line">&#125;,</div><div class="line">...</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/10/数组迭代方法之reduce/" itemprop="url">
                   数组迭代方法之reduce
                 </a>
@@ -706,7 +866,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -716,7 +876,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
