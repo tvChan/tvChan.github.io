@@ -228,6 +228,125 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/10/handlerbars的使用/" itemprop="url">
+                  handlerbars的使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-10T22:11:17+08:00" content="2016-08-10">
+              2016-08-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/10/handlerbars的使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/10/handlerbars的使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="自定义helper"><a href="#自定义helper" class="headerlink" title="自定义helper"></a>自定义helper</h3><p>p.s: 文中出现的==  ==，均为大胡子<strong>两对花括号</strong>的替换，好像是hexo不支持两对花括号，编译时会出错，又找到一个坑(⊙﹏⊙)b<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;post&quot;&gt;</div><div class="line">  &lt;h1&gt;By &#123;&#123;fullName author&#125;&#125;&lt;/h1&gt;</div><div class="line">  &lt;div class=&quot;body&quot;&gt;&#123;&#123;body&#125;&#125;&lt;/div&gt;</div><div class="line"></div><div class="line">  &lt;h1&gt;Comments&lt;/h1&gt;</div><div class="line"></div><div class="line">  &#123;&#123;#each comments&#125;&#125;</div><div class="line">  &lt;!--下面&#123;&#123;fullName author&#125;&#125;调用自定义模板，fullName是模板名，后面的author才是函数参数--&gt;</div><div class="line">  &lt;h2&gt;By &#123;&#123;fullName author&#125;&#125;&lt;/h2&gt;   </div><div class="line">  &lt;div class=&quot;body&quot;&gt;&#123;&#123;body&#125;&#125;&lt;/div&gt;</div><div class="line">  &#123;&#123;/each&#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var context = &#123;</div><div class="line">  author: &#123;firstName: &quot;Alan&quot;, lastName: &quot;Johnson&quot;&#125;,</div><div class="line">  body: &quot;I Love Handlebars&quot;,</div><div class="line">  comments: [&#123;</div><div class="line">    author: &#123;firstName: &quot;Yehuda&quot;, lastName: &quot;Katz&quot;&#125;,</div><div class="line">    body: &quot;Me too!&quot;</div><div class="line">  &#125;]</div><div class="line">&#125;;</div><div class="line">//自定义Helper</div><div class="line">Handlebars.registerHelper(&apos;fullName&apos;, function(person) &#123;</div><div class="line">  return person.firstName + &quot; &quot; + person.lastName;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="helper会把当前上下文作为函数中的-this-上下文"><a href="#helper会把当前上下文作为函数中的-this-上下文" class="headerlink" title="helper会把当前上下文作为函数中的==this==上下文"></a>helper会把当前上下文作为函数中的==this==上下文</h4><p>此时上下文指的是items<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">  &#123;&#123;#each items&#125;&#125;</div><div class="line">  &lt;li&gt;&#123;&#123;agree_button&#125;&#125;&lt;/li&gt;</div><div class="line">  &#123;&#123;/each&#125;&#125;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+<p>使用下面的this上下文和helpers:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var context = &#123;</div><div class="line">  items: [</div><div class="line">    &#123;name: &quot;Handlebars&quot;, emotion: &quot;love&quot;&#125;,</div><div class="line">    &#123;name: &quot;Mustache&quot;, emotion: &quot;enjoy&quot;&#125;,</div><div class="line">    &#123;name: &quot;Ember&quot;, emotion: &quot;want to learn&quot;&#125;</div><div class="line">  ]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Handlebars.registerHelper(&apos;agree_button&apos;, function() &#123;</div><div class="line">  return new Handlebars.SafeString(</div><div class="line">    &quot;&lt;button&gt;I agree. I &quot; + this.emotion + &quot; &quot; + this.name + &quot;&lt;/button&gt;&quot;</div><div class="line">  );</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li&gt;&lt;button&gt;I agree. I love Handlebars&lt;/button&gt;&lt;/li&gt;</div><div class="line">  &lt;li&gt;&lt;button&gt;I agree. I enjoy Mustache&lt;/button&gt;&lt;/li&gt;</div><div class="line">  &lt;li&gt;&lt;button&gt;I agree. I want to learn Ember&lt;/button&gt;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果你不希望你的 helper 返回的 HTML值被编码，就请务必返回一个 ==new Handlebars.SafeString==</p>
+</blockquote>
+<h3 id="内置Helpers-with-each-if-unless-log"><a href="#内置Helpers-with-each-if-unless-log" class="headerlink" title="内置Helpers (with,each,if,unless,log)"></a>内置Helpers (with,each,if,unless,log)</h3><h4 id="with-helper-p-s-不太懂"><a href="#with-helper-p-s-不太懂" class="headerlink" title="==with== helper (p.s.:不太懂)"></a>==with== helper (p.s.:不太懂)</h4><p>==#with==一般情况下，Handlebars模板会在编译的阶段的时候进行context传递和赋值。使用with的方法，我们可以将context转移到数据的一个section里面（如果你的数据包含section）。 这个方法在操作复杂的template时候非常有用。</p>
+<p>一般情况下，Handlebars 模板在计算值时，会把传递给模板的参数作为上下文。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var source   = &quot;&lt;p&gt;&#123;&#123;lastName&#125;&#125;, &#123;&#123;firstName&#125;&#125;&lt;/p&gt;&quot;;</div><div class="line">var template = Handlebars.compile(source);</div><div class="line">template(&#123;firstName: &quot;Alan&quot;, lastName: &quot;Johnson&quot;&#125;);</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;Johnson, Alan&lt;/p&gt;</div></pre></td></tr></table></figure>
+<p>不过也可以在模板的某个区域切换上下文，使用内置的 with helper即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;entry&quot;&gt;</div><div class="line">  &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</div><div class="line"></div><div class="line">  &#123;&#123;#with author&#125;&#125;</div><div class="line">  &lt;h2&gt;By &#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125;&lt;/h2&gt;</div><div class="line">  &#123;&#123;/with&#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>在使用下面数据作为上下文时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  title: &quot;My first post!&quot;,</div><div class="line">  author: &#123;</div><div class="line">    firstName: &quot;Charles&quot;,</div><div class="line">    lastName: &quot;Jolley&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>会得到如下结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;entry&quot;&gt;</div><div class="line">  &lt;h1&gt;My first post!&lt;/h1&gt;</div><div class="line">  &lt;h2&gt;By Charles Jolley&lt;/h2&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h3 id="handlebarJS-模板传参到html里"><a href="#handlebarJS-模板传参到html里" class="headerlink" title="handlebarJS 模板传参到html里"></a>handlebarJS 模板传参到html里</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var handle = __inline(&apos;./test.handlebars&apos;);</div><div class="line">$(&apos;#test&apos;).append(handle(context));  //context是放参数的变量，如需要传参则handle(data)，如不需要传参则handle</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/08/webpack学习一之配置环境/" itemprop="url">
                   webpack学习一之配置环境
                 </a>
@@ -866,7 +985,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

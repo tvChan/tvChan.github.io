@@ -1,0 +1,611 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, tvChan" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="自定义helperp.s: 文中出现的==  ==，均为大胡子两对花括号的替换，好像是hexo不支持两对花括号，编译时会出错，又找到一个坑(⊙﹏⊙)b123456789101112&amp;lt;div class=&amp;quot;post&amp;quot;&amp;gt;  &amp;lt;h1&amp;gt;By &amp;#123;&amp;#123;fullName author&amp;#125;&amp;#125;&amp;lt;/h1&amp;gt;  &amp;lt;div c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="handlerbars的使用">
+<meta property="og:url" content="https://github.com/tvChan/2016/08/10/handlerbars的使用/index.html">
+<meta property="og:site_name" content="tvChan's Blog">
+<meta property="og:description" content="自定义helperp.s: 文中出现的==  ==，均为大胡子两对花括号的替换，好像是hexo不支持两对花括号，编译时会出错，又找到一个坑(⊙﹏⊙)b123456789101112&amp;lt;div class=&amp;quot;post&amp;quot;&amp;gt;  &amp;lt;h1&amp;gt;By &amp;#123;&amp;#123;fullName author&amp;#125;&amp;#125;&amp;lt;/h1&amp;gt;  &amp;lt;div c">
+<meta property="og:updated_time" content="2016-08-10T14:25:06.343Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="handlerbars的使用">
+<meta name="twitter:description" content="自定义helperp.s: 文中出现的==  ==，均为大胡子两对花括号的替换，好像是hexo不支持两对花括号，编译时会出错，又找到一个坑(⊙﹏⊙)b123456789101112&amp;lt;div class=&amp;quot;post&amp;quot;&amp;gt;  &amp;lt;h1&amp;gt;By &amp;#123;&amp;#123;fullName author&amp;#125;&amp;#125;&amp;lt;/h1&amp;gt;  &amp;lt;div c">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://github.com/tvChan/2016/08/10/handlerbars的使用/"/>
+
+  <title> handlerbars的使用 | tvChan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">tvChan's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                handlerbars的使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-10T22:11:17+08:00" content="2016-08-10">
+              2016-08-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/10/handlerbars的使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/10/handlerbars的使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="自定义helper"><a href="#自定义helper" class="headerlink" title="自定义helper"></a>自定义helper</h3><p>p.s: 文中出现的==  ==，均为大胡子<strong>两对花括号</strong>的替换，好像是hexo不支持两对花括号，编译时会出错，又找到一个坑(⊙﹏⊙)b<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;post&quot;&gt;</div><div class="line">  &lt;h1&gt;By &#123;&#123;fullName author&#125;&#125;&lt;/h1&gt;</div><div class="line">  &lt;div class=&quot;body&quot;&gt;&#123;&#123;body&#125;&#125;&lt;/div&gt;</div><div class="line"></div><div class="line">  &lt;h1&gt;Comments&lt;/h1&gt;</div><div class="line"></div><div class="line">  &#123;&#123;#each comments&#125;&#125;</div><div class="line">  &lt;!--下面&#123;&#123;fullName author&#125;&#125;调用自定义模板，fullName是模板名，后面的author才是函数参数--&gt;</div><div class="line">  &lt;h2&gt;By &#123;&#123;fullName author&#125;&#125;&lt;/h2&gt;   </div><div class="line">  &lt;div class=&quot;body&quot;&gt;&#123;&#123;body&#125;&#125;&lt;/div&gt;</div><div class="line">  &#123;&#123;/each&#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var context = &#123;</div><div class="line">  author: &#123;firstName: &quot;Alan&quot;, lastName: &quot;Johnson&quot;&#125;,</div><div class="line">  body: &quot;I Love Handlebars&quot;,</div><div class="line">  comments: [&#123;</div><div class="line">    author: &#123;firstName: &quot;Yehuda&quot;, lastName: &quot;Katz&quot;&#125;,</div><div class="line">    body: &quot;Me too!&quot;</div><div class="line">  &#125;]</div><div class="line">&#125;;</div><div class="line">//自定义Helper</div><div class="line">Handlebars.registerHelper(&apos;fullName&apos;, function(person) &#123;</div><div class="line">  return person.firstName + &quot; &quot; + person.lastName;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="helper会把当前上下文作为函数中的-this-上下文"><a href="#helper会把当前上下文作为函数中的-this-上下文" class="headerlink" title="helper会把当前上下文作为函数中的==this==上下文"></a>helper会把当前上下文作为函数中的==this==上下文</h4><p>此时上下文指的是items<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">  &#123;&#123;#each items&#125;&#125;</div><div class="line">  &lt;li&gt;&#123;&#123;agree_button&#125;&#125;&lt;/li&gt;</div><div class="line">  &#123;&#123;/each&#125;&#125;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+<p>使用下面的this上下文和helpers:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var context = &#123;</div><div class="line">  items: [</div><div class="line">    &#123;name: &quot;Handlebars&quot;, emotion: &quot;love&quot;&#125;,</div><div class="line">    &#123;name: &quot;Mustache&quot;, emotion: &quot;enjoy&quot;&#125;,</div><div class="line">    &#123;name: &quot;Ember&quot;, emotion: &quot;want to learn&quot;&#125;</div><div class="line">  ]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Handlebars.registerHelper(&apos;agree_button&apos;, function() &#123;</div><div class="line">  return new Handlebars.SafeString(</div><div class="line">    &quot;&lt;button&gt;I agree. I &quot; + this.emotion + &quot; &quot; + this.name + &quot;&lt;/button&gt;&quot;</div><div class="line">  );</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li&gt;&lt;button&gt;I agree. I love Handlebars&lt;/button&gt;&lt;/li&gt;</div><div class="line">  &lt;li&gt;&lt;button&gt;I agree. I enjoy Mustache&lt;/button&gt;&lt;/li&gt;</div><div class="line">  &lt;li&gt;&lt;button&gt;I agree. I want to learn Ember&lt;/button&gt;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果你不希望你的 helper 返回的 HTML值被编码，就请务必返回一个 ==new Handlebars.SafeString==</p>
+</blockquote>
+<h3 id="内置Helpers-with-each-if-unless-log"><a href="#内置Helpers-with-each-if-unless-log" class="headerlink" title="内置Helpers (with,each,if,unless,log)"></a>内置Helpers (with,each,if,unless,log)</h3><h4 id="with-helper-p-s-不太懂"><a href="#with-helper-p-s-不太懂" class="headerlink" title="==with== helper (p.s.:不太懂)"></a>==with== helper (p.s.:不太懂)</h4><p>==#with==一般情况下，Handlebars模板会在编译的阶段的时候进行context传递和赋值。使用with的方法，我们可以将context转移到数据的一个section里面（如果你的数据包含section）。 这个方法在操作复杂的template时候非常有用。</p>
+<p>一般情况下，Handlebars 模板在计算值时，会把传递给模板的参数作为上下文。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var source   = &quot;&lt;p&gt;&#123;&#123;lastName&#125;&#125;, &#123;&#123;firstName&#125;&#125;&lt;/p&gt;&quot;;</div><div class="line">var template = Handlebars.compile(source);</div><div class="line">template(&#123;firstName: &quot;Alan&quot;, lastName: &quot;Johnson&quot;&#125;);</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;Johnson, Alan&lt;/p&gt;</div></pre></td></tr></table></figure>
+<p>不过也可以在模板的某个区域切换上下文，使用内置的 with helper即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;entry&quot;&gt;</div><div class="line">  &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</div><div class="line"></div><div class="line">  &#123;&#123;#with author&#125;&#125;</div><div class="line">  &lt;h2&gt;By &#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125;&lt;/h2&gt;</div><div class="line">  &#123;&#123;/with&#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>在使用下面数据作为上下文时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  title: &quot;My first post!&quot;,</div><div class="line">  author: &#123;</div><div class="line">    firstName: &quot;Charles&quot;,</div><div class="line">    lastName: &quot;Jolley&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>会得到如下结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;entry&quot;&gt;</div><div class="line">  &lt;h1&gt;My first post!&lt;/h1&gt;</div><div class="line">  &lt;h2&gt;By Charles Jolley&lt;/h2&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h3 id="handlebarJS-模板传参到html里"><a href="#handlebarJS-模板传参到html里" class="headerlink" title="handlebarJS 模板传参到html里"></a>handlebarJS 模板传参到html里</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var handle = __inline(&apos;./test.handlebars&apos;);</div><div class="line">$(&apos;#test&apos;).append(handle(context));  //context是放参数的变量，如需要传参则handle(data)，如不需要传参则handle</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/08/webpack学习一之配置环境/" rel="next" title="webpack学习一之配置环境">
+                <i class="fa fa-chevron-left"></i> webpack学习一之配置环境
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="tvChan" />
+          <p class="site-author-name" itemprop="name">tvChan</p>
+          <p class="site-description motion-element" itemprop="description">Welcome to tvChan's Blog!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tvChan" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义helper"><span class="nav-number">1.</span> <span class="nav-text">自定义helper</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#helper会把当前上下文作为函数中的-this-上下文"><span class="nav-number">1.1.</span> <span class="nav-text">helper会把当前上下文作为函数中的==this==上下文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置Helpers-with-each-if-unless-log"><span class="nav-number">2.</span> <span class="nav-text">内置Helpers (with,each,if,unless,log)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#with-helper-p-s-不太懂"><span class="nav-number">2.1.</span> <span class="nav-text">==with== helper (p.s.:不太懂)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#handlebarJS-模板传参到html里"><span class="nav-number">3.</span> <span class="nav-text">handlebarJS 模板传参到html里</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tvChan</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'tvChan';
+      var disqus_identifier = '2016/08/10/handlerbars的使用/';
+      var disqus_title = "handlerbars的使用";
+      var disqus_url = 'https://github.com/tvChan/2016/08/10/handlerbars的使用/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
