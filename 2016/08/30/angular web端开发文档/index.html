@@ -1,0 +1,704 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, tvChan" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1 目录结构
+components    //第三方组件
+
+bootstrap-datatimepicker    //基于boostrap的日期选择器font-awesome-4.5.0    //字体图标layer    //弹出层插件qrcode    //JQuery二维码插件
+
+framework    //全局框架
+
+angular-1.3.0.14    //Angulerangul">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angular web端开发文档">
+<meta property="og:url" content="https://github.com/tvChan/2016/08/30/angular web端开发文档/index.html">
+<meta property="og:site_name" content="tvChan's Blog">
+<meta property="og:description" content="1 目录结构
+components    //第三方组件
+
+bootstrap-datatimepicker    //基于boostrap的日期选择器font-awesome-4.5.0    //字体图标layer    //弹出层插件qrcode    //JQuery二维码插件
+
+framework    //全局框架
+
+angular-1.3.0.14    //Angulerangul">
+<meta property="og:image" content="https://github.com/tvChan/img/angular.png">
+<meta property="og:updated_time" content="2016-08-30T15:38:06.534Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="angular web端开发文档">
+<meta name="twitter:description" content="1 目录结构
+components    //第三方组件
+
+bootstrap-datatimepicker    //基于boostrap的日期选择器font-awesome-4.5.0    //字体图标layer    //弹出层插件qrcode    //JQuery二维码插件
+
+framework    //全局框架
+
+angular-1.3.0.14    //Angulerangul">
+<meta name="twitter:image" content="https://github.com/tvChan/img/angular.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://github.com/tvChan/2016/08/30/angular web端开发文档/"/>
+
+  <title> angular web端开发文档 | tvChan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">tvChan's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                angular web端开发文档
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-30T23:28:57+08:00" content="2016-08-30">
+              2016-08-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/30/angular web端开发文档/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/30/angular web端开发文档/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-目录结构"><a href="#1-目录结构" class="headerlink" title="1 目录结构"></a>1 目录结构</h2><blockquote>
+<p>components    //第三方组件</p>
+<blockquote>
+<p>bootstrap-datatimepicker    //基于boostrap的日期选择器<br>font-awesome-4.5.0    //字体图标<br>layer    //弹出层插件<br>qrcode    //JQuery二维码插件</p>
+</blockquote>
+<p>framework    //全局框架</p>
+<blockquote>
+<p>angular-1.3.0.14    //Anguler<br>angular-ui-router    //基于Angular的第三方路由<br>bootstrap-3.3.5    //UI框架<br>jquery </p>
+</blockquote>
+<p>src    //源代码</p>
+<blockquote>
+<p>common    //公共资源</p>
+<blockquote>
+<p>css</p>
+<blockquote>
+<p>base.css    //基础样式：标签初始化<br>common.css    //自定义公共UI组件</p>
+</blockquote>
+<p>js</p>
+<blockquote>
+<p>app.js    //Angular启动js：主要是配置路由代码<br>controllers.js    //Controller（控制器）：主要js代码都在里面<br>filters.js    //Filter（过滤器）：过滤data，类似handlebars里面的Handlebars.register<br>services.js    //Service（服务）：自定义服务</p>
+</blockquote>
+</blockquote>
+<p>page    //子页面</p>
+<blockquote>
+<p>bank.html    //提现帐户<br>comment.html    //评价管理<br>commodity.html    //商品管理（未完成）<br>home.html    //主子页<br>member.html    //会员管理<br>notice.html    //公告设置<br>qrcode.html    //二维码<br>recharge.html    //积分充值<br>withdraw.html    //提现</p>
+</blockquote>
+<p>panel    //面板（子页面中的功能板块区域）</p>
+<blockquote>
+<p>account.html    //子主页面 - 用户帐户板块<br>finance.html    //子主页面 - 用户账务板块<br>shortCut.html    //子主页面 - 快捷功能板块</p>
+</blockquote>
+</blockquote>
+<p>api-conf.js    //路径配置<br>fis-conf.js    //fis配置<br>index.html    //入口页面：包括页面头部和左菜单列表</p>
+</blockquote>
+<h2 id="2-FIS-Angular-会遇到的坑"><a href="#2-FIS-Angular-会遇到的坑" class="headerlink" title="2 FIS+ Angular 会遇到的坑"></a>2 FIS+ Angular 会遇到的坑</h2><h3 id="2-1-变量命名问题"><a href="#2-1-变量命名问题" class="headerlink" title="2.1 变量命名问题"></a>2.1 变量命名问题</h3><ul>
+<li>下面是Angular官方推荐写法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">moduleName.run(function($rootScope, $state, $stateParams) &#123;</div><div class="line">    do something; </div><div class="line">&#125;);</div><div class="line">moduleName.controller(&apos;moduleCtrl&apos;, function($scope, $http, $state, $stateParams) &#123;</div><div class="line">    do something;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>代码经fis部署后会进行压缩，变量名会强行改为简写，angular内部变量会被改成t,u,o之类的变量名导致浏览器报错。</p>
+<ul>
+<li><strong>在FIS下要把内部变量放在数组里面，像下面这样</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">moduleName.run([&apos;$rootScope&apos;,&apos;$state&apos;,&apos;$stateParams&apos;,function($rootScope, $state, $stateParams) &#123;</div><div class="line">    do something; </div><div class="line">&#125;]);</div><div class="line">moduleName.controller(&apos;moduleCtrl&apos;,[&apos;$scope&apos;,&apos;$http&apos;,&apos;$state&apos;,&apos;$stateParams&apos;, function($scope, $http, $state, $stateParams) &#123;</div><div class="line">    do something;</div><div class="line">&#125;]);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-2-Ajax-相关问题"><a href="#2-2-Ajax-相关问题" class="headerlink" title="2.2 Ajax 相关问题"></a>2.2 Ajax 相关问题</h3><ul>
+<li>angular下仍然可以使用JQuery的AJAX，但是经常会遇到不请求或延迟请求的问题，所以angular下尽量不要使用Ajax。</li>
+<li>angular封装了一个叫$http的服务，类似ajax，官方API文档是下面这种写法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$http.get(&apos;http:\\static...&apos;, &#123;</div><div class="line">    key1:value1,</div><div class="line">    key2:value2</div><div class="line">&#125;).success(function(data) &#123; </div><div class="line">    do something;</div><div class="line">&#125;).error(function()&#123;</div><div class="line">    do something;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>同样，在FIS下这么写还是会报错，data对象内部还要再加一个params对象才可以，像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$http.get(&apos;http:\\static...&apos;, &#123;</div><div class="line">    params:&#123;</div><div class="line">        key1:value1,</div><div class="line">        key2:value2</div><div class="line">    &#125;</div><div class="line">&#125;).success(function(data) &#123; </div><div class="line">    do something;</div><div class="line">&#125;).error(function()&#123;</div><div class="line">    do something;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="2-3-Angular下-计时器-setTimeout-和-setInterval-问题；"><a href="#2-3-Angular下-计时器-setTimeout-和-setInterval-问题；" class="headerlink" title="2.3 Angular下 计时器 setTimeout 和 setInterval 问题；"></a>2.3 Angular下 计时器 setTimeout 和 setInterval 问题；</h3><ul>
+<li>Angular下，setTimeout 和 setInterval 虽然可以用，但是如果用setTimeout对数据进行操作，会解除数据与视图的绑定，数据的变化无法体现在视图上，要换成$timeout服务，用法与setTimeout差不多：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$timeout(function()&#123;</div><div class="line">    dosomething();</div><div class="line">&#125;,1000)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="3-Router-路由"><a href="#3-Router-路由" class="headerlink" title="3 Router 路由"></a>3 Router 路由</h2><p>Angular本身自带了一个原生路由ngRouter，但是功能简单，而且不能嵌套页面。</p>
+<p>商家WEB端用了一个基于angular的第三方路由ui-router，可以进行页面的嵌套。</p>
+<p>ui-router使用方法：</p>
+<ul>
+<li><p>声明router模块，并注入主业务模块business：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var routerApp = angular.module(&apos;routerApp&apos;, [&apos;ui.router&apos;,&apos;business&apos;]);    //数组变量表示依赖的模块名；</div></pre></td></tr></table></figure>
+</li>
+<li><p>初始化路由：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">routerApp.run([&apos;$rootScope&apos;,&apos;$state&apos;,&apos;$stateParams&apos;,function($rootScope, $state, $stateParams) &#123;</div><div class="line">    $rootScope.$state = $state;</div><div class="line">    $rootScope.$stateParams = $stateParams;</div><div class="line">&#125;]);</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置路由：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">routerApp.config([&apos;$stateProvider&apos;,&apos;$urlRouterProvider&apos;,function($stateProvider, $urlRouterProvider) &#123;</div><div class="line">    $urlRouterProvider.otherwise(&apos;/home&apos;);    //如果#后无参或找到参数，则跳转至&apos;/home&apos;</div><div class="line">    $stateProvider</div><div class="line">        .state(&apos;home&apos;, &#123;    //#号的索引值</div><div class="line">            url: &apos;/home&apos;,    //url</div><div class="line">            views: &#123;     //嵌套页面</div><div class="line">                &apos;&apos;: &#123;    </div><div class="line">                    templateUrl: &apos;src/page/home.html&apos;    //子页面路径</div><div class="line">                &#125;,</div><div class="line">                &apos;shortCut@home&apos;: &#123;    //二级子页面：‘二级页面名@上一级页面名’</div><div class="line">                    templateUrl: &apos;src/panel/shortCut.html&apos;    //二级子页面路径</div><div class="line">                &#125;,</div><div class="line">                &apos;account@home&apos;: &#123;</div><div class="line">                    templateUrl: &apos;src/panel/account.html&apos;</div><div class="line">                &#125;,</div><div class="line">                &apos;finance@home&apos;: &#123;</div><div class="line">                    templateUrl: &apos;src/panel/finance.html&apos;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        .state(&apos;commodity&apos;, &#123;    //非嵌套页面</div><div class="line">            url: &apos;/commodity&apos;,</div><div class="line">            templateUrl: &apos;src/page/commodity.html&apos;</div><div class="line">        &#125;)</div><div class="line">&#125;]);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="4-Scope-作用域"><a href="#4-Scope-作用域" class="headerlink" title="4 $Scope 作用域"></a>4 $Scope 作用域</h2><p>Angular中，scope起媒介的作用，将view视图（页面结构）、controller控制器（业务逻辑代码）和model模型（数据）链接起来，controller可以通过改变model控制view，也可以通过改变view操作model。</p>
+<ul>
+<li><p>scope 可以嵌套，内层scope可以访问外层scope对象，同层scope之间互不影响，下图为商家WEB端首页的scope作用域视图：<br><img src="/img/angular.png" alt="scope"></p>
+</li>
+<li><p>以下是商家WEB端首页的页面结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div ng-controller=&quot;rootCtrl&quot;&gt;</div><div class="line">    ...</div><div class="line">    &lt;div ng-controller=&quot;shortCutCtrl&quot;&gt;</div><div class="line">        ...</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div ng-controller=&quot;accountCtrl&quot;&gt;</div><div class="line">        ...</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div ng-controller=&quot;financeCtrl&quot;&gt;</div><div class="line">        ...</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>通过给标签添加ng-controller，声明该controller的控制区域，与此同时，该区域的scope对象自动生成，可在页面直接调用scope中的方法和对象，最外层的scope中可以存放全局方法/变量（商家名称，ID之类）以便子层controller可以方便调用。</strong></p>
+<h2 id="5-Controller-控制器"><a href="#5-Controller-控制器" class="headerlink" title="5 Controller 控制器"></a>5 Controller 控制器</h2><h3 id="5-1-使用方法"><a href="#5-1-使用方法" class="headerlink" title="5.1 使用方法"></a>5.1 使用方法</h3><ul>
+<li><p>声明业务模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var business = angular.module(&quot;business&quot;, []);</div></pre></td></tr></table></figure>
+</li>
+<li><p>声明controller：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">business.controller(&apos;recharge&apos;,[&apos;$scope&apos;,&apos;$http&apos;,function($scope,$http)&#123;    //$scope一定要有，如没有数据请求，可不加$http服务</div><div class="line">    $scope.active = true;    </div><div class="line">    $scope.rechargeIntegral = function()&#123;</div><div class="line">        $http.get(&apos;&apos;+$api_url+&apos;businessStore!cashAccountRechargeIntegral.do?_id=&apos;+parseInt(Math.random()*100000), &#123;</div><div class="line">            params: &#123;</div><div class="line">                cash: $scope.integral / 10,</div><div class="line">                integral: $scope.integral</div><div class="line">            &#125;  </div><div class="line">        &#125;).success(function(data) &#123; </div><div class="line">            if(data.status)&#123;layer.msg(data.msg);return;&#125; </div><div class="line">            layer.msg(&quot;充值成功&quot;)</div><div class="line">            $scope.root.cash -= ($scope.integral / 10);</div><div class="line">            $scope.root.integral += $scope.integral;</div><div class="line">        &#125;).error(function()&#123;&#125;);  </div><div class="line">    &#125;</div><div class="line">&#125;])</div></pre></td></tr></table></figure>
+</li>
+<li><p>html调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">	&lt;div ng-show=&quot;active&quot;&gt;    //$scope.active 为 true 时显示</div><div class="line">	        &lt;input type=&quot;number&quot; placeholder=&quot;请输入充值积分&quot; ng-model=&quot;integral&quot;&gt;    //ng-model：与$scope.integral 双向数据绑定</div><div class="line">		&lt;p&gt;</div><div class="line">			&lt;span&gt;积分余额&lt;/span&gt;</div><div class="line">			&lt;span&gt;&#123;&#123;root.integral | number:1&#125;&#125;&lt;/span&gt; 积分    //root.integral：调用最外层根scope变量</div><div class="line">		&lt;/p&gt;</div><div class="line">		&lt;p&gt;</div><div class="line">			&lt;span&gt;需支付&lt;/span&gt;</div><div class="line">			&lt;span&gt;&#123;&#123;integral/10 || 0&#125;&#125;&lt;/span&gt; 元</div><div class="line">		&lt;/p&gt;</div><div class="line">		&lt;button ng-click=&quot;rechargeIntegral()&quot;&gt;确定充值&lt;/button&gt;    //调用$scope.rechargeIntegral()方法</div><div class="line">	&lt;/div&gt;</div><div class="line">	&lt;div ng-hide=&quot;active&quot; &gt;     //$scope.active 为 true时隐藏</div><div class="line">		功能维护中...</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/10/handlerbars的使用/" rel="next" title="handlerbars的使用">
+                <i class="fa fa-chevron-left"></i> handlerbars的使用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="tvChan" />
+          <p class="site-author-name" itemprop="name">tvChan</p>
+          <p class="site-description motion-element" itemprop="description">Welcome to tvChan's Blog!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tvChan" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-目录结构"><span class="nav-number">1.</span> <span class="nav-text">1 目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-FIS-Angular-会遇到的坑"><span class="nav-number">2.</span> <span class="nav-text">2 FIS+ Angular 会遇到的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-变量命名问题"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 变量命名问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Ajax-相关问题"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Ajax 相关问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Angular下-计时器-setTimeout-和-setInterval-问题；"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Angular下 计时器 setTimeout 和 setInterval 问题；</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Router-路由"><span class="nav-number">3.</span> <span class="nav-text">3 Router 路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Scope-作用域"><span class="nav-number">4.</span> <span class="nav-text">4 $Scope 作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Controller-控制器"><span class="nav-number">5.</span> <span class="nav-text">5 Controller 控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-使用方法"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 使用方法</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tvChan</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  
+		 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="20" height="50" src="https://music.163.com/outchain/player?type=2&id=30621922&auto=1&height=32"></iframe>
+   
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'tvChan';
+      var disqus_identifier = '2016/08/30/angular web端开发文档/';
+      var disqus_title = "angular web端开发文档";
+      var disqus_url = 'https://github.com/tvChan/2016/08/30/angular web端开发文档/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
