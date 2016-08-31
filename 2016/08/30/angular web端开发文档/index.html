@@ -84,38 +84,38 @@
 
 
 
-<meta name="description" content="1 目录结构
+<meta name="description" content="目录结构
 components    //第三方组件
 
 bootstrap-datatimepicker    //基于boostrap的日期选择器font-awesome-4.5.0    //字体图标layer    //弹出层插件qrcode    //JQuery二维码插件
 
 framework    //全局框架
 
-angular-1.3.0.14    //Angulerangul">
+angular-1.3.0.14    //Angulerangular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="angular web端开发文档">
 <meta property="og:url" content="https://github.com/tvChan/2016/08/30/angular web端开发文档/index.html">
 <meta property="og:site_name" content="tvChan's Blog">
-<meta property="og:description" content="1 目录结构
+<meta property="og:description" content="目录结构
 components    //第三方组件
 
 bootstrap-datatimepicker    //基于boostrap的日期选择器font-awesome-4.5.0    //字体图标layer    //弹出层插件qrcode    //JQuery二维码插件
 
 framework    //全局框架
 
-angular-1.3.0.14    //Angulerangul">
+angular-1.3.0.14    //Angulerangular">
 <meta property="og:image" content="https://github.com/tvChan/img/angular.png">
-<meta property="og:updated_time" content="2016-08-30T15:46:37.439Z">
+<meta property="og:updated_time" content="2016-08-31T10:38:02.391Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angular web端开发文档">
-<meta name="twitter:description" content="1 目录结构
+<meta name="twitter:description" content="目录结构
 components    //第三方组件
 
 bootstrap-datatimepicker    //基于boostrap的日期选择器font-awesome-4.5.0    //字体图标layer    //弹出层插件qrcode    //JQuery二维码插件
 
 framework    //全局框架
 
-angular-1.3.0.14    //Angulerangul">
+angular-1.3.0.14    //Angulerangular">
 <meta name="twitter:image" content="https://github.com/tvChan/img/angular.png">
 
 
@@ -296,7 +296,7 @@ angular-1.3.0.14    //Angulerangul">
       
 
       
-        <h2 id="1-目录结构"><a href="#1-目录结构" class="headerlink" title="1 目录结构"></a>1 目录结构</h2><blockquote>
+        <h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><blockquote>
 <p>components    //第三方组件</p>
 <blockquote>
 <p>bootstrap-datatimepicker    //基于boostrap的日期选择器<br>font-awesome-4.5.0    //字体图标<br>layer    //弹出层插件<br>qrcode    //JQuery二维码插件</p>
@@ -329,7 +329,7 @@ angular-1.3.0.14    //Angulerangul">
 </blockquote>
 <p>api-conf.js    //路径配置<br>fis-conf.js    //fis配置<br>index.html    //入口页面：包括页面头部和左菜单列表</p>
 </blockquote>
-<h2 id="2-FIS-Angular-会遇到的坑"><a href="#2-FIS-Angular-会遇到的坑" class="headerlink" title="2 FIS+ Angular 会遇到的坑"></a>2 FIS+ Angular 会遇到的坑</h2><h3 id="2-1-变量命名问题"><a href="#2-1-变量命名问题" class="headerlink" title="2.1 变量命名问题"></a>2.1 变量命名问题</h3><ul>
+<h2 id="FIS-Angular-会遇到的坑"><a href="#FIS-Angular-会遇到的坑" class="headerlink" title="FIS+ Angular 会遇到的坑"></a>FIS+ Angular 会遇到的坑</h2><h3 id="变量命名问题"><a href="#变量命名问题" class="headerlink" title="变量命名问题"></a>变量命名问题</h3><ul>
 <li>下面是Angular官方推荐写法：</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">moduleName.run(<span class="function"><span class="keyword">function</span>(<span class="params">$rootScope, $state, $stateParams</span>) </span>&#123;</div><div class="line">    <span class="keyword">do</span> something; </div><div class="line">&#125;);</div><div class="line">moduleName.controller(<span class="string">'moduleCtrl'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $http, $state, $stateParams</span>) </span>&#123;</div><div class="line">    <span class="keyword">do</span> something;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
@@ -338,19 +338,19 @@ angular-1.3.0.14    //Angulerangul">
 <li><strong>在FIS下要把内部变量放在数组里面，像下面这样</strong></li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">moduleName.run([<span class="string">'$rootScope'</span>,<span class="string">'$state'</span>,<span class="string">'$stateParams'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">$rootScope, $state, $stateParams</span>) </span>&#123;</div><div class="line">    <span class="keyword">do</span> something; </div><div class="line">&#125;]);</div><div class="line">moduleName.controller(<span class="string">'moduleCtrl'</span>,[<span class="string">'$scope'</span>,<span class="string">'$http'</span>,<span class="string">'$state'</span>,<span class="string">'$stateParams'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $http, $state, $stateParams</span>) </span>&#123;</div><div class="line">    <span class="keyword">do</span> something;</div><div class="line">&#125;]);</div></pre></td></tr></table></figure>
-<h3 id="2-2-Ajax-相关问题"><a href="#2-2-Ajax-相关问题" class="headerlink" title="2.2 Ajax 相关问题"></a>2.2 Ajax 相关问题</h3><ul>
+<h3 id="Ajax-相关问题"><a href="#Ajax-相关问题" class="headerlink" title="Ajax 相关问题"></a>Ajax 相关问题</h3><ul>
 <li>angular下仍然可以使用JQuery的AJAX，但是经常会遇到不请求或延迟请求的问题，所以angular下尽量不要使用Ajax。</li>
 <li>angular封装了一个叫$http的服务，类似ajax，官方API文档是下面这种写法：</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$http.get(<span class="string">'http:\\static...'</span>, &#123;</div><div class="line">    key1:value1,</div><div class="line">    key2:value2</div><div class="line">&#125;).success(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123; </div><div class="line">    <span class="keyword">do</span> something;</div><div class="line">&#125;).error(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">do</span> something;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>同样，在FIS下这么写还是会报错，data对象内部还要再加一个params对象才可以，像这样：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$http.get(<span class="string">'http:\\static...'</span>, &#123;</div><div class="line">    params:&#123;</div><div class="line">        key1:value1,</div><div class="line">        key2:value2</div><div class="line">    &#125;</div><div class="line">&#125;).success(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123; </div><div class="line">    <span class="keyword">do</span> something;</div><div class="line">&#125;).error(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">do</span> something;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="2-3-Angular下-计时器-setTimeout-和-setInterval-问题；"><a href="#2-3-Angular下-计时器-setTimeout-和-setInterval-问题；" class="headerlink" title="2.3 Angular下 计时器 setTimeout 和 setInterval 问题；"></a>2.3 Angular下 计时器 setTimeout 和 setInterval 问题；</h3><ul>
+<h3 id="Angular下-计时器-setTimeout-和-setInterval-问题；"><a href="#Angular下-计时器-setTimeout-和-setInterval-问题；" class="headerlink" title="Angular下 计时器 setTimeout 和 setInterval 问题；"></a>Angular下 计时器 setTimeout 和 setInterval 问题；</h3><ul>
 <li>Angular下，setTimeout 和 setInterval 虽然可以用，但是如果用setTimeout对数据进行操作，会解除数据与视图的绑定，数据的变化无法体现在视图上，要换成$timeout服务，用法与setTimeout差不多：</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$timeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    dosomething();</div><div class="line">&#125;,<span class="number">1000</span>)</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="3-Router-路由"><a href="#3-Router-路由" class="headerlink" title="3 Router 路由"></a>3 Router 路由</h2><p>Angular本身自带了一个原生路由ngRouter，但是功能简单，而且不能嵌套页面。</p>
+<h2 id="Router-路由"><a href="#Router-路由" class="headerlink" title="Router 路由"></a>Router 路由</h2><p>Angular本身自带了一个原生路由ngRouter，但是功能简单，而且不能嵌套页面。</p>
 <p>商家WEB端用了一个基于angular的第三方路由ui-router，可以进行页面的嵌套。</p>
 <p>ui-router使用方法：</p>
 <ul>
@@ -365,7 +365,7 @@ angular-1.3.0.14    //Angulerangul">
 <li>配置路由：</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">routerApp.config([<span class="string">'$stateProvider'</span>,<span class="string">'$urlRouterProvider'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">$stateProvider, $urlRouterProvider</span>) </span>&#123;</div><div class="line">    $urlRouterProvider.otherwise(<span class="string">'/home'</span>);    <span class="comment">//如果#后无参或找到参数，则跳转至'/home'</span></div><div class="line">    $stateProvider</div><div class="line">        .state(<span class="string">'home'</span>, &#123;    <span class="comment">//#号的索引值</span></div><div class="line">            url: <span class="string">'/home'</span>,    <span class="comment">//url</span></div><div class="line">            views: &#123;     <span class="comment">//嵌套页面</span></div><div class="line">                <span class="string">''</span>: &#123;    </div><div class="line">                    templateUrl: <span class="string">'src/page/home.html'</span>    <span class="comment">//子页面路径</span></div><div class="line">                &#125;,</div><div class="line">                <span class="string">'shortCut@home'</span>: &#123;    <span class="comment">//二级子页面：‘二级页面名@上一级页面名’</span></div><div class="line">                    templateUrl: <span class="string">'src/panel/shortCut.html'</span>    <span class="comment">//二级子页面路径</span></div><div class="line">                &#125;,</div><div class="line">                <span class="string">'account@home'</span>: &#123;</div><div class="line">                    templateUrl: <span class="string">'src/panel/account.html'</span></div><div class="line">                &#125;,</div><div class="line">                <span class="string">'finance@home'</span>: &#123;</div><div class="line">                    templateUrl: <span class="string">'src/panel/finance.html'</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        .state(<span class="string">'commodity'</span>, &#123;    <span class="comment">//非嵌套页面</span></div><div class="line">            url: <span class="string">'/commodity'</span>,</div><div class="line">            templateUrl: <span class="string">'src/page/commodity.html'</span></div><div class="line">        &#125;)</div><div class="line">&#125;]);</div></pre></td></tr></table></figure>
-<h2 id="4-Scope-作用域"><a href="#4-Scope-作用域" class="headerlink" title="4 $Scope 作用域"></a>4 $Scope 作用域</h2><p>Angular中，scope起媒介的作用，将view视图（页面结构）、controller控制器（业务逻辑代码）和model模型（数据）链接起来，controller可以通过改变model控制view，也可以通过改变view操作model。</p>
+<h2 id="Scope-作用域"><a href="#Scope-作用域" class="headerlink" title="$Scope 作用域"></a>$Scope 作用域</h2><p>Angular中，scope起媒介的作用，将view视图（页面结构）、controller控制器（业务逻辑代码）和model模型（数据）链接起来，controller可以通过改变model控制view，也可以通过改变view操作model。</p>
 <ul>
 <li><p>scope 可以嵌套，内层scope可以访问外层scope对象，同层scope之间互不影响，下图为商家WEB端首页的scope作用域视图：<br><img src="/img/angular.png" alt="scope"></p>
 </li>
@@ -374,7 +374,7 @@ angular-1.3.0.14    //Angulerangul">
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div ng-controller="rootCtrl"&gt;</div><div class="line">    ...</div><div class="line">    &lt;div ng-controller="shortCutCtrl"&gt;</div><div class="line">        ...</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div ng-controller="accountCtrl"&gt;</div><div class="line">        ...</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div ng-controller="financeCtrl"&gt;</div><div class="line">        ...</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
 <p><strong>通过给标签添加ng-controller，声明该controller的控制区域，与此同时，该区域的scope对象自动生成，可在页面直接调用scope中的方法和对象，最外层的scope中可以存放全局方法/变量（商家名称，ID之类）以便子层controller可以方便调用。</strong></p>
-<h2 id="5-Controller-控制器"><a href="#5-Controller-控制器" class="headerlink" title="5 Controller 控制器"></a>5 Controller 控制器</h2><h3 id="5-1-使用方法"><a href="#5-1-使用方法" class="headerlink" title="5.1 使用方法"></a>5.1 使用方法</h3><ul>
+<h2 id="Controller-控制器"><a href="#Controller-控制器" class="headerlink" title="Controller 控制器"></a>Controller 控制器</h2><h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><ul>
 <li>声明业务模块：</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> business = angular.module(<span class="string">"business"</span>, []);</div></pre></td></tr></table></figure>
@@ -541,7 +541,7 @@ angular-1.3.0.14    //Angulerangul">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-目录结构"><span class="nav-number">1.</span> <span class="nav-text">1 目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-FIS-Angular-会遇到的坑"><span class="nav-number">2.</span> <span class="nav-text">2 FIS+ Angular 会遇到的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-变量命名问题"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 变量命名问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Ajax-相关问题"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Ajax 相关问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Angular下-计时器-setTimeout-和-setInterval-问题；"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Angular下 计时器 setTimeout 和 setInterval 问题；</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Router-路由"><span class="nav-number">3.</span> <span class="nav-text">3 Router 路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Scope-作用域"><span class="nav-number">4.</span> <span class="nav-text">4 $Scope 作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Controller-控制器"><span class="nav-number">5.</span> <span class="nav-text">5 Controller 控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-使用方法"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 使用方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构"><span class="nav-number">1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FIS-Angular-会遇到的坑"><span class="nav-number">2.</span> <span class="nav-text">FIS+ Angular 会遇到的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量命名问题"><span class="nav-number">2.1.</span> <span class="nav-text">变量命名问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax-相关问题"><span class="nav-number">2.2.</span> <span class="nav-text">Ajax 相关问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular下-计时器-setTimeout-和-setInterval-问题；"><span class="nav-number">2.3.</span> <span class="nav-text">Angular下 计时器 setTimeout 和 setInterval 问题；</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Router-路由"><span class="nav-number">3.</span> <span class="nav-text">Router 路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scope-作用域"><span class="nav-number">4.</span> <span class="nav-text">$Scope 作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller-控制器"><span class="nav-number">5.</span> <span class="nav-text">Controller 控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法"><span class="nav-number">5.1.</span> <span class="nav-text">使用方法</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
