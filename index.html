@@ -228,6 +228,129 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/31/easyUI/" itemprop="url">
+                  easyUI使用心得
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-31T18:18:58+08:00" content="2016-08-31">
+              2016-08-31
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/31/easyUI/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/easyUI/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="easyUI渲染方式（html-amp-js二者只能选其一）"><a href="#easyUI渲染方式（html-amp-js二者只能选其一）" class="headerlink" title="easyUI渲染方式（html&amp;js二者只能选其一）"></a>easyUI渲染方式（html&amp;js二者只能选其一）</h2><h3 id="渲染遇到的坑啊，attention！！！"><a href="#渲染遇到的坑啊，attention！！！" class="headerlink" title="渲染遇到的坑啊，attention！！！"></a>渲染遇到的坑啊，<span style="background:yellow">attention！！！</span></h3><p>关于问题：<br>Q：为什么只能二者选其一？<br>A：就是两种渲染方式其实是一样，如果两种都使用，就重复了。</p>
+<p>我自己的坑：<br>Q：用html的方式渲染了之后，用js的方式操作添加（add）等方法，<strong>会出现js写的方法里的出不来甚至报错</strong>！<br>A：这是因为，js是异步的，可能是在html方式渲染之前就已经执行了js的代码（是要渲染后才能执行的），所以就会出现显示不出来或报错问题！</p>
+<p>可以做个试验检验：用下面代码加上这里，加个定时器，就可以进行检验<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="string">'#tt'</span>).tabs(<span class="string">'add'</span>, &#123;</div><div class="line">        title: <span class="string">'New Tab'</span>,</div><div class="line">        content: <span class="string">'Tab Body'</span>,</div><div class="line">        closable: <span class="literal">true</span>,</div><div class="line">        tools: [&#123;</div><div class="line">            iconCls: <span class="string">'icon-mini-refresh'</span>,</div><div class="line">            handler: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                alert(<span class="string">'refresh'</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;] </div><div class="line">    &#125;);</div><div class="line">&#125;, <span class="number">5000</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="使用html-class-渲染：（class-’easyui-tabs’）"><a href="#使用html-class-渲染：（class-’easyui-tabs’）" class="headerlink" title="使用html(class)渲染：（class=’easyui-tabs’）"></a>使用html(class)渲染：（class=’easyui-tabs’）</h3><ol>
+<li>标题使用：<strong>title=’myTitle’</strong></li>
+<li>其他属性就放在自定义标签：<strong>data-options=’ ‘</strong> 里</li>
+<li>样式用：<strong>style</strong>设置</li>
+</ol>
+<p>例子如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"tt"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"easyui-tabs"</span> style=<span class="string">"width:400px;height:250px;"</span>&gt;</div><div class="line">   <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">title</span>=<span class="string">"Home"</span> <span class="attr">data-options</span>=<span class="string">"iconCls:'icon-add'"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">   &lt;div title=<span class="string">"Home"</span> data-options=<span class="string">"iconCls:'icon-edit'"</span>&gt;</div><div class="line">   <span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">   &lt;div title=<span class="string">"Home"</span> data-options=<span class="string">"closable:true"</span>&gt;</div><div class="line">   <span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="使用js方式渲染-（-‘-tt’-tabs-）"><a href="#使用js方式渲染-（-‘-tt’-tabs-）" class="headerlink" title="使用js方式渲染 （$(‘#tt’).tabs();）"></a>使用js方式渲染 （$(‘#tt’).tabs();）</h3><ul>
+<li>初始化方式： <strong>$(‘#tt’).tabs();</strong>，才能使用组件相应的方法</li>
+</ul>
+<h2 id="组件学习问题"><a href="#组件学习问题" class="headerlink" title="组件学习问题"></a>组件学习问题</h2><h3 id="tree组件"><a href="#tree组件" class="headerlink" title="tree组件"></a>tree组件</h3><blockquote>
+<p>tree 用url:’treeData.json’ 渲染数据用下面的方式不成功？</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#tree-demo'</span>).tree(&#123;</div><div class="line">    url:<span class="string">'treeData.json'</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>treeData.json数据<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[&#123;</div><div class="line">    <span class="string">"id"</span>: <span class="number">1</span>,</div><div class="line">    <span class="string">"text"</span>: <span class="string">"Node 1"</span>,</div><div class="line">    <span class="string">"state"</span>: <span class="string">"closed"</span>,</div><div class="line">    <span class="string">"children"</span>: [&#123;</div><div class="line">    <span class="string">"id"</span>: <span class="number">11</span>,</div><div class="line">    <span class="string">"text"</span>: <span class="string">"Node 11"</span></div><div class="line">&#125;,&#123;</div><div class="line">    <span class="string">"id"</span>: <span class="number">12</span>,</div><div class="line">    <span class="string">"text"</span>: <span class="string">"Node 12"</span></div><div class="line">    &#125;]</div><div class="line">&#125;,&#123;</div><div class="line">    <span class="string">"id"</span>: <span class="number">2</span>,</div><div class="line">    <span class="string">"text"</span>: <span class="string">"Node 2"</span>,</div><div class="line">    <span class="string">"state"</span>: <span class="string">"closed"</span></div><div class="line">&#125;]</div></pre></td></tr></table></figure></p>
+<h3 id="表格封装"><a href="#表格封装" class="headerlink" title="表格封装"></a>表格封装</h3><p>通常用easyUI的datagrid都是这样的~~~<br>columns里都是带一片的重复的表格的key值~，要是数据一多起来，那重复的东西就更加多、、、<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#tv'</span>).datagrid(&#123;  </div><div class="line">    url:<span class="literal">null</span>,  </div><div class="line">    ...,</div><div class="line">    columns: [</div><div class="line">        [&#123;</div><div class="line">            field: <span class="string">'no'</span>,</div><div class="line">            title: <span class="string">'订单号'</span>,</div><div class="line">            width: <span class="number">100</span></div><div class="line">        &#125;, &#123;</div><div class="line">            field: <span class="string">'payType'</span>,</div><div class="line">            title: <span class="string">'支付方式'</span></div><div class="line">        &#125;]</div><div class="line">    ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>要是能封装成这个样子，就完美啦~(≧▽≦)/~啦啦啦，用数据的形式表示~就完美啦<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#tv'</span>).datagrid(&#123;  </div><div class="line">    url:<span class="literal">null</span>,  </div><div class="line">    ...,</div><div class="line">    columns: [</div><div class="line">        [[</div><div class="line">           <span class="string">'no'</span>,</div><div class="line">           <span class="string">'订单号'</span>,</div><div class="line">           <span class="number">100</span></div><div class="line">        ],[</div><div class="line">            <span class="string">'payType'</span>,</div><div class="line">            <span class="string">'支付方式'</span></div><div class="line">        ]]</div><div class="line">    ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>所以就有了下面的封装方法，写了个函数方便调用。<br>colValue就是我们上面简化掉要传的参。</p>
+<p>colKey是可以根据你当前datagrid需要的值进行设置，比如说，有些列时需要formatter方法的，可以传入<code>var colKey = [&#39;field&#39;, &#39;title&#39;, &#39;formatter&#39;]</code><br>我这里是根据项目需要，初始化colKey。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// col的key和value值封装</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">transM</span>(<span class="params">colValue, colKey</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(!colKey) &#123;</div><div class="line">        colKey = [<span class="string">'field'</span>, <span class="string">'title'</span>, <span class="string">'width'</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> result = colValue.map(<span class="function"><span class="keyword">function</span>(<span class="params">oneItem</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> colKey.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">res, twoItem, i</span>) </span>&#123;</div><div class="line">            oneItem[i] &amp;&amp; (res[twoItem] = oneItem[i]);</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        &#125;, &#123;&#125;);</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/31/easyUI/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/30/angular web端开发文档/" itemprop="url">
                   angular web端开发文档
                 </a>
@@ -551,7 +674,7 @@
 </ol>
 <h4 id="我会遇到的坑："><a href="#我会遇到的坑：" class="headerlink" title="我会遇到的坑："></a>我会遇到的坑：</h4><ul>
 <li><p>在进行css预编译时，换成sass写，教程没说要安装什么东西，但是就是一直出现这个问题，后来查了一下是还要安装 node-sass</p>
-<p>  <img src="/img/webpack-1.jpg" alt="webpack-1"></p>
+<p>  <img src="/img/webpack1.jpg" alt="webpack1"></p>
 <p>  <code>npm install node-sass --save-dev</code></p>
 </li>
 <li><p>在二“加载jQuery plugin或者其他legacy第三方库”中，第一种方法，使用webpack.ProvidePlugin,在config中加入代码时，</p>
@@ -559,8 +682,8 @@
 </li>
 </ul>
 <p>出现了以下的错误：</p>
-<pre><code>![webpack-2](/img/webpack-2.jpg)
-</code></pre><p>原来是，在config开始时没有对引入webpack，引入代码并定义：<br><code>var webpack = require(&#39;webpack&#39;);</code></p>
+<p><img src="/img/webpack2.jpg" alt="webpack2"></p>
+<p>原来是，在config开始时没有对引入webpack，引入代码并定义：<br><code>var webpack = require(&#39;webpack&#39;);</code></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/08/webpack学习一之配置环境/#more" rel="contents">
               阅读全文 &raquo;
@@ -1091,7 +1214,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

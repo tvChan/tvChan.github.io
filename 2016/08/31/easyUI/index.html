@@ -1,0 +1,692 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, tvChan" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="easyUI渲染方式（html&amp;amp;js二者只能选其一）渲染遇到的坑啊，attention！！！关于问题：Q：为什么只能二者选其一？A：就是两种渲染方式其实是一样，如果两种都使用，就重复了。
+我自己的坑：Q：用html的方式渲染了之后，用js的方式操作添加（add）等方法，会出现js写的方法里的出不来甚至报错！A：这是因为，js是异步的，可能是在html方式渲染之前就已经执行了js的代码（是要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="easyUI使用心得">
+<meta property="og:url" content="https://github.com/tvChan/2016/08/31/easyUI/index.html">
+<meta property="og:site_name" content="tvChan's Blog">
+<meta property="og:description" content="easyUI渲染方式（html&amp;amp;js二者只能选其一）渲染遇到的坑啊，attention！！！关于问题：Q：为什么只能二者选其一？A：就是两种渲染方式其实是一样，如果两种都使用，就重复了。
+我自己的坑：Q：用html的方式渲染了之后，用js的方式操作添加（add）等方法，会出现js写的方法里的出不来甚至报错！A：这是因为，js是异步的，可能是在html方式渲染之前就已经执行了js的代码（是要">
+<meta property="og:image" content="https://github.com/tvChan/img/easyUI.png">
+<meta property="og:updated_time" content="2016-08-31T10:22:31.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="easyUI使用心得">
+<meta name="twitter:description" content="easyUI渲染方式（html&amp;amp;js二者只能选其一）渲染遇到的坑啊，attention！！！关于问题：Q：为什么只能二者选其一？A：就是两种渲染方式其实是一样，如果两种都使用，就重复了。
+我自己的坑：Q：用html的方式渲染了之后，用js的方式操作添加（add）等方法，会出现js写的方法里的出不来甚至报错！A：这是因为，js是异步的，可能是在html方式渲染之前就已经执行了js的代码（是要">
+<meta name="twitter:image" content="https://github.com/tvChan/img/easyUI.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://github.com/tvChan/2016/08/31/easyUI/"/>
+
+  <title> easyUI使用心得 | tvChan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">tvChan's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                easyUI使用心得
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-31T18:18:58+08:00" content="2016-08-31">
+              2016-08-31
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/31/easyUI/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/easyUI/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="easyUI渲染方式（html-amp-js二者只能选其一）"><a href="#easyUI渲染方式（html-amp-js二者只能选其一）" class="headerlink" title="easyUI渲染方式（html&amp;js二者只能选其一）"></a>easyUI渲染方式（html&amp;js二者只能选其一）</h2><h3 id="渲染遇到的坑啊，attention！！！"><a href="#渲染遇到的坑啊，attention！！！" class="headerlink" title="渲染遇到的坑啊，attention！！！"></a>渲染遇到的坑啊，<span style="background:yellow">attention！！！</span></h3><p>关于问题：<br>Q：为什么只能二者选其一？<br>A：就是两种渲染方式其实是一样，如果两种都使用，就重复了。</p>
+<p>我自己的坑：<br>Q：用html的方式渲染了之后，用js的方式操作添加（add）等方法，<strong>会出现js写的方法里的出不来甚至报错</strong>！<br>A：这是因为，js是异步的，可能是在html方式渲染之前就已经执行了js的代码（是要渲染后才能执行的），所以就会出现显示不出来或报错问题！</p>
+<p>可以做个试验检验：用下面代码加上这里，加个定时器，就可以进行检验<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="string">'#tt'</span>).tabs(<span class="string">'add'</span>, &#123;</div><div class="line">        title: <span class="string">'New Tab'</span>,</div><div class="line">        content: <span class="string">'Tab Body'</span>,</div><div class="line">        closable: <span class="literal">true</span>,</div><div class="line">        tools: [&#123;</div><div class="line">            iconCls: <span class="string">'icon-mini-refresh'</span>,</div><div class="line">            handler: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                alert(<span class="string">'refresh'</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;] </div><div class="line">    &#125;);</div><div class="line">&#125;, <span class="number">5000</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="使用html-class-渲染：（class-’easyui-tabs’）"><a href="#使用html-class-渲染：（class-’easyui-tabs’）" class="headerlink" title="使用html(class)渲染：（class=’easyui-tabs’）"></a>使用html(class)渲染：（class=’easyui-tabs’）</h3><ol>
+<li>标题使用：<strong>title=’myTitle’</strong></li>
+<li>其他属性就放在自定义标签：<strong>data-options=’ ‘</strong> 里</li>
+<li>样式用：<strong>style</strong>设置</li>
+</ol>
+<p>例子如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"tt"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"easyui-tabs"</span> style=<span class="string">"width:400px;height:250px;"</span>&gt;</div><div class="line">   <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">title</span>=<span class="string">"Home"</span> <span class="attr">data-options</span>=<span class="string">"iconCls:'icon-add'"</span>&gt;</span></span></div><div class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">   &lt;div title=<span class="string">"Home"</span> data-options=<span class="string">"iconCls:'icon-edit'"</span>&gt;</div><div class="line">   <span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">   &lt;div title=<span class="string">"Home"</span> data-options=<span class="string">"closable:true"</span>&gt;</div><div class="line">   <span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="使用js方式渲染-（-‘-tt’-tabs-）"><a href="#使用js方式渲染-（-‘-tt’-tabs-）" class="headerlink" title="使用js方式渲染 （$(‘#tt’).tabs();）"></a>使用js方式渲染 （$(‘#tt’).tabs();）</h3><ul>
+<li>初始化方式： <strong>$(‘#tt’).tabs();</strong>，才能使用组件相应的方法</li>
+</ul>
+<h2 id="组件学习问题"><a href="#组件学习问题" class="headerlink" title="组件学习问题"></a>组件学习问题</h2><h3 id="tree组件"><a href="#tree组件" class="headerlink" title="tree组件"></a>tree组件</h3><blockquote>
+<p>tree 用url:’treeData.json’ 渲染数据用下面的方式不成功？</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#tree-demo'</span>).tree(&#123;</div><div class="line">    url:<span class="string">'treeData.json'</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>treeData.json数据<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[&#123;</div><div class="line">    <span class="string">"id"</span>: <span class="number">1</span>,</div><div class="line">    <span class="string">"text"</span>: <span class="string">"Node 1"</span>,</div><div class="line">    <span class="string">"state"</span>: <span class="string">"closed"</span>,</div><div class="line">    <span class="string">"children"</span>: [&#123;</div><div class="line">    <span class="string">"id"</span>: <span class="number">11</span>,</div><div class="line">    <span class="string">"text"</span>: <span class="string">"Node 11"</span></div><div class="line">&#125;,&#123;</div><div class="line">    <span class="string">"id"</span>: <span class="number">12</span>,</div><div class="line">    <span class="string">"text"</span>: <span class="string">"Node 12"</span></div><div class="line">    &#125;]</div><div class="line">&#125;,&#123;</div><div class="line">    <span class="string">"id"</span>: <span class="number">2</span>,</div><div class="line">    <span class="string">"text"</span>: <span class="string">"Node 2"</span>,</div><div class="line">    <span class="string">"state"</span>: <span class="string">"closed"</span></div><div class="line">&#125;]</div></pre></td></tr></table></figure></p>
+<h3 id="表格封装"><a href="#表格封装" class="headerlink" title="表格封装"></a>表格封装</h3><p>通常用easyUI的datagrid都是这样的~~~<br>columns里都是带一片的重复的表格的key值~，要是数据一多起来，那重复的东西就更加多、、、<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#tv'</span>).datagrid(&#123;  </div><div class="line">    url:<span class="literal">null</span>,  </div><div class="line">    ...,</div><div class="line">    columns: [</div><div class="line">        [&#123;</div><div class="line">            field: <span class="string">'no'</span>,</div><div class="line">            title: <span class="string">'订单号'</span>,</div><div class="line">            width: <span class="number">100</span></div><div class="line">        &#125;, &#123;</div><div class="line">            field: <span class="string">'payType'</span>,</div><div class="line">            title: <span class="string">'支付方式'</span></div><div class="line">        &#125;]</div><div class="line">    ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>要是能封装成这个样子，就完美啦~(≧▽≦)/~啦啦啦，用数据的形式表示~就完美啦<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#tv'</span>).datagrid(&#123;  </div><div class="line">    url:<span class="literal">null</span>,  </div><div class="line">    ...,</div><div class="line">    columns: [</div><div class="line">        [[</div><div class="line">           <span class="string">'no'</span>,</div><div class="line">           <span class="string">'订单号'</span>,</div><div class="line">           <span class="number">100</span></div><div class="line">        ],[</div><div class="line">            <span class="string">'payType'</span>,</div><div class="line">            <span class="string">'支付方式'</span></div><div class="line">        ]]</div><div class="line">    ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>所以就有了下面的封装方法，写了个函数方便调用。<br>colValue就是我们上面简化掉要传的参。</p>
+<p>colKey是可以根据你当前datagrid需要的值进行设置，比如说，有些列时需要formatter方法的，可以传入<code>var colKey = [&#39;field&#39;, &#39;title&#39;, &#39;formatter&#39;]</code><br>我这里是根据项目需要，初始化colKey。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// col的key和value值封装</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">transM</span>(<span class="params">colValue, colKey</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(!colKey) &#123;</div><div class="line">        colKey = [<span class="string">'field'</span>, <span class="string">'title'</span>, <span class="string">'width'</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> result = colValue.map(<span class="function"><span class="keyword">function</span>(<span class="params">oneItem</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> colKey.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">res, twoItem, i</span>) </span>&#123;</div><div class="line">            oneItem[i] &amp;&amp; (res[twoItem] = oneItem[i]);</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        &#125;, &#123;&#125;);</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>最后举个栗子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> colValue = [</div><div class="line">    [</div><div class="line">        <span class="string">'no'</span>,</div><div class="line">        <span class="string">'订单号'</span>,</div><div class="line">        <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; alert(<span class="string">'my name is tv'</span>); &#125;</div><div class="line">    ],</div><div class="line">    [</div><div class="line">        <span class="string">'payType'</span>,</div><div class="line">        <span class="string">'支付方式'</span></div><div class="line">    ]</div><div class="line">];</div><div class="line"><span class="keyword">var</span> colKey = [<span class="string">'field'</span>, <span class="string">'title'</span>, <span class="string">'formatter'</span>];</div><div class="line"></div><div class="line"><span class="keyword">var</span> cols =transM(colValue, colKey);</div><div class="line"></div><div class="line">$(<span class="string">'#tv'</span>).datagrid(&#123;  </div><div class="line">    url:<span class="literal">null</span>,  </div><div class="line">    ...,</div><div class="line">    columns: [</div><div class="line">        cols</div><div class="line">    ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="遇到最大的坑，重点！！！（关于easyUI-datagrid-表格数据加载问题）"><a href="#遇到最大的坑，重点！！！（关于easyUI-datagrid-表格数据加载问题）" class="headerlink" title="遇到最大的坑，重点！！！（关于easyUI datagrid 表格数据加载问题）"></a>遇到最大的坑，重点！！！（关于easyUI datagrid 表格数据加载问题）</h2><p>在easyUI给的官方文档里提及，easyUI datagrid加载数据的方式只有两种。</p>
+<ol>
+<li>第一种是通过ajax加载相应url返回的json数据；</li>
+<li>第二种是加载js对象，就是使用loadDate方法</li>
+</ol>
+<blockquote>
+<p>url方式加载数据</p>
+</blockquote>
+<p>结合上面所说，可以通过两种方式进行调用</p>
+<ul>
+<li>html</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">id</span>=<span class="string">"tv"</span> <span class="attr">style</span>=<span class="string">"width:700px;height:auto"</span> <span class="attr">title</span>=<span class="string">"DataGrid"</span> <span class="attr">idField</span>=<span class="string">"itemid"</span> <span class="attr">url</span>=<span class="string">"datagridData.json"</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>javascript</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#tv'</span>).datagrid(&#123;  </div><div class="line">    url:<span class="string">'datagridData.json'</span>  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">方法</th>
+<th style="text-align:right">使用须知</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">load</td>
+<td style="text-align:right">加载第一页数据，param将代替默认查询参数，注意的是该方法只适用于url方式.</td>
+</tr>
+<tr>
+<td style="text-align:right">reload</td>
+<td style="text-align:right">刷新当前页数据，与load方法不同的时候reload方法刷新当前页数据，而load方法会跳到第一页然后刷新.</td>
+</tr>
+<tr>
+<td style="text-align:right">options</td>
+<td style="text-align:right">获取datagrid实例的各项参数值，常用的参数有url,pageNumber,pageSize这三个参数在请求数据以及分页功能中起重要作用.</td>
+</tr>
+</tbody>
+</table>
+<p>查找资料的时候，网上有提及<strong>二次加载问题</strong>，可是在开发的时候没遇到，但是还是提一下，记录记录。</p>
+<p>使用url的方式，可能会遇到重复请求问题，这问题根本原因是因为<span style="color:red">多次渲染组件</span>，至于为啥会这样还要深究。知道的小伙伴可以聊聊~据说使用下面两点就可以基本防止二次加载</p>
+<ul>
+<li><strong>使用load和reload函数去动态加载数据，而不是选择再次渲染组件。</strong> 一般再次渲染组件的目的仅仅是为了设置url，这得不偿失，url的设置可以通过options的方法获取到组件实例的opts，然后在给opts.url重新赋值；</li>
+<li><strong>class方式注册组件和javascript注册方式不要同时使用。</strong> class注册方式一般是为了初始化属性，javascript方式则属性和事件都可初始化，但是不管是class方式还是javascipt方式注册组件，每次注册，只要被设置过url属性就会做请求。所以在不可避免要使用javascript方式注册的情况下，索性就不要使用class方式注册了。</li>
+</ul>
+<blockquote>
+<p>加载本地数据方式</p>
+</blockquote>
+<p>加载本地数据，我所理解的就是直接在datagrid的rows里面写json数据，或者是通过异步方式获取数据</p>
+<ul>
+<li>调用方式</li>
+</ul>
+<p>不用设置url或者是把url设置为null，然后使用datagrid的loadData方法加载js数据对象，这个对象包括两个属性，一个是记录总数，另一个是当前页码的对象数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;<span class="string">'total'</span>:<span class="number">100</span>,<span class="string">'rows'</span>:[&#123;id:<span class="string">'1'</span>,name:<span class="string">'张三'</span>&#125;,&#123;id:<span class="string">'2'</span>,name:<span class="string">'李四'</span>&#125;]&#125;;  </div><div class="line">$(<span class="string">'#tv'</span>).datagrid(<span class="string">'loadData'</span>,obj);</div></pre></td></tr></table></figure>
+<ul>
+<li>如何分页 （分页是个大问题~）</li>
+</ul>
+<p>看了下文档，才知道datagrid还有分页的Pagination对象，然后通过写Pagination对象的onSelectPage事件来实现分页。（因为之前都是直接使用。。。）<br>更深入的可以参考<a href="http://www.easyui.info/archives/17.html" target="_blank" rel="external">jQuery easyui datagrid 非URL后台分页</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//初始化dategrid  </span></div><div class="line">$(<span class="string">'#tv'</span>).datagrid(&#123;  </div><div class="line">    url:<span class="literal">null</span>,  </div><div class="line">    pagination:<span class="literal">true</span>,  </div><div class="line">    pageSize:<span class="number">20</span>,  </div><div class="line">    pageNumber:<span class="number">1</span>,  </div><div class="line">    rownumbers:<span class="literal">true</span> </div><div class="line">&#125;);  </div><div class="line">$(<span class="string">'#tv'</span>).datagrid(<span class="string">'getPager'</span>).pagination(&#123;  </div><div class="line">    displayMsg:<span class="string">'当前显示从 [&#123;from&#125;] 到 [&#123;to&#125;] 共[&#123;total&#125;]条记录'</span>,  </div><div class="line">    onSelectPage : <span class="function"><span class="keyword">function</span>(<span class="params">pPageIndex, pPageSize</span>) </span>&#123;  </div><div class="line">        <span class="comment">//改变opts.pageNumber和opts.pageSize的参数值，用于下次查询传给数据层查询指定页码的数据  </span></div><div class="line">        <span class="keyword">var</span> gridOpts = $(<span class="string">'#tt'</span>).datagrid(<span class="string">'options'</span>);  </div><div class="line">        gridOpts.pageNumber = pPageIndex;  </div><div class="line">        gridOpts.pageSize = pPageSize;    </div><div class="line">        <span class="comment">//定义查询条件  </span></div><div class="line">        <span class="keyword">var</span> queryCondition = &#123;name:<span class="string">"张三"</span>&#125;;  </div><div class="line">        <span class="comment">//异步获取数据到javascript对象，入参为查询条件和页码信息  </span></div><div class="line">        <span class="keyword">var</span> oData = getAjaxDate(<span class="string">"orderManageBuz"</span>,<span class="string">"qryWorkOrderPaged"</span>,queryCondition,gridOpts);  </div><div class="line">        <span class="comment">//使用loadDate方法加载Dao层返回的数据  </span></div><div class="line">        $(<span class="string">'#tt'</span>).datagrid(<span class="string">'loadData'</span>,&#123;<span class="string">"total"</span> : oData.page.recordCount,<span class="string">"rows"</span> : oData.data&#125;);  </div><div class="line">    &#125;  </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>这是之前项目遇到的写的。。。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#tv'</span>).datagrid(<span class="string">'getPager'</span>).pagination(&#123;</div><div class="line">    displayMsg: <span class="string">'显示  &#123;from&#125; 到  &#123;to&#125; ，共 &#123;total&#125; 条记录'</span>,</div><div class="line">    onSelectPage: <span class="function"><span class="keyword">function</span>(<span class="params">pPageIndex, pPageSize</span>) </span>&#123;</div><div class="line">    <span class="comment">//改变opts.pageNumber和opts.pageSize的参数值，用于下次查询传给数据层查询指定页码的数据   </span></div><div class="line">    <span class="keyword">var</span> gridOpts = $(<span class="string">'#tv'</span>).datagrid(<span class="string">'options'</span>);</div><div class="line">    <span class="keyword">var</span> formData = &#123;</div><div class="line">        startDate: <span class="string">'2016-06-01'</span>,</div><div class="line">        endDate: <span class="string">'2016-07-01'</span>,</div><div class="line">        pages: pPageIndex,</div><div class="line">        total: pPageSize</div><div class="line">    &#125; </div><div class="line">    $.ajax(&#123;</div><div class="line">        type: <span class="string">"get"</span>,</div><div class="line">        url: <span class="string">''</span> + $api_url + <span class="string">'youyoubackstage!getAddIntegralLog.do'</span>,</div><div class="line">        data: _form ? formData : <span class="string">''</span>,</div><div class="line">        dataType: <span class="string">'json'</span>,</div><div class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">            listData = data;</div><div class="line">            $(<span class="string">'#statisticsUYiU'</span>).datagrid(<span class="string">'loadData'</span>, &#123;</div><div class="line">                    <span class="string">"total"</span>: listData.total,</div><div class="line">                    <span class="string">"rows"</span>: listData.rows.object</div><div class="line">                &#125;);</div><div class="line">                $(<span class="string">'#sum'</span>).html(listData.rows.sum);</div><div class="line">                $(<span class="string">'#tv'</span>).datagrid(<span class="string">'reload'</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>关闭图标显示——是用方法<strong>closable:true;</strong>，而不是用设置图标样式<del>iconCls:icon-close</del>，这样是错的</li>
+<li>图标位置，用iconCls添加的图标是在左边的，而用tools:[{iconCls:’’}]方式添加的是在右边的</li>
+<li>用html渲染layout布局的时候，要在最外层<strong>定义style的宽高</strong>，不定义高，不会显示出来！！！</li>
+</ol>
+<blockquote>
+<p> Q: 需要添加上method:post|get，才不会出现报错。<br>但是只能用get方法，用post方法（默认方法）就会出错，为啥？</p>
+</blockquote>
+<p>A:  easyUI 有很多url默认是post方式，有的服务器是<strong>不支持向静态文本post的</strong>（所以用浏览器看显示的错误是405错误），所以，解决方法就是改成method:get.<strong>method=”get”(html里这样)，method:get(js里这样)</strong></p>
+<blockquote>
+<p>关于HTTP 405错误 —— 方法不被允许（method not allowed）</p>
+</blockquote>
+<p><img src="/img/easyUI.png" alt="http 405"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/30/angular web端开发文档/" rel="next" title="angular web端开发文档">
+                <i class="fa fa-chevron-left"></i> angular web端开发文档
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/31/easyUI/"
+           data-title="easyUI使用心得" data-url="https://github.com/tvChan/2016/08/31/easyUI/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="tvChan" />
+          <p class="site-author-name" itemprop="name">tvChan</p>
+          <p class="site-description motion-element" itemprop="description">Welcome to tvChan's Blog!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tvChan" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#easyUI渲染方式（html-amp-js二者只能选其一）"><span class="nav-number">1.</span> <span class="nav-text">easyUI渲染方式（html&js二者只能选其一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染遇到的坑啊，attention！！！"><span class="nav-number">1.1.</span> <span class="nav-text">渲染遇到的坑啊，attention！！！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用html-class-渲染：（class-’easyui-tabs’）"><span class="nav-number">1.2.</span> <span class="nav-text">使用html(class)渲染：（class=’easyui-tabs’）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用js方式渲染-（-‘-tt’-tabs-）"><span class="nav-number">1.3.</span> <span class="nav-text">使用js方式渲染 （$(‘#tt’).tabs();）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件学习问题"><span class="nav-number">2.</span> <span class="nav-text">组件学习问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tree组件"><span class="nav-number">2.1.</span> <span class="nav-text">tree组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格封装"><span class="nav-number">2.2.</span> <span class="nav-text">表格封装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到最大的坑，重点！！！（关于easyUI-datagrid-表格数据加载问题）"><span class="nav-number">3.</span> <span class="nav-text">遇到最大的坑，重点！！！（关于easyUI datagrid 表格数据加载问题）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tvChan</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  
+		 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="20" height="50" src="https://music.163.com/outchain/player?type=2&id=30621922&auto=1&height=32"></iframe>
+   
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tvChan"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
