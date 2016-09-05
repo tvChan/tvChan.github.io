@@ -98,7 +98,8 @@
 
 对象字面量
 1234567var myModule = &amp;#123;    myProperty: &apos;someProperty&apos;,    myMethod: function() &amp;#123;        return &quot;this is myMethod&quot;    &amp;#125;&amp;#125;myModule.myM">
-<meta property="og:updated_time" content="2016-09-05T15:59:06.483Z">
+<meta property="og:image" content="https://github.com/tvChan/img/module1.png">
+<meta property="og:updated_time" content="2016-09-05T16:15:18.272Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="module模式">
 <meta name="twitter:description" content="Module(模块)模式能清晰分离和组织项目中的代码单元
@@ -106,6 +107,7 @@
 
 对象字面量
 1234567var myModule = &amp;#123;    myProperty: &apos;someProperty&apos;,    myMethod: function() &amp;#123;        return &quot;this is myMethod&quot;    &amp;#125;&amp;#125;myModule.myM">
+<meta name="twitter:image" content="https://github.com/tvChan/img/module1.png">
 
 
 
@@ -299,7 +301,7 @@
 <li>CommonJS模块</li>
 <li>ECMAScript Harmmory模块<br>上面三种迟点写例子介绍、</li>
 </ul>
-<p>Module模式： 在传统软件工程中，是为类提供私有和公有的封装方法，主要是使用闭包封装私有状态和组织，提供一种包装公有私有和变量的方式，防止其泄露至全局作用域。</p>
+<p>Module模式： 在传统软件工程中，是为类提供私有和公有的封装方法，主要是使用闭包封装私有状态和组织，提供一种包装公有私有和变量的方式，防止其泄露至全局作用域。<br><img src="/img/module1.png" alt="module"></p>
 <h3 id="模式变化"><a href="#模式变化" class="headerlink" title="模式变化"></a>模式变化</h3><p>包括以下两种：</p>
 <blockquote>
 <p>引入混入</p>
@@ -309,7 +311,12 @@
 <p>引出</p>
 </blockquote>
 <p>就是上面Module模式的实现</p>
-<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>优点： 支持私有数据<br>缺点： </p>
+<ol>
+<li>改变数据可见性，修改时，需要每个修改</li>
+<li>无法为使用为私有成员创建自动化测试</li>
+</ol>
+
       
     </div>
 
