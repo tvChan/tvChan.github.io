@@ -228,6 +228,130 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/05/module模式/" itemprop="url">
+                  module模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T23:52:30+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/05/module模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/05/module模式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Module-模块-模式"><a href="#Module-模块-模式" class="headerlink" title="Module(模块)模式"></a>Module(模块)模式</h3><p>能<strong>清晰分离和组织项目中的代码单元</strong></p>
+<p>通常有以下四种方式实现：</p>
+<ul>
+<li><p>对象字面量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myModule = &#123;</div><div class="line">    myProperty: <span class="string">'someProperty'</span>,</div><div class="line">    myMethod: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"this is myMethod"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">myModule.myMethod();    <span class="comment">// 调用方法</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Module模式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myModule = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> myProperty;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        myMethod: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"this is myMethod"</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+</li>
+<li><p>AMD模式</p>
+</li>
+<li>CommonJS模块</li>
+<li>ECMAScript Harmmory模块<br>上面三种迟点写例子介绍、</li>
+</ul>
+<p>Module模式： 在传统软件工程中，是为类提供私有和公有的封装方法，主要是使用闭包封装私有状态和组织，提供一种包装公有私有和变量的方式，防止其泄露至全局作用域。</p>
+<h3 id="模式变化"><a href="#模式变化" class="headerlink" title="模式变化"></a>模式变化</h3><p>包括以下两种：</p>
+<blockquote>
+<p>引入混入</p>
+</blockquote>
+<p>这种就是DOJO，ExtJS，JQ等的实现</p>
+<blockquote>
+<p>引出</p>
+</blockquote>
+<p>就是上面Module模式的实现</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/31/easyUI/" itemprop="url">
                   easyUI使用心得
                 </a>
@@ -286,7 +410,7 @@
 <li>其他属性就放在自定义标签：<strong>data-options=’ ‘</strong> 里</li>
 <li>样式用：<strong>style</strong>设置</li>
 </ol>
-<p>例子如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"tt"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"easyui-tabs"</span> style=<span class="string">"width:400px;height:250px;"</span>&gt;</div><div class="line">   <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">title</span>=<span class="string">"Home"</span> <span class="attr">data-options</span>=<span class="string">"iconCls:'icon-add'"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">   &lt;div title=<span class="string">"Home"</span> data-options=<span class="string">"iconCls:'icon-edit'"</span>&gt;</div><div class="line">   <span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">   &lt;div title=<span class="string">"Home"</span> data-options=<span class="string">"closable:true"</span>&gt;</div><div class="line">   <span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure></p>
+<p>例子如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"tt"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"easyui-tabs"</span> style=<span class="string">"width:400px;height:250px;"</span>&gt;</div><div class="line">   &lt;div title="Home" data-options="iconCls:'icon-add'"&gt;</div><div class="line">   &lt;/div&gt;</div><div class="line">   &lt;div title=<span class="string">"Home"</span> data-options=<span class="string">"iconCls:'icon-edit'"</span>&gt;</div><div class="line">   &lt;/div&gt;</div><div class="line">   &lt;div title=<span class="string">"Home"</span> data-options=<span class="string">"closable:true"</span>&gt;</div><div class="line">   &lt;/div&gt;</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure></p>
 <h3 id="使用js方式渲染-（-‘-tt’-tabs-）"><a href="#使用js方式渲染-（-‘-tt’-tabs-）" class="headerlink" title="使用js方式渲染 （$(‘#tt’).tabs();）"></a>使用js方式渲染 （$(‘#tt’).tabs();）</h3><ul>
 <li>初始化方式： <strong>$(‘#tt’).tabs();</strong>，才能使用组件相应的方法</li>
 </ul>
@@ -1260,7 +1384,7 @@ foo.prototype.name=<span class="string">'tv'</span>;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
