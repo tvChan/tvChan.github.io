@@ -228,6 +228,125 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/13/浏览器工作流/" itemprop="url">
+                  浏览器工作流
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-13T23:17:32+08:00" content="2016-09-13">
+              2016-09-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/13/浏览器工作流/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/13/浏览器工作流/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>p.s：本文摘至<a href="http://mp.weixin.qq.com/s?__biz=MzI0ODA2ODU2NQ==&amp;mid=2651130413&amp;idx=1&amp;sn=56a1cc3ac225a09982fc0c4a508222c7&amp;chksm=f257ca97c5204381b559763f4af839ab72eda009c47b0f0a4d47492852b87211c601dee8987a&amp;scene=1&amp;srcid=0908bYHxOr0NXnlNqZ8QQUYY#wechat_redirect" target="_blank" rel="external">野狗公众号发的文章</a></p>
+<h3 id="浏览器工作流步骤"><a href="#浏览器工作流步骤" class="headerlink" title="浏览器工作流步骤"></a>浏览器工作流步骤</h3><p>总的来说，浏览器工作流就是以下几个步骤：</p>
+<ol>
+<li>创建DOM树</li>
+<li>创建渲染树</li>
+<li>布局（reflow）</li>
+<li>绘制（painting）</li>
+</ol>
+<h3 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h3><p>NOTE：在下面这张图中，配图文字使用的是Webkit引擎的术语。所有的浏览器都是遵循类似的工作流，仅在细节处略有不同。<br><img src="/img/browserFlow.jpg" alt="browserFlow"></p>
+<h3 id="创建DOM树"><a href="#创建DOM树" class="headerlink" title="创建DOM树"></a>创建DOM树</h3><p>一旦浏览器接收到一个HTML文件，渲染引擎（render engine）就开始解析它，并根据HTML元素（elements）一一对应地生成DOM 节点（nodes），组成一棵DOM树。</p>
+<h3 id="创建渲染树"><a href="#创建渲染树" class="headerlink" title="创建渲染树"></a>创建渲染树</h3><p>同时，浏览器也会解析来自外部CSS文件和元素上的inline样式。通常浏览器会为这些样式信息，连同包含样式信息的DOM树上的节点，再创建另外一个树，一般被称作渲染树（render tree）</p>
+<h3 id="创建渲染树背后的故事"><a href="#创建渲染树背后的故事" class="headerlink" title="创建渲染树背后的故事"></a>创建渲染树背后的故事</h3><p>WebKit内核的浏览器上，处理一个节点的样式的过程称为attachment。DOM树上的每个节点都有一个attach方法，它接收计算好的样式信息，返回一个render对象（又名renderer）</p>
+<p>Attachment的过程是同步的，新节点插入DOM树时，会调用新节点的attach方法。</p>
+<p>构建渲染树时，由于包含了这些render对象，每个render对象都需要计算视觉属性（visual properties）；这个过程通过计算每个元素的样式属性来完成。</p>
+<h3 id="布局-Layout"><a href="#布局-Layout" class="headerlink" title="布局 Layout"></a>布局 Layout</h3><p>又被简称为Reflow</p>
+<p>构造了渲染树以后，浏览器引擎开始着手布局（layout）。布局时，渲染树上的每个节点根据其在屏幕上应该出现的精确位置，分配一组屏幕坐标值。</p>
+<h3 id="绘制-Painting"><a href="#绘制-Painting" class="headerlink" title="绘制 Painting"></a>绘制 Painting</h3><p>接着，浏览器将会通过遍历渲染树，调用每个节点的paint方法来绘制这些render对象。paint方法根据浏览器平台，使用不同的UI后端API（agnostic UI backend API）。 通过绘制，最终将在屏幕上展示内容。<br>再来看Virtual DOM</p>
+<p>好啦，现在你已经简单过了一遍浏览器引擎的渲染流程，你可以看到，从创建渲染树，到布局，一直到绘制，只要你在这过程中进行一次DOM更新，整个渲染流程都会重做一遍。尤其是创建渲染树，它需要重新计算所有元素上的所有样式。</p>
+<p>在一个复杂的单页面应用中，经常会涉及到大量的DOM操作，这将引起多次计算，使得整个流程变得低效，这应该尽量避免。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/05/module模式/" itemprop="url">
                   module模式
                 </a>
@@ -1389,7 +1508,7 @@ foo.prototype.name=<span class="string">'tv'</span>;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

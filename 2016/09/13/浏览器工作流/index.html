@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="动态创建html,文档碎片createDocumentFragment," />
+  <meta name="keywords" content="Hexo, tvChan" />
 
 
 
@@ -84,40 +84,45 @@
 
 
 
-<meta name="description" content="常见方法《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： 
+<meta name="description" content="p.s：本文摘至野狗公众号发的文章
+浏览器工作流步骤总的来说，浏览器工作流就是以下几个步骤：
 
-crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点
+创建DOM树
+创建渲染树
+布局（reflow）
+绘制（painting）
 
-createComment(text)：　　　　　　　创建带文本text的注释节点
-
-createDocumentFragment()：　　　　创建文档碎片节点
-
-createElement(tagnam">
+图解NOTE：在下面这张图中，配图文字使用的是Webkit引擎的术语。所有的浏览器都是遵循类似的工作流，仅在细节处略有不同。
+创建DOM树一旦浏览器接收到一个HTML文件，渲染引擎（render engine）就开始解析它，并根">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动态创建html节点方法">
-<meta property="og:url" content="https://github.com/tvChan/2016/07/10/动态创建html节点方法/index.html">
+<meta property="og:title" content="浏览器工作流">
+<meta property="og:url" content="https://github.com/tvChan/2016/09/13/浏览器工作流/index.html">
 <meta property="og:site_name" content="tvChan's Blog">
-<meta property="og:description" content="常见方法《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： 
+<meta property="og:description" content="p.s：本文摘至野狗公众号发的文章
+浏览器工作流步骤总的来说，浏览器工作流就是以下几个步骤：
 
-crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点
+创建DOM树
+创建渲染树
+布局（reflow）
+绘制（painting）
 
-createComment(text)：　　　　　　　创建带文本text的注释节点
-
-createDocumentFragment()：　　　　创建文档碎片节点
-
-createElement(tagnam">
-<meta property="og:updated_time" content="2016-07-10T16:07:44.114Z">
+图解NOTE：在下面这张图中，配图文字使用的是Webkit引擎的术语。所有的浏览器都是遵循类似的工作流，仅在细节处略有不同。
+创建DOM树一旦浏览器接收到一个HTML文件，渲染引擎（render engine）就开始解析它，并根">
+<meta property="og:image" content="https://github.com/tvChan/img/browserFlow.jpg">
+<meta property="og:updated_time" content="2016-09-13T15:20:01.939Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态创建html节点方法">
-<meta name="twitter:description" content="常见方法《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： 
+<meta name="twitter:title" content="浏览器工作流">
+<meta name="twitter:description" content="p.s：本文摘至野狗公众号发的文章
+浏览器工作流步骤总的来说，浏览器工作流就是以下几个步骤：
 
-crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点
+创建DOM树
+创建渲染树
+布局（reflow）
+绘制（painting）
 
-createComment(text)：　　　　　　　创建带文本text的注释节点
-
-createDocumentFragment()：　　　　创建文档碎片节点
-
-createElement(tagnam">
+图解NOTE：在下面这张图中，配图文字使用的是Webkit引擎的术语。所有的浏览器都是遵循类似的工作流，仅在细节处略有不同。
+创建DOM树一旦浏览器接收到一个HTML文件，渲染引擎（render engine）就开始解析它，并根">
+<meta name="twitter:image" content="https://github.com/tvChan/img/browserFlow.jpg">
 
 
 
@@ -138,9 +143,9 @@ createElement(tagnam">
 
 
 
-  <link rel="canonical" href="https://github.com/tvChan/2016/07/10/动态创建html节点方法/"/>
+  <link rel="canonical" href="https://github.com/tvChan/2016/09/13/浏览器工作流/"/>
 
-  <title> 动态创建html节点方法 | tvChan's Blog </title>
+  <title> 浏览器工作流 | tvChan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -250,7 +255,7 @@ createElement(tagnam">
             
             
               
-                动态创建html节点方法
+                浏览器工作流
               
             
           </h1>
@@ -262,8 +267,8 @@ createElement(tagnam">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-10T23:59:09+08:00" content="2016-07-10">
-              2016-07-10
+            <time itemprop="dateCreated" datetime="2016-09-13T23:17:32+08:00" content="2016-09-13">
+              2016-09-13
             </time>
           </span>
 
@@ -273,8 +278,8 @@ createElement(tagnam">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/10/动态创建html节点方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/动态创建html节点方法/" itemprop="commentsCount"></span>
+                <a href="/2016/09/13/浏览器工作流/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/13/浏览器工作流/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -297,26 +302,25 @@ createElement(tagnam">
       
 
       
-        <h3 id="常见方法"><a href="#常见方法" class="headerlink" title="常见方法"></a>常见方法</h3><p>《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： </p>
-<ul>
-<li><p>crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点</p>
-</li>
-<li><p>createComment(text)：　　　　　　　创建带文本text的注释节点</p>
-</li>
-<li><p>createDocumentFragment()：　　　　创建文档碎片节点</p>
-</li>
-<li><p>createElement(tagname)：　　　　　  创建标签名为tagname的节点</p>
-</li>
-<li><p>createTextNode(text)：　　　　　　   创建包含文本text的文本节点</p>
-</li>
-</ul>
-<p>属于菜鸟的我，在做项目时，通过ajax获取了后台数据做表格数据渲染时，用的是dom节点的拼接append方法。后来才知道这种方法对于前端的性能优化来说是最慢的，虽然说这是最简单的方法。</p>
-<p>举个栗子： 我从后台获取到一个有很多元素的data[]数组，要把里面的数据遍历到ul的li里。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> liNode, i, len;</div><div class="line"><span class="keyword">var</span> ulNode = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; len = data.length; i++) &#123;</div><div class="line">    liNode = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</div><div class="line">    liNode.innerHtml = data[i];</div><div class="line">    ulNode.appendChild(liNode);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这段代码是能实现需求的，但是，在循环里调用data.length次的document.xxx.appendChild(),这里就每一次的调用就回产生一次页面渲染，所以对于页面优化来说，这是大打折扣的，这就要说说下面要说的创建碎片啦。</p>
-<p>由于DOM操作会导致浏览器的回流，回流需要花费大量的时间进行样式计算和节点重绘与渲染，所以应当尽量减少回流次数。一种可靠的方法就是加入元素时不要修改页面上已经存在的元素，而是在内存中的节点进行大量的操作，最后再一并将修改运用到页面上。DOM操作本身提供一个创建内存节点片段的功能:document.createDocumentFragment()，我们可以将其运用于上述代码中：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oFragment = <span class="built_in">document</span>.createDocumentFragment();</div><div class="line"><span class="keyword">var</span> ulNode = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++)&#123;</div><div class="line">    <span class="keyword">var</span> liNode = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</div><div class="line">    <span class="keyword">var</span> txt = <span class="built_in">document</span>.createTextNode(data[i]);</div><div class="line">    liNode.innerHtml = txt;</div><div class="line">    oFragment.appendChild(liNode);</div><div class="line">&#125;</div><div class="line">ulNode.appendChild(fragment);</div></pre></td></tr></table></figure>
-<p>这样就只会触发一次回流，效率会得到很大的提升。如果需要对一个元素进行复杂的操作（删减、添加子节点），那么我们<strong>应当先将元素从页面中移除，然后再对其进行操作</strong>，或者将其复制一个（cloneNode()），在内存中进行操作后再替换原来的节点。</p>
+        <p>p.s：本文摘至<a href="http://mp.weixin.qq.com/s?__biz=MzI0ODA2ODU2NQ==&amp;mid=2651130413&amp;idx=1&amp;sn=56a1cc3ac225a09982fc0c4a508222c7&amp;chksm=f257ca97c5204381b559763f4af839ab72eda009c47b0f0a4d47492852b87211c601dee8987a&amp;scene=1&amp;srcid=0908bYHxOr0NXnlNqZ8QQUYY#wechat_redirect" target="_blank" rel="external">野狗公众号发的文章</a></p>
+<h3 id="浏览器工作流步骤"><a href="#浏览器工作流步骤" class="headerlink" title="浏览器工作流步骤"></a>浏览器工作流步骤</h3><p>总的来说，浏览器工作流就是以下几个步骤：</p>
+<ol>
+<li>创建DOM树</li>
+<li>创建渲染树</li>
+<li>布局（reflow）</li>
+<li>绘制（painting）</li>
+</ol>
+<h3 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h3><p>NOTE：在下面这张图中，配图文字使用的是Webkit引擎的术语。所有的浏览器都是遵循类似的工作流，仅在细节处略有不同。<br><img src="/img/browserFlow.jpg" alt="browserFlow"></p>
+<h3 id="创建DOM树"><a href="#创建DOM树" class="headerlink" title="创建DOM树"></a>创建DOM树</h3><p>一旦浏览器接收到一个HTML文件，渲染引擎（render engine）就开始解析它，并根据HTML元素（elements）一一对应地生成DOM 节点（nodes），组成一棵DOM树。</p>
+<h3 id="创建渲染树"><a href="#创建渲染树" class="headerlink" title="创建渲染树"></a>创建渲染树</h3><p>同时，浏览器也会解析来自外部CSS文件和元素上的inline样式。通常浏览器会为这些样式信息，连同包含样式信息的DOM树上的节点，再创建另外一个树，一般被称作渲染树（render tree）</p>
+<h3 id="创建渲染树背后的故事"><a href="#创建渲染树背后的故事" class="headerlink" title="创建渲染树背后的故事"></a>创建渲染树背后的故事</h3><p>WebKit内核的浏览器上，处理一个节点的样式的过程称为attachment。DOM树上的每个节点都有一个attach方法，它接收计算好的样式信息，返回一个render对象（又名renderer）</p>
+<p>Attachment的过程是同步的，新节点插入DOM树时，会调用新节点的attach方法。</p>
+<p>构建渲染树时，由于包含了这些render对象，每个render对象都需要计算视觉属性（visual properties）；这个过程通过计算每个元素的样式属性来完成。</p>
+<h3 id="布局-Layout"><a href="#布局-Layout" class="headerlink" title="布局 Layout"></a>布局 Layout</h3><p>又被简称为Reflow</p>
+<p>构造了渲染树以后，浏览器引擎开始着手布局（layout）。布局时，渲染树上的每个节点根据其在屏幕上应该出现的精确位置，分配一组屏幕坐标值。</p>
+<h3 id="绘制-Painting"><a href="#绘制-Painting" class="headerlink" title="绘制 Painting"></a>绘制 Painting</h3><p>接着，浏览器将会通过遍历渲染树，调用每个节点的paint方法来绘制这些render对象。paint方法根据浏览器平台，使用不同的UI后端API（agnostic UI backend API）。 通过绘制，最终将在屏幕上展示内容。<br>再来看Virtual DOM</p>
+<p>好啦，现在你已经简单过了一遍浏览器引擎的渲染流程，你可以看到，从创建渲染树，到布局，一直到绘制，只要你在这过程中进行一次DOM更新，整个渲染流程都会重做一遍。尤其是创建渲染树，它需要重新计算所有元素上的所有样式。</p>
+<p>在一个复杂的单页面应用中，经常会涉及到大量的DOM操作，这将引起多次计算，使得整个流程变得低效，这应该尽量避免。</p>
 
       
     </div>
@@ -336,30 +340,18 @@ createElement(tagnam">
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/动态创建html/" rel="tag">#动态创建html</a>
-          
-            <a href="/tags/文档碎片createDocumentFragment/" rel="tag">#文档碎片createDocumentFragment</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/01/js原型&对象理解/" rel="next" title="js原型&对象理解">
-                <i class="fa fa-chevron-left"></i> js原型&对象理解
+              <a href="/2016/09/05/module模式/" rel="next" title="module模式">
+                <i class="fa fa-chevron-left"></i> module模式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/10/数组迭代方法之reduce/" rel="prev" title="数组迭代方法之reduce">
-                数组迭代方法之reduce <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -385,8 +377,8 @@ createElement(tagnam">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/10/动态创建html节点方法/"
-           data-title="动态创建html节点方法" data-url="https://github.com/tvChan/2016/07/10/动态创建html节点方法/">
+      <div class="ds-thread" data-thread-key="2016/09/13/浏览器工作流/"
+           data-title="浏览器工作流" data-url="https://github.com/tvChan/2016/09/13/浏览器工作流/">
       </div>
     
   </div>
@@ -481,7 +473,7 @@ createElement(tagnam">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见方法"><span class="nav-number">1.</span> <span class="nav-text">常见方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器工作流步骤"><span class="nav-number">1.</span> <span class="nav-text">浏览器工作流步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图解"><span class="nav-number">2.</span> <span class="nav-text">图解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建DOM树"><span class="nav-number">3.</span> <span class="nav-text">创建DOM树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建渲染树"><span class="nav-number">4.</span> <span class="nav-text">创建渲染树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建渲染树背后的故事"><span class="nav-number">5.</span> <span class="nav-text">创建渲染树背后的故事</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局-Layout"><span class="nav-number">6.</span> <span class="nav-text">布局 Layout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制-Painting"><span class="nav-number">7.</span> <span class="nav-text">绘制 Painting</span></a></li></ol></div>
             
           </div>
         </section>
