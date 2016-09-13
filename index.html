@@ -228,6 +228,135 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/13/重排and重绘——高性能JavaScript笔记/" itemprop="url">
+                  重排and重绘
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-13T23:22:05+08:00" content="2016-09-13">
+              2016-09-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/13/重排and重绘——高性能JavaScript笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/13/重排and重绘——高性能JavaScript笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="什么是重排，重绘？"><a href="#什么是重排，重绘？" class="headerlink" title="什么是重排，重绘？"></a>什么是重排，重绘？</h3><p>在我还是菜菜菜鸟时，有人就问我了。你知道什么操作会引起重排吗？</p>
+<p>当时就在想，重排是个什么东东。。。于是，Google了一下（说谷歌显的高大上点(⊙﹏⊙)b）<br>当然，提到重排重绘，就理所当然会提及DOM树和渲染树等等~ 这就让我们一个个慢慢道来。</p>
+<p>高性能JavaScript里是这么说的：</p>
+<p>“浏览器下载完页面中的所有组件————HTML标记、JavaScript、CSS、图片————之后就会解析并生成两个内部<strong>数据结构</strong>”</p>
+<blockquote>
+<p>DOM树</p>
+</blockquote>
+<p>表示页面结构</p>
+<blockquote>
+<p>渲染树</p>
+</blockquote>
+<p>表示DOM节点如何显示</p>
+<p>DOM树和渲染树就是相互存在的一种数据结构，DOM树里每一个需要显示的节点在渲染树里至少会有一个对应的节点（当然，隐藏的DOM元素在渲染树里是没用节点的）渲染树的节点可以叫“帧”或者“盒”，可以理解为CSS里面的盒子吧，就可以把对应的页面元素理解为一个具有padding，margin，border和position（位置）的盒子。一旦这DOM树和渲染树相互构建完成之后，浏览器就可以要是显示（绘制paint）页面元素了。</p>
+<p>所以，一旦DOM树变化，影响了页面元素的几何属性（宽高）————比如，改变了元素border或者给段落添加文字增加了行数————这样的话，浏览器就要重新计算元素的几何属性，以及其他受影响的元素。这时浏览器起作用啦，就会让渲染树受影响部分失效，进行重新计算，再<strong>重新构造渲染树</strong>，这个过程就叫做“<strong>重排热flow</strong>”，重排完成后，浏览器会把受影响部分的元素重新显示（绘制）到屏幕上，这一过程就叫做“<strong>重绘</strong>”。就这样理解嘛，活字印刷术里，你要写文字，你的文字都还没有排好，怎么进行印刷呢。</p>
+<p>但是呢，并不是有了重排才会有重绘，就比如，你页面元素的几何属性就修改背景颜色，其他都不改，这个行为是没有触发重排的（因为没有修改元素的布局），但是浏览器需要进行一次重绘，把新的背景颜色绘制到屏幕上。</p>
+<h3 id="重排怎么触发（发生）？"><a href="#重排怎么触发（发生）？" class="headerlink" title="重排怎么触发（发生）？"></a>重排怎么触发（发生）？</h3><blockquote>
+<p>当页面布局和几何属性改变时就需要重排。举栗子</p>
+</blockquote>
+<ul>
+<li>添加或删除<strong>可见</strong>DOM元素，注意是可见，不可见的根本就不在渲染树上好吗；</li>
+<li>元素位置改变；就如把A移动到B，B移动到A</li>
+<li>元素尺寸改变（包括：padding，margin，border，width，height等属性改变时）；</li>
+<li>内容改变，如文本改变，或者图片被另一个不同尺寸的图片替换</li>
+<li>页面渲染器初始化</li>
+<li>浏览器窗口尺寸变化，这里我就有点疑问，那要是我每次缩放浏览器不都会触发吗？？？</li>
+<li>最后，页面出现滚动条时也会触发。。。</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/13/重排and重绘——高性能JavaScript笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/13/浏览器工作流/" itemprop="url">
                   浏览器工作流
                 </a>
@@ -1361,115 +1490,13 @@ foo.prototype.name=<span class="string">'tv'</span>;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/23/hexo安装错误/" itemprop="url">
-                  hexo安装问题集
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-23T14:40:05+08:00" content="2016-04-23">
-              2016-04-23
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/23/hexo安装错误/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/23/hexo安装错误/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="hexo-init"><a href="#hexo-init" class="headerlink" title="hexo init"></a>hexo init</h3><p><img src="/img/1.png" alt="1"></p>
-<h3 id="hexo-d-出现的问题"><a href="#hexo-d-出现的问题" class="headerlink" title="hexo d 出现的问题"></a>hexo d 出现的问题</h3><p><img src="/img/2.png" alt="2"></p>
-<h3 id="在-git-bash上出现的问题："><a href="#在-git-bash上出现的问题：" class="headerlink" title="在 git bash上出现的问题："></a>在 git bash上出现的问题：</h3><p><img src="/img/3.png" alt="3"></p>
-<p><img src="/img/4.png" alt="4"></p>
-<p><img src="/img/5.png" alt="5"></p>
-<p><img src="/img/6.png" alt="6"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1508,7 +1535,7 @@ foo.prototype.name=<span class="string">'tv'</span>;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1518,7 +1545,7 @@ foo.prototype.name=<span class="string">'tv'</span>;
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

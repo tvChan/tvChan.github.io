@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="动态创建html,文档碎片createDocumentFragment," />
+  <meta name="keywords" content="-DOM -高性能JavaScript笔记," />
 
 
 
@@ -84,40 +84,25 @@
 
 
 
-<meta name="description" content="常见方法《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： 
-
-crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点
-
-createComment(text)：　　　　　　　创建带文本text的注释节点
-
-createDocumentFragment()：　　　　创建文档碎片节点
-
-createElement(tagnam">
+<meta name="description" content="什么是重排，重绘？在我还是菜菜菜鸟时，有人就问我了。你知道什么操作会引起重排吗？
+当时就在想，重排是个什么东东。。。于是，Google了一下（说谷歌显的高大上点(⊙﹏⊙)b）当然，提到重排重绘，就理所当然会提及DOM树和渲染树等等~ 这就让我们一个个慢慢道来。
+高性能JavaScript里是这么说的：
+“浏览器下载完页面中的所有组件————HTML标记、JavaScript、CSS、图片————之">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动态创建html节点方法">
-<meta property="og:url" content="https://github.com/tvChan/2016/07/10/动态创建html节点方法/index.html">
+<meta property="og:title" content="重排and重绘">
+<meta property="og:url" content="https://github.com/tvChan/2016/09/13/重排and重绘——高性能JavaScript笔记/index.html">
 <meta property="og:site_name" content="tvChan's Blog">
-<meta property="og:description" content="常见方法《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： 
-
-crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点
-
-createComment(text)：　　　　　　　创建带文本text的注释节点
-
-createDocumentFragment()：　　　　创建文档碎片节点
-
-createElement(tagnam">
-<meta property="og:updated_time" content="2016-07-10T16:07:44.114Z">
+<meta property="og:description" content="什么是重排，重绘？在我还是菜菜菜鸟时，有人就问我了。你知道什么操作会引起重排吗？
+当时就在想，重排是个什么东东。。。于是，Google了一下（说谷歌显的高大上点(⊙﹏⊙)b）当然，提到重排重绘，就理所当然会提及DOM树和渲染树等等~ 这就让我们一个个慢慢道来。
+高性能JavaScript里是这么说的：
+“浏览器下载完页面中的所有组件————HTML标记、JavaScript、CSS、图片————之">
+<meta property="og:updated_time" content="2016-09-13T15:39:48.971Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态创建html节点方法">
-<meta name="twitter:description" content="常见方法《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： 
-
-crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点
-
-createComment(text)：　　　　　　　创建带文本text的注释节点
-
-createDocumentFragment()：　　　　创建文档碎片节点
-
-createElement(tagnam">
+<meta name="twitter:title" content="重排and重绘">
+<meta name="twitter:description" content="什么是重排，重绘？在我还是菜菜菜鸟时，有人就问我了。你知道什么操作会引起重排吗？
+当时就在想，重排是个什么东东。。。于是，Google了一下（说谷歌显的高大上点(⊙﹏⊙)b）当然，提到重排重绘，就理所当然会提及DOM树和渲染树等等~ 这就让我们一个个慢慢道来。
+高性能JavaScript里是这么说的：
+“浏览器下载完页面中的所有组件————HTML标记、JavaScript、CSS、图片————之">
 
 
 
@@ -138,9 +123,9 @@ createElement(tagnam">
 
 
 
-  <link rel="canonical" href="https://github.com/tvChan/2016/07/10/动态创建html节点方法/"/>
+  <link rel="canonical" href="https://github.com/tvChan/2016/09/13/重排and重绘——高性能JavaScript笔记/"/>
 
-  <title> 动态创建html节点方法 | tvChan's Blog </title>
+  <title> 重排and重绘 | tvChan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -250,7 +235,7 @@ createElement(tagnam">
             
             
               
-                动态创建html节点方法
+                重排and重绘
               
             
           </h1>
@@ -262,8 +247,8 @@ createElement(tagnam">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-10T23:59:09+08:00" content="2016-07-10">
-              2016-07-10
+            <time itemprop="dateCreated" datetime="2016-09-13T23:22:05+08:00" content="2016-09-13">
+              2016-09-13
             </time>
           </span>
 
@@ -273,8 +258,8 @@ createElement(tagnam">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/10/动态创建html节点方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/动态创建html节点方法/" itemprop="commentsCount"></span>
+                <a href="/2016/09/13/重排and重绘——高性能JavaScript笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/13/重排and重绘——高性能JavaScript笔记/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -297,26 +282,51 @@ createElement(tagnam">
       
 
       
-        <h3 id="常见方法"><a href="#常见方法" class="headerlink" title="常见方法"></a>常见方法</h3><p>《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： </p>
+        <h3 id="什么是重排，重绘？"><a href="#什么是重排，重绘？" class="headerlink" title="什么是重排，重绘？"></a>什么是重排，重绘？</h3><p>在我还是菜菜菜鸟时，有人就问我了。你知道什么操作会引起重排吗？</p>
+<p>当时就在想，重排是个什么东东。。。于是，Google了一下（说谷歌显的高大上点(⊙﹏⊙)b）<br>当然，提到重排重绘，就理所当然会提及DOM树和渲染树等等~ 这就让我们一个个慢慢道来。</p>
+<p>高性能JavaScript里是这么说的：</p>
+<p>“浏览器下载完页面中的所有组件————HTML标记、JavaScript、CSS、图片————之后就会解析并生成两个内部<strong>数据结构</strong>”</p>
+<blockquote>
+<p>DOM树</p>
+</blockquote>
+<p>表示页面结构</p>
+<blockquote>
+<p>渲染树</p>
+</blockquote>
+<p>表示DOM节点如何显示</p>
+<p>DOM树和渲染树就是相互存在的一种数据结构，DOM树里每一个需要显示的节点在渲染树里至少会有一个对应的节点（当然，隐藏的DOM元素在渲染树里是没用节点的）渲染树的节点可以叫“帧”或者“盒”，可以理解为CSS里面的盒子吧，就可以把对应的页面元素理解为一个具有padding，margin，border和position（位置）的盒子。一旦这DOM树和渲染树相互构建完成之后，浏览器就可以要是显示（绘制paint）页面元素了。</p>
+<p>所以，一旦DOM树变化，影响了页面元素的几何属性（宽高）————比如，改变了元素border或者给段落添加文字增加了行数————这样的话，浏览器就要重新计算元素的几何属性，以及其他受影响的元素。这时浏览器起作用啦，就会让渲染树受影响部分失效，进行重新计算，再<strong>重新构造渲染树</strong>，这个过程就叫做“<strong>重排热flow</strong>”，重排完成后，浏览器会把受影响部分的元素重新显示（绘制）到屏幕上，这一过程就叫做“<strong>重绘</strong>”。就这样理解嘛，活字印刷术里，你要写文字，你的文字都还没有排好，怎么进行印刷呢。</p>
+<p>但是呢，并不是有了重排才会有重绘，就比如，你页面元素的几何属性就修改背景颜色，其他都不改，这个行为是没有触发重排的（因为没有修改元素的布局），但是浏览器需要进行一次重绘，把新的背景颜色绘制到屏幕上。</p>
+<h3 id="重排怎么触发（发生）？"><a href="#重排怎么触发（发生）？" class="headerlink" title="重排怎么触发（发生）？"></a>重排怎么触发（发生）？</h3><blockquote>
+<p>当页面布局和几何属性改变时就需要重排。举栗子</p>
+</blockquote>
 <ul>
-<li><p>crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点</p>
-</li>
-<li><p>createComment(text)：　　　　　　　创建带文本text的注释节点</p>
-</li>
-<li><p>createDocumentFragment()：　　　　创建文档碎片节点</p>
-</li>
-<li><p>createElement(tagname)：　　　　　  创建标签名为tagname的节点</p>
-</li>
-<li><p>createTextNode(text)：　　　　　　   创建包含文本text的文本节点</p>
-</li>
+<li>添加或删除<strong>可见</strong>DOM元素，注意是可见，不可见的根本就不在渲染树上好吗；</li>
+<li>元素位置改变；就如把A移动到B，B移动到A</li>
+<li>元素尺寸改变（包括：padding，margin，border，width，height等属性改变时）；</li>
+<li>内容改变，如文本改变，或者图片被另一个不同尺寸的图片替换</li>
+<li>页面渲染器初始化</li>
+<li>浏览器窗口尺寸变化，这里我就有点疑问，那要是我每次缩放浏览器不都会触发吗？？？</li>
+<li>最后，页面出现滚动条时也会触发。。。</li>
 </ul>
-<p>属于菜鸟的我，在做项目时，通过ajax获取了后台数据做表格数据渲染时，用的是dom节点的拼接append方法。后来才知道这种方法对于前端的性能优化来说是最慢的，虽然说这是最简单的方法。</p>
-<p>举个栗子： 我从后台获取到一个有很多元素的data[]数组，要把里面的数据遍历到ul的li里。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> liNode, i, len;</div><div class="line"><span class="keyword">var</span> ulNode = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; len = data.length; i++) &#123;</div><div class="line">    liNode = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</div><div class="line">    liNode.innerHtml = data[i];</div><div class="line">    ulNode.appendChild(liNode);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这段代码是能实现需求的，但是，在循环里调用data.length次的document.xxx.appendChild(),这里就每一次的调用就回产生一次页面渲染，所以对于页面优化来说，这是大打折扣的，这就要说说下面要说的创建碎片啦。</p>
-<p>由于DOM操作会导致浏览器的回流，回流需要花费大量的时间进行样式计算和节点重绘与渲染，所以应当尽量减少回流次数。一种可靠的方法就是加入元素时不要修改页面上已经存在的元素，而是在内存中的节点进行大量的操作，最后再一并将修改运用到页面上。DOM操作本身提供一个创建内存节点片段的功能:document.createDocumentFragment()，我们可以将其运用于上述代码中：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oFragment = <span class="built_in">document</span>.createDocumentFragment();</div><div class="line"><span class="keyword">var</span> ulNode = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>);</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++)&#123;</div><div class="line">    <span class="keyword">var</span> liNode = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</div><div class="line">    <span class="keyword">var</span> txt = <span class="built_in">document</span>.createTextNode(data[i]);</div><div class="line">    liNode.innerHtml = txt;</div><div class="line">    oFragment.appendChild(liNode);</div><div class="line">&#125;</div><div class="line">ulNode.appendChild(fragment);</div></pre></td></tr></table></figure>
-<p>这样就只会触发一次回流，效率会得到很大的提升。如果需要对一个元素进行复杂的操作（删减、添加子节点），那么我们<strong>应当先将元素从页面中移除，然后再对其进行操作</strong>，或者将其复制一个（cloneNode()），在内存中进行操作后再替换原来的节点。</p>
+<a id="more"></a>
+<h3 id="渲染树变化的排队与刷新"><a href="#渲染树变化的排队与刷新" class="headerlink" title="渲染树变化的排队与刷新"></a>渲染树变化的排队与刷新</h3><p>因为每一次的重排都会消耗很大一部分的性能，所以，浏览器一般都会通过<strong>队列化修改并批量执行</strong>来优化重排过程。但是你可能没注意使用到一些属性，就会强制刷新队列并计划任务立马执行，就马上重排了！！！</p>
+<blockquote>
+<p>获取布局信息的操作会强制队列刷新，所以，以下的属性尽量避免使用！</p>
+</blockquote>
+<ul>
+<li>offsetTop，offsetLeft，offsetWidth，offsetHeigt；</li>
+<li>scrollTop，scrollLeft，scrollWidth，scrollHeight;</li>
+<li>clientTop，clientLeft，clientWidth，clientHeight;</li>
+<li>getComputedStyle() （currentStyle in IE）</li>
+</ul>
+<h3 id="最小化重绘和重排"><a href="#最小化重绘和重排" class="headerlink" title="最小化重绘和重排"></a>最小化重绘和重排</h3><h4 id="改变样式"><a href="#改变样式" class="headerlink" title="改变样式"></a>改变样式</h4><p>改变样式时，最后就是，合并所有的改变，然后一次性处理，这样就只会修改DOM一次，做到最小化重排啦</p>
+<h4 id="批量修改DOM"><a href="#批量修改DOM" class="headerlink" title="批量修改DOM"></a>批量修改DOM</h4><p>方法有很多</p>
+<ul>
+<li>为需要修改的节点创建备份，然后对副本进行修改，修改完成后就用它来对旧的节点进行替换</li>
+<li>（墙裂推荐）使用创建文档片段createDocumentFragment的方法，具体可以看我之前关于文档片段的笔记，因为这种方法产生的DOM遍历和重排次数是最少的。</li>
+</ul>
+<p>嗯，重排和重绘就先这样吧。可以结合前面摘的浏览器工作流~</p>
 
       
     </div>
@@ -338,9 +348,7 @@ createElement(tagnam">
       
         <div class="post-tags">
           
-            <a href="/tags/动态创建html/" rel="tag">#动态创建html</a>
-          
-            <a href="/tags/文档碎片createDocumentFragment/" rel="tag">#文档碎片createDocumentFragment</a>
+            <a href="/tags/DOM-高性能JavaScript笔记/" rel="tag">#-DOM -高性能JavaScript笔记</a>
           
         </div>
       
@@ -349,17 +357,13 @@ createElement(tagnam">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/01/js原型&对象理解/" rel="next" title="js原型&对象理解">
-                <i class="fa fa-chevron-left"></i> js原型&对象理解
+              <a href="/2016/09/13/浏览器工作流/" rel="next" title="浏览器工作流">
+                <i class="fa fa-chevron-left"></i> 浏览器工作流
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/10/数组迭代方法之reduce/" rel="prev" title="数组迭代方法之reduce">
-                数组迭代方法之reduce <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -385,8 +389,8 @@ createElement(tagnam">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/10/动态创建html节点方法/"
-           data-title="动态创建html节点方法" data-url="https://github.com/tvChan/2016/07/10/动态创建html节点方法/">
+      <div class="ds-thread" data-thread-key="2016/09/13/重排and重绘——高性能JavaScript笔记/"
+           data-title="重排and重绘" data-url="https://github.com/tvChan/2016/09/13/重排and重绘——高性能JavaScript笔记/">
       </div>
     
   </div>
@@ -481,7 +485,7 @@ createElement(tagnam">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见方法"><span class="nav-number">1.</span> <span class="nav-text">常见方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是重排，重绘？"><span class="nav-number">1.</span> <span class="nav-text">什么是重排，重绘？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重排怎么触发（发生）？"><span class="nav-number">2.</span> <span class="nav-text">重排怎么触发（发生）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染树变化的排队与刷新"><span class="nav-number">3.</span> <span class="nav-text">渲染树变化的排队与刷新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小化重绘和重排"><span class="nav-number">4.</span> <span class="nav-text">最小化重绘和重排</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#改变样式"><span class="nav-number">4.1.</span> <span class="nav-text">改变样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批量修改DOM"><span class="nav-number">4.2.</span> <span class="nav-text">批量修改DOM</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
