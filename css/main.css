@@ -912,6 +912,52 @@ pre .javascript .function {
   font-weight: normal;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
+.eye {
+  width: 12px;
+  height: 12px;
+  left: 30px;
+  top: 35px;
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-animation: eye 2s ease infinite;
+  -moz-animation: eye 2s ease infinite;
+  -o-animation: eye 2s ease infinite;
+  animation: eye 2s ease infinite;
+}
+@-webkit-keyframes eye {
+  0%, 20%, 100% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  10% {
+    -webkit-transform: scale(1, 0.2);
+    -moz-transform: scale(1, 0.2);
+    -o-transform: scale(1, 0.2);
+    -webkit-transform: scale(1, 0.2);
+    -moz-transform: scale(1, 0.2);
+    -ms-transform: scale(1, 0.2);
+    -o-transform: scale(1, 0.2);
+    transform: scale(1, 0.2);
+  }
+}
+.eye1 {
+  left: 86px;
+}
+.eye-line {
+  width: 50px;
+  left: 40px;
+  top: 41px;
+  height: 1px;
+  position: absolute;
+  background: #fff;
+}
 .site-subtitle {
   margin-top: 10px;
   font-size: 13px;
@@ -926,6 +972,94 @@ pre .javascript .function {
   opacity: 0;
   position: relative;
   top: -10px;
+}
+@-moz-keyframes eye {
+  0%, 20%, 100% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  10% {
+    -webkit-transform: scale(1, 0.2);
+    -moz-transform: scale(1, 0.2);
+    -o-transform: scale(1, 0.2);
+    -webkit-transform: scale(1, 0.2);
+    -moz-transform: scale(1, 0.2);
+    -ms-transform: scale(1, 0.2);
+    -o-transform: scale(1, 0.2);
+    transform: scale(1, 0.2);
+  }
+}
+@-webkit-keyframes eye {
+  0%, 20%, 100% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  10% {
+    -webkit-transform: scale(1, 0.2);
+    -moz-transform: scale(1, 0.2);
+    -o-transform: scale(1, 0.2);
+    -webkit-transform: scale(1, 0.2);
+    -moz-transform: scale(1, 0.2);
+    -ms-transform: scale(1, 0.2);
+    -o-transform: scale(1, 0.2);
+    transform: scale(1, 0.2);
+  }
+}
+@-o-keyframes eye {
+  0%, 20%, 100% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  10% {
+    -webkit-transform: scale(1, 0.2);
+    -moz-transform: scale(1, 0.2);
+    -o-transform: scale(1, 0.2);
+    -webkit-transform: scale(1, 0.2);
+    -moz-transform: scale(1, 0.2);
+    -ms-transform: scale(1, 0.2);
+    -o-transform: scale(1, 0.2);
+    transform: scale(1, 0.2);
+  }
+}
+@keyframes eye {
+  0%, 20%, 100% {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  10% {
+    -webkit-transform: scale(1, 0.2);
+    -moz-transform: scale(1, 0.2);
+    -o-transform: scale(1, 0.2);
+    -webkit-transform: scale(1, 0.2);
+    -moz-transform: scale(1, 0.2);
+    -ms-transform: scale(1, 0.2);
+    -o-transform: scale(1, 0.2);
+    transform: scale(1, 0.2);
+  }
 }
 .site-nav-toggle {
   display: none;
@@ -1681,7 +1815,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #deffff;
+  background: #d5b0c1;
 }
 .links-of-blogroll {
   font-size: 13px;
