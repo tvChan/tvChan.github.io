@@ -1,333 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
+    <!--Description-->
     
+        <meta name="description" content="Welcome to tvChan&#39;s Blog!">
     
-  
 
-  
-
-  
-
-  
-
-  
-
-  
+    <!--Author-->
     
+        <meta name="author" content="tvChan">
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
 
+    <!-- Title -->
+    
+    <title>js原型&amp;对象理解 | tvChan&#39;s Blog</title>
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
 
+    <!-- Custom Fonts -->
+    <link href="//at.alicdn.com/t/font_1of8hhckxro7ds4i.css" rel="stylesheet" type="text/css">
+    <!-- Highlight -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/tomorrow.min.css">
 
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="JavaScript,原型," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="对象对象：在js里，除了字符串，数字，boolean，null和undefined之外，其他的js值都是对象。
-js中对象可以分为普通对象和函数对象。
-普通对象：是除函数对象外的，都可以成为普通对象。
-函数对象：是通过new Function产生的对象。
-这一种是最常见的定义函数的方法：
-12function foo1()&amp;#123;&amp;#125;
-这一种就是定义了一个匿名函数，然后赋值到foo2">
-<meta property="og:type" content="article">
-<meta property="og:title" content="js原型&对象理解">
-<meta property="og:url" content="https://github.com/tvChan/2016/06/01/js原型&对象理解/index.html">
-<meta property="og:site_name" content="tvChan's Blog">
-<meta property="og:description" content="对象对象：在js里，除了字符串，数字，boolean，null和undefined之外，其他的js值都是对象。
-js中对象可以分为普通对象和函数对象。
-普通对象：是除函数对象外的，都可以成为普通对象。
-函数对象：是通过new Function产生的对象。
-这一种是最常见的定义函数的方法：
-12function foo1()&amp;#123;&amp;#125;
-这一种就是定义了一个匿名函数，然后赋值到foo2">
-<meta property="og:image" content="https://github.com/tvChan/img/prototype1.png">
-<meta property="og:image" content="https://github.com/tvChan/img/prototype2.png">
-<meta property="og:image" content="https://github.com/tvChan/img/prototype3.png">
-<meta property="og:image" content="https://github.com/tvChan/img/prototype4.png">
-<meta property="og:image" content="https://github.com/tvChan/img/prototype5.png">
-<meta property="og:image" content="https://github.com/tvChan/img/prototype6.png">
-<meta property="og:image" content="https://github.com/tvChan/img/prototype7.png">
-<meta property="og:updated_time" content="2016-09-13T15:54:35.884Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js原型&对象理解">
-<meta name="twitter:description" content="对象对象：在js里，除了字符串，数字，boolean，null和undefined之外，其他的js值都是对象。
-js中对象可以分为普通对象和函数对象。
-普通对象：是除函数对象外的，都可以成为普通对象。
-函数对象：是通过new Function产生的对象。
-这一种是最常见的定义函数的方法：
-12function foo1()&amp;#123;&amp;#125;
-这一种就是定义了一个匿名函数，然后赋值到foo2">
-<meta name="twitter:image" content="https://github.com/tvChan/img/prototype1.png">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"right","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
-  };
-</script>
-
-
-
-
-  <link rel="canonical" href="https://github.com/tvChan/2016/06/01/js原型&对象理解/"/>
-
-  <title> js原型&对象理解 | tvChan's Blog </title>
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">tvChan's Blog
-      	<div class="eye"></div>
-		<div class="eye eye1"></div>
-		<div class="eye-line"></div>
-	  </span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle"></p>
+	<body>
+		<div class="bg"></div>
+		<div class="wrapper">
+			<div class="main-header container">
+	<div class="box">
+		<h1 class="u-tit"><a href="/">tv_哇</a></h1>
+		<div class="m-nav">
+			<a href="https://github.com/tvChan" target="_blank" class="nav1_4 iconfont icon-github"></a>
+			<a href="http://music.163.com/#/user/home?id=10020158" target="_blank" class="nav1_5 iconfont icon-musiccloud"></a>
+			<a href="https://www.zhihu.com/people/tv_wawawa" target="_blank" class="iconfont icon-zhihu"></a>
+			<a href="https://www.douban.com/people/tv_wawawa/" target="_blank" class="iconfont icon-douban"></a>
+		</div>
+	</div>
 </div>
+			<div class="article-all g-mn" style="padding:0 0 50px">
+	<div class="g-box f-cb container">
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                js原型&对象理解
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-01T16:48:47+08:00" content="2016-06-01">
-              2016-06-01
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/01/js原型&对象理解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/01/js原型&对象理解/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>对象：在js里，除了字符串，数字，boolean，null和undefined之外，其他的js值都是对象。</p>
+		<!--文章列表 start-->
+		<div class="m-post m-post-text" style="padding-top:68px">
+			<div class="cont ">
+				<div class="text f-cb">
+					<h1 class="title">js原型&对象理解</h1>
+					<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>对象：在js里，除了字符串，数字，boolean，null和undefined之外，其他的js值都是对象。</p>
 <p>js中对象可以分为普通对象和函数对象。</p>
 <p>普通对象：是除函数对象外的，都可以成为普通对象。</p>
 <p>函数对象：是通过new Function产生的对象。</p>
 <p>这一种是最常见的定义函数的方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="javascript">function foo1(){
+}
+</code></pre>
 <p>这一种就是定义了一个匿名函数，然后赋值到foo2　　</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo2=<span class="function"><span class="keyword">function</span></span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="javascript">var foo2=function{
+}
+</code></pre>
 <p>而以下这一种是通过对象实例的方式定义了一个匿名函数，赋值到foo3</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo3=<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'x'</span>,<span class="string">'console.log('</span>I<span class="string">'m a Function!'</span>)<span class="string">');</span></div></pre></td></tr></table></figure>
+<pre><code class="javascript">var foo3=new Function(&#39;x&#39;,&#39;console.log(&#39;I&#39;m a Function!&#39;)&#39;);
+</code></pre>
 <p>以上三个都属于函数对象，不信？咱来瞅瞅：</p>
-<p><img src="/img/prototype1.png" alt="pro1">
-　　</p>
+<p><img src="/img/prototype1.png" alt="pro1"><br>　　<br><a id="more"></a></p>
 <p>tvtvtv,前面两个例子看起来不像是new Function创建的啊！那怎么解释呢？</p>
 <p>其实前面两个例子是这样的，因为Function是JS自带的对象，所以在foo1，foo2创建时，JS就自动通过new Function来构建函数啦、</p>
 <p>所以上面三个对象都属于函数对象啦。</p>
 <p>再看看普通对象：</p>
 <p>这是最简单创建对象的方式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1=&#123;&#125;</div></pre></td></tr></table></figure>
+<pre><code class="javascript">var obj1={}
+</code></pre>
 <p>通过new创建并实例化一个新对象：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj2=<span class="keyword">new</span> <span class="built_in">Object</span>();</div></pre></td></tr></table></figure>
+<pre><code class="javascript">var obj2=new Object();
+</code></pre>
 <p>通过new创建并实例化了一个foo1对象：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj3=<span class="keyword">new</span> foo1();</div></pre></td></tr></table></figure>
+<pre><code class="javascript">var obj3=new foo1();
+</code></pre>
 <p>通过Object.create()创建一个对象：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj4=<span class="built_in">Object</span>.create(&#123;</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<pre><code class="javascript">var obj4=Object.create({
+
+});
+</code></pre>
 <p><img src="/img/prototype2.png" alt="pro2"></p>
 <p>所以以上方式创建的对象，都是属于普通对象。</p>
 <p>说到对象，必然会和对象扯上关系的那肯定是prototype和<strong>proto</strong>啦。</p>
@@ -339,7 +96,13 @@ js中对象可以分为普通对象和函数对象。
 <p>函数对象继承下来的属性，明显要比普通对象的多，你看，那不就有prototype了吗、</p>
 <p>但是呢，prototype对foo1是不可见的，也就是说，foo1是不会查找prototype上的属性和方法的。</p>
 <p>写个例子检验一下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">foo.prototype.name=<span class="string">'tv'</span>;</div><div class="line"><span class="built_in">console</span>.log(foo.name);    <span class="comment">//undefined</span></div></pre></td></tr></table></figure>
+<pre><code class="javascript">function foo(){
+
+}
+
+foo.prototype.name=&#39;tv&#39;;
+console.log(foo.name);    //undefined
+</code></pre>
 <p>prototype的主要作用其实是：继承。把prototype的属性和方法都留给自己的后代，子类就可以访问prototype的属性和方法啦、</p>
 <p><img src="/img/prototype5.png" alt="pro5"></p>
 <p>怎么来解释上面那张图呢，</p>
@@ -348,349 +111,81 @@ js中对象可以分为普通对象和函数对象。
 <p><strong>proto</strong>：在普通对象和函数对象上都存在，上面图点出来的已经很明显啦。</p>
 <p> 再写个例子画画图来理解理解：</p>
 <p><img src="/img/prototype6.png" alt="pro6"></p>
-<pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">foo</span></span>{
+<pre><code class="javascript">function foo{
 
 }
-foo.prototype.name=<span class="string">'tv'</span>;
-<span class="keyword">var</span> test1=<span class="keyword">new</span> foo();　　<span class="comment">//调用构造函数创建一个新实例对象</span>
-<span class="built_in">console</span>.log(test1.name);    <span class="comment">//tv</span>
+foo.prototype.name=&#39;tv&#39;;
+var test1=new foo();　　//调用构造函数创建一个新实例对象
+console.log(test1.name);    //tv
 </code></pre>
 <p>当调用构造函数创建一个新实例后，实例的内部会包含一个指针（内部属性），指向构造的原型对象，ECMA-262第5版把这个指针叫[prototype]，脚本中没有标准的方式访问[prototype],但是在chrome，Firefox等浏览器中，都支持一个属性<strong>proto</strong>;所以可以把[prototype]当作<strong>proto</strong>，这就形成了实例和函数原型对象的关联，就实现了继承啦</p>
 <p>所以整个原型链继承下来的效果是这样的：</p>
 <p><img src="/img/prototype7.png" alt="pro7"></p>
 
-      
-    </div>
+				</div>
+			</div>
+			<div class="subinfo">
+				<a href="">
+					2016-06-01
+				</a>
+				
+  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型/">原型</a></li></ul>
 
-    <div>
-      
-        
-      
-    </div>
+			</div>
+		</div>
+		<!--文章列表 end-->
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
-          
-            <a href="/tags/原型/" rel="tag">#原型</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/04/23/hexo安装错误/" rel="next" title="hexo安装问题集">
-                <i class="fa fa-chevron-left"></i> hexo安装问题集
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/10/动态创建html节点方法/" rel="prev" title="动态创建html节点方法">
-                动态创建html节点方法 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/06/01/js原型&对象理解/"
-           data-title="js原型&对象理解" data-url="https://github.com/tvChan/2016/06/01/js原型&对象理解/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="tvChan" />
-          <p class="site-author-name" itemprop="name">tvChan</p>
-          <p class="site-description motion-element" itemprop="description">Welcome to tvChan's Blog!</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">11</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">13</span>
-                <span class="site-state-item-name">标签</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/tvChan" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型"><span class="nav-number">2.</span> <span class="nav-text">原型</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">tvChan</span>
+		<!--分页 start-->
+		<div class="m-page f-cb">
+	
+		
+			<a class="f-fl" href="/2016/07/10/动态创建html节点方法/">
+				上一篇
+			</a>
+		
+		
+			<a class="f-fr" href="/2016/04/23/hexo安装错误/">
+				下一篇
+			</a>
+		
+	
+</div>
+		<!--分页 end-->
+	</div>
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+
+
+
+			<div class="main-footer">
+	<div class="m-ft container"><span title="Copyright">©</span>
+		<a href="http://tvwawawa.lofter.com/">tv_哇</a> | Powered by
+		<a href="https://hexo.io/">Hexo</a>
+	</div>
 </div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  
-		 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="20" height="50" src="https://music.163.com/outchain/player?type=2&id=30621922&auto=1&height=32"></iframe>
-   
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+		</div>
+		<script>
+	window.onload = function() {
+		// 可爱title切换
+		var OriginTitile = document.title;
+		var st;
+		document.addEventListener('visibilitychange', function() {
+			if(document.hidden) {
+				document.title = unescape("%28%u3064%u30A7%u2282%29%u6211%u85CF%u597D%u4E86%u54E6") + "★" + OriginTitile;
+				clearTimeout(st);
+			} else {
+				document.title = unescape("%28*%B4%u2207%uFF40*%29%20%20%u88AB%u4F60%u53D1%u73B0%u5566%7E%20") + "★" + OriginTitile;
+				st = setTimeout(function() {
+					document.title = OriginTitile;
+				}, 4000);
+			}
+		});
+	}
 </script>
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script> 
 
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"tvChan"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
-
-
-
-
-
-
-  
-  
-  
-
-  
-
-  
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
-  
-
-
-  <script type="text/javascript" src="/js/src/particles.js?v=5.0.1" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
-
-
-  <canvas id="background" width="1920" height="926" style="position:fixed;top:0;left:0;z-index:-2;opacity:1">
-
-</body>
+		<!--google analytics--> 
+		
+	</body>
 </html>

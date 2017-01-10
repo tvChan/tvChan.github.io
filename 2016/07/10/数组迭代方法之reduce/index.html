@@ -1,298 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
+    <!--Description-->
     
+        <meta name="description" content="Welcome to tvChan&#39;s Blog!">
     
-  
 
-  
-
-  
-
-  
-
-  
-
-  
+    <!--Author-->
     
+        <meta name="author" content="tvChan">
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
 
+    <!-- Title -->
+    
+    <title>数组迭代方法之reduce | tvChan&#39;s Blog</title>
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
 
+    <!-- Custom Fonts -->
+    <link href="//at.alicdn.com/t/font_1of8hhckxro7ds4i.css" rel="stylesheet" type="text/css">
+    <!-- Highlight -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/tomorrow.min.css">
 
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="JavaScript,js数组方法," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="昨天因为数据结构的封装上有点问题，就分别在开源中国和segmentFault上面提了问题，别问为什么不在stackoverflow里面提。。。
-segmentFault里面的大神的答案果然不失所望。
-其中有个答案是结合了reduce和map来编写的。map留着下次再说~请期待O(∩_∩)O~
-所以今晚就看了一下关于reduce()的资料，才发现自己底子不行，之前理解的很多细节都没有注意到。翻回犀牛">
-<meta property="og:type" content="article">
-<meta property="og:title" content="数组迭代方法之reduce">
-<meta property="og:url" content="https://github.com/tvChan/2016/07/10/数组迭代方法之reduce/index.html">
-<meta property="og:site_name" content="tvChan's Blog">
-<meta property="og:description" content="昨天因为数据结构的封装上有点问题，就分别在开源中国和segmentFault上面提了问题，别问为什么不在stackoverflow里面提。。。
-segmentFault里面的大神的答案果然不失所望。
-其中有个答案是结合了reduce和map来编写的。map留着下次再说~请期待O(∩_∩)O~
-所以今晚就看了一下关于reduce()的资料，才发现自己底子不行，之前理解的很多细节都没有注意到。翻回犀牛">
-<meta property="og:updated_time" content="2016-09-13T15:54:39.571Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数组迭代方法之reduce">
-<meta name="twitter:description" content="昨天因为数据结构的封装上有点问题，就分别在开源中国和segmentFault上面提了问题，别问为什么不在stackoverflow里面提。。。
-segmentFault里面的大神的答案果然不失所望。
-其中有个答案是结合了reduce和map来编写的。map留着下次再说~请期待O(∩_∩)O~
-所以今晚就看了一下关于reduce()的资料，才发现自己底子不行，之前理解的很多细节都没有注意到。翻回犀牛">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"right","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
-  };
-</script>
-
-
-
-
-  <link rel="canonical" href="https://github.com/tvChan/2016/07/10/数组迭代方法之reduce/"/>
-
-  <title> 数组迭代方法之reduce | tvChan's Blog </title>
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">tvChan's Blog
-      	<div class="eye"></div>
-		<div class="eye eye1"></div>
-		<div class="eye-line"></div>
-	  </span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle"></p>
+	<body>
+		<div class="bg"></div>
+		<div class="wrapper">
+			<div class="main-header container">
+	<div class="box">
+		<h1 class="u-tit"><a href="/">tv_哇</a></h1>
+		<div class="m-nav">
+			<a href="https://github.com/tvChan" target="_blank" class="nav1_4 iconfont icon-github"></a>
+			<a href="http://music.163.com/#/user/home?id=10020158" target="_blank" class="nav1_5 iconfont icon-musiccloud"></a>
+			<a href="https://www.zhihu.com/people/tv_wawawa" target="_blank" class="iconfont icon-zhihu"></a>
+			<a href="https://www.douban.com/people/tv_wawawa/" target="_blank" class="iconfont icon-douban"></a>
+		</div>
+	</div>
 </div>
+			<div class="article-all g-mn" style="padding:0 0 50px">
+	<div class="g-box f-cb container">
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                数组迭代方法之reduce
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-10T23:59:09+08:00" content="2016-07-10">
-              2016-07-10
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/10/数组迭代方法之reduce/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/数组迭代方法之reduce/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>昨天因为数据结构的封装上有点问题，就分别在开源中国和segmentFault上面提了问题，别问为什么不在stackoverflow里面提。。。</p>
+		<!--文章列表 start-->
+		<div class="m-post m-post-text" style="padding-top:68px">
+			<div class="cont ">
+				<div class="text f-cb">
+					<h1 class="title">数组迭代方法之reduce</h1>
+					<p>昨天因为数据结构的封装上有点问题，就分别在开源中国和segmentFault上面提了问题，别问为什么不在stackoverflow里面提。。。</p>
 <p>segmentFault里面的大神的答案果然不失所望。</p>
 <p>其中有个答案是结合了reduce和map来编写的。map留着下次再说~请期待O(∩_∩)O~</p>
 <p>所以今晚就看了一下关于reduce()的资料，才发现自己底子不行，之前理解的很多细节都没有注意到。翻回犀牛书认真读了一遍才茅塞顿开。</p>
+<a id="more"></a>
 <h3 id="reduce-的参数"><a href="#reduce-的参数" class="headerlink" title="reduce()的参数"></a>reduce()的参数</h3><p>reduce()有两个参数，一个是回调函数（必选），另一个是传递给回调函数里prev参数的初始值（可选），<strong>这里的可选参数我就经常会把它忽略，导致产生理解误区</strong></p>
 <h3 id="reduce-回调函数里面的参数"><a href="#reduce-回调函数里面的参数" class="headerlink" title="reduce()回调函数里面的参数"></a>reduce()回调函数里面的参数</h3><p>举个栗子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line"><span class="keyword">var</span> sum = arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev,cur,index,arr</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(prev, cur, index);</div><div class="line">    <span class="keyword">return</span> prev + cur;</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(arr, sum);</div><div class="line"></div><div class="line"><span class="comment">/* console结果</span></div><div class="line"></div><div class="line">1  2  1</div><div class="line">3  3  2</div><div class="line">6  4  3</div><div class="line">[1,2,3,4] 10</div><div class="line"></div><div class="line">*/</div></pre></td></tr></table></figure>
+<pre><code class="javascript">var arr = [1,2,3,4];
+var sum = arr.reduce(function(prev,cur,index,arr) {
+    console.log(prev, cur, index);
+    return prev + cur;
+});
+console.log(arr, sum);
+
+/* console结果
+
+1  2  1
+3  3  2
+6  4  3
+[1,2,3,4] 10
+
+*/
+</code></pre>
 <ul>
 <li>prev     函数第二项的值或是回调函数返回的累积值</li>
 <li>cur      当前的迭代值</li>
@@ -302,346 +82,98 @@ segmentFault里面的大神的答案果然不失所望。
 <p>这里的prev很容易被误解，有很多人都会以为是数组里的cur的前一位数，其实一开始我也这么认为，console出来见真相啊。</p>
 <p>前方高能，<strong>当第一次执行时，reduce方法里的没有第二个参数时，会默认把数组的第一位当成prev的值</strong>，上面的例子就是如此，所以第二位就成了cur值，所以index值是从1开始的。<strong>如果reduce的第二个参数设置了，则第一次执行，prev的值就是第二个参数。</strong>，如果要把prev设置为num型，第二个参数就为<code>0</code>，对象类型的话就设置为<code>{}</code>,当然数组的就设置为<code>[]</code></p>
 <p>举些栗子：（栗子都是从前端三人行公众号上找的，比较懒。。。）</p>
-<p>统计字符串有多少个相同字符<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 这里的reduce第二个参数是&#123;&#125;，所以prev的初始值就是&#123;&#125;</span></div><div class="line"><span class="keyword">var</span> arrString = <span class="string">'abcdaabc'</span>;  </div><div class="line">arrString.split(<span class="string">''</span>).reduce(<span class="function"><span class="keyword">function</span>(<span class="params">res, cur</span>) </span>&#123;  </div><div class="line">    res[cur] ? res[cur] ++ : res[cur] = <span class="number">1</span>  </div><div class="line">    <span class="keyword">return</span> res;  </div><div class="line">&#125;, &#123;&#125;)</div></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 这里的reduce第二个参数是[]，所以prev的初始值就是[]</span></div><div class="line">[<span class="number">1</span>, <span class="number">2</span>].reduce(<span class="function"><span class="keyword">function</span>(<span class="params">res, cur</span>) </span>&#123;   </div><div class="line">    res.push(cur + <span class="number">1</span>);   </div><div class="line">    <span class="keyword">return</span> res;   </div><div class="line">&#125;, []);</div></pre></td></tr></table></figure>
+<p>统计字符串有多少个相同字符</p>
+<pre><code class="javascript">
+// 这里的reduce第二个参数是{}，所以prev的初始值就是{}
+var arrString = &#39;abcdaabc&#39;;  
+arrString.split(&#39;&#39;).reduce(function(res, cur) {  
+    res[cur] ? res[cur] ++ : res[cur] = 1  
+    return res;  
+}, {})
+</code></pre>
+<pre><code class="javascript">
+// 这里的reduce第二个参数是[]，所以prev的初始值就是[]
+[1, 2].reduce(function(res, cur) {   
+    res.push(cur + 1);   
+    return res;   
+}, []);
+</code></pre>
 <h3 id="reduce-和reduceRight"><a href="#reduce-和reduceRight" class="headerlink" title="reduce()和reduceRight()"></a>reduce()和reduceRight()</h3><p>reduce和reduceRight的原理其实是一样的，但是不同的是，它们是按照数组索引从高到低（从右到左）处理数组的。</p>
 <p>下面例子就很适合用reduceRight()</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line"></div><div class="line"><span class="comment">// 计算2^(3^4)，乘方操作的优先顺序是从右到左</span></div><div class="line"><span class="keyword">var</span> big = a.reduceRight(<span class="function"><span class="keyword">function</span>(<span class="params">accumulator,value</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.pow(value, accumulator);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<pre><code class="javascript">var a = [2,3,4];
+
+// 计算2^(3^4)，乘方操作的优先顺序是从右到左
+var big = a.reduceRight(function(accumulator,value) {
+    return Math.pow(value, accumulator);
+});
+</code></pre>
 <h3 id="兼容问题"><a href="#兼容问题" class="headerlink" title="兼容问题"></a>兼容问题</h3><p>虽然reduce大法好用，但是在<code>ie9以下的浏览器</code>是不支持它的噢O__O “…</p>
 <p>所以要请慎用！</p>
 
-      
-    </div>
+				</div>
+			</div>
+			<div class="subinfo">
+				<a href="">
+					2016-07-10
+				</a>
+				
+  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js数组方法/">js数组方法</a></li></ul>
 
-    <div>
-      
-        
-      
-    </div>
+			</div>
+		</div>
+		<!--文章列表 end-->
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
-          
-            <a href="/tags/js数组方法/" rel="tag">#js数组方法</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/07/10/动态创建html节点方法/" rel="next" title="动态创建html节点方法">
-                <i class="fa fa-chevron-left"></i> 动态创建html节点方法
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/08/webpack学习一之配置环境/" rel="prev" title="webpack学习一之配置环境">
-                webpack学习一之配置环境 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/07/10/数组迭代方法之reduce/"
-           data-title="数组迭代方法之reduce" data-url="https://github.com/tvChan/2016/07/10/数组迭代方法之reduce/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="tvChan" />
-          <p class="site-author-name" itemprop="name">tvChan</p>
-          <p class="site-description motion-element" itemprop="description">Welcome to tvChan's Blog!</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">11</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">13</span>
-                <span class="site-state-item-name">标签</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/tvChan" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce-的参数"><span class="nav-number">1.</span> <span class="nav-text">reduce()的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce-回调函数里面的参数"><span class="nav-number">2.</span> <span class="nav-text">reduce()回调函数里面的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce-和reduceRight"><span class="nav-number">3.</span> <span class="nav-text">reduce()和reduceRight()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#兼容问题"><span class="nav-number">4.</span> <span class="nav-text">兼容问题</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">tvChan</span>
+		<!--分页 start-->
+		<div class="m-page f-cb">
+	
+		
+			<a class="f-fl" href="/2016/08/08/webpack学习一之配置环境/">
+				上一篇
+			</a>
+		
+		
+			<a class="f-fr" href="/2016/07/10/动态创建html节点方法/">
+				下一篇
+			</a>
+		
+	
+</div>
+		<!--分页 end-->
+	</div>
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+
+
+
+			<div class="main-footer">
+	<div class="m-ft container"><span title="Copyright">©</span>
+		<a href="http://tvwawawa.lofter.com/">tv_哇</a> | Powered by
+		<a href="https://hexo.io/">Hexo</a>
+	</div>
 </div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  
-		 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="20" height="50" src="https://music.163.com/outchain/player?type=2&id=30621922&auto=1&height=32"></iframe>
-   
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+		</div>
+		<script>
+	window.onload = function() {
+		// 可爱title切换
+		var OriginTitile = document.title;
+		var st;
+		document.addEventListener('visibilitychange', function() {
+			if(document.hidden) {
+				document.title = unescape("%28%u3064%u30A7%u2282%29%u6211%u85CF%u597D%u4E86%u54E6") + "★" + OriginTitile;
+				clearTimeout(st);
+			} else {
+				document.title = unescape("%28*%B4%u2207%uFF40*%29%20%20%u88AB%u4F60%u53D1%u73B0%u5566%7E%20") + "★" + OriginTitile;
+				st = setTimeout(function() {
+					document.title = OriginTitile;
+				}, 4000);
+			}
+		});
+	}
 </script>
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script> 
 
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"tvChan"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
-
-
-
-
-
-
-  
-  
-  
-
-  
-
-  
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
-  
-
-
-  <script type="text/javascript" src="/js/src/particles.js?v=5.0.1" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
-
-
-  <canvas id="background" width="1920" height="926" style="position:fixed;top:0;left:0;z-index:-2;opacity:1">
-
-</body>
+		<!--google analytics--> 
+		
+	</body>
 </html>

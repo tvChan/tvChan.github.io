@@ -1,307 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
+    <!--Description-->
     
+        <meta name="description" content="Welcome to tvChan&#39;s Blog!">
     
-  
 
-  
-
-  
-
-  
-
-  
-
-  
+    <!--Author-->
     
+        <meta name="author" content="tvChan">
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
 
+    <!-- Title -->
+    
+    <title>webpack学习一之配置环境 | tvChan&#39;s Blog</title>
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
 
+    <!-- Custom Fonts -->
+    <link href="//at.alicdn.com/t/font_1of8hhckxro7ds4i.css" rel="stylesheet" type="text/css">
+    <!-- Highlight -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/tomorrow.min.css">
 
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="webpack," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="起始篇
-模块是你需要哪个模块才自己手动当初模块，包括jq也一样。
-配环境步骤  https://zhuanlan.zhihu.com/p/20367175?refer=FrontendMagazine  傻瓜式教程
-
-我会遇到的坑：
-在进行css预编译时，换成sass写，教程没说要安装什么东西，但是就是一直出现这个问题，后来查了一下是还要安装 node-sass
-  
-  npm install">
-<meta property="og:type" content="article">
-<meta property="og:title" content="webpack学习一之配置环境">
-<meta property="og:url" content="https://github.com/tvChan/2016/08/08/webpack学习一之配置环境/index.html">
-<meta property="og:site_name" content="tvChan's Blog">
-<meta property="og:description" content="起始篇
-模块是你需要哪个模块才自己手动当初模块，包括jq也一样。
-配环境步骤  https://zhuanlan.zhihu.com/p/20367175?refer=FrontendMagazine  傻瓜式教程
-
-我会遇到的坑：
-在进行css预编译时，换成sass写，教程没说要安装什么东西，但是就是一直出现这个问题，后来查了一下是还要安装 node-sass
-  
-  npm install">
-<meta property="og:image" content="https://github.com/tvChan/img/webpack1.jpg">
-<meta property="og:image" content="https://github.com/tvChan/img/webpack2.jpg">
-<meta property="og:updated_time" content="2016-09-13T15:54:30.771Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack学习一之配置环境">
-<meta name="twitter:description" content="起始篇
-模块是你需要哪个模块才自己手动当初模块，包括jq也一样。
-配环境步骤  https://zhuanlan.zhihu.com/p/20367175?refer=FrontendMagazine  傻瓜式教程
-
-我会遇到的坑：
-在进行css预编译时，换成sass写，教程没说要安装什么东西，但是就是一直出现这个问题，后来查了一下是还要安装 node-sass
-  
-  npm install">
-<meta name="twitter:image" content="https://github.com/tvChan/img/webpack1.jpg">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"right","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
-  };
-</script>
-
-
-
-
-  <link rel="canonical" href="https://github.com/tvChan/2016/08/08/webpack学习一之配置环境/"/>
-
-  <title> webpack学习一之配置环境 | tvChan's Blog </title>
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">tvChan's Blog
-      	<div class="eye"></div>
-		<div class="eye eye1"></div>
-		<div class="eye-line"></div>
-	  </span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle"></p>
+	<body>
+		<div class="bg"></div>
+		<div class="wrapper">
+			<div class="main-header container">
+	<div class="box">
+		<h1 class="u-tit"><a href="/">tv_哇</a></h1>
+		<div class="m-nav">
+			<a href="https://github.com/tvChan" target="_blank" class="nav1_4 iconfont icon-github"></a>
+			<a href="http://music.163.com/#/user/home?id=10020158" target="_blank" class="nav1_5 iconfont icon-musiccloud"></a>
+			<a href="https://www.zhihu.com/people/tv_wawawa" target="_blank" class="iconfont icon-zhihu"></a>
+			<a href="https://www.douban.com/people/tv_wawawa/" target="_blank" class="iconfont icon-douban"></a>
+		</div>
+	</div>
 </div>
+			<div class="article-all g-mn" style="padding:0 0 50px">
+	<div class="g-box f-cb container">
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                webpack学习一之配置环境
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-08T21:42:21+08:00" content="2016-08-08">
-              2016-08-08
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/08/webpack学习一之配置环境/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/08/webpack学习一之配置环境/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="起始篇"><a href="#起始篇" class="headerlink" title="起始篇"></a>起始篇</h3><ol>
+		<!--文章列表 start-->
+		<div class="m-post m-post-text" style="padding-top:68px">
+			<div class="cont ">
+				<div class="text f-cb">
+					<h1 class="title">webpack学习一之配置环境</h1>
+					<h3 id="起始篇"><a href="#起始篇" class="headerlink" title="起始篇"></a>起始篇</h3><ol>
 <li>模块是你需要哪个模块才自己手动当初模块，包括jq也一样。</li>
 <li>配环境步骤  <a href="https://zhuanlan.zhihu.com/p/20367175?refer=FrontendMagazine" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/20367175?refer=FrontendMagazine</a>  傻瓜式教程</li>
 </ol>
@@ -311,7 +60,20 @@
 <p>  <code>npm install node-sass --save-dev</code></p>
 </li>
 <li><p>在二“加载jQuery plugin或者其他legacy第三方库”中，第一种方法，使用webpack.ProvidePlugin,在config中加入代码时，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"> plugins: [</div><div class="line">   <span class="keyword">new</span> HtmlwebpackPlugin(&#123;</div><div class="line">     title: <span class="string">'Hello World app'</span></div><div class="line">   &#125;),</div><div class="line">   <span class="comment">//provide $, jQuery and window.jQuery to every script</span></div><div class="line">   <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</div><div class="line">     $: <span class="string">"jquery"</span>,</div><div class="line">     jQuery: <span class="string">"jquery"</span>,</div><div class="line">     <span class="string">"window.jQuery"</span>: <span class="string">"jquery"</span></div><div class="line">   &#125;)</div><div class="line"> ]</div><div class="line"> ...</div></pre></td></tr></table></figure>
+<pre><code class="javascript">...
+plugins: [
+  new HtmlwebpackPlugin({
+    title: &#39;Hello World app&#39;
+  }),
+  //provide $, jQuery and window.jQuery to every script
+  new webpack.ProvidePlugin({
+    $: &quot;jquery&quot;,
+    jQuery: &quot;jquery&quot;,
+    &quot;window.jQuery&quot;: &quot;jquery&quot;
+  })
+]
+...
+</code></pre>
 </li>
 </ul>
 <p>出现了以下的错误：</p>
@@ -329,370 +91,183 @@
 <li>初始化项目 <code>npm init</code></li>
 <li>新增项目需要的文件</li>
 <li><p>配置webpack ，安装一个plugin，可以自动快速在对应文件夹里生成html，把webpack将多个js合并成一个js文件，然后把它引用到build文件夹里的html文件里（每安装一个工具，都要在config文件里进行配置）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">plugin: [</div><div class="line">    <span class="keyword">new</span> HtmlwebpackPlugin(&#123;</div><div class="line">         title: <span class="string">"hello webpack app!"</span></div><div class="line">     &#125;)</div><div class="line">]</div><div class="line">...</div></pre></td></tr></table></figure>
+<pre><code class="javascript">...
+plugin: [
+  new HtmlwebpackPlugin({
+       title: &quot;hello webpack app!&quot;
+   })
+]
+...
+</code></pre>
 </li>
 <li><p>配置webpack-dev-server，新建一个开发服务器，可以serve我们打包后的代码，并在代码更新时，自动刷新浏览器<br>安装webpack-dev-server<br><code>npm install webpack-dev-server --save-dev</code></p>
 </li>
 </ul>
-<p>修改config配置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    ...</div><div class="line">    devServer: &#123;</div><div class="line">         historyApiFallback: <span class="literal">true</span>,</div><div class="line">         hot: <span class="literal">true</span>,</div><div class="line">         inline: <span class="literal">true</span>,</div><div class="line">         progress: <span class="literal">true</span></div><div class="line"></div><div class="line">     &#125;,</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>然后在package.json里配置一下运行的命令，npm支持自定义的一些命令<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">    <span class="string">"start"</span>: <span class="string">"webpack-dev-server --hot --inline"</span></div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>修改config配置</p>
+<pre><code class="javascript">module.exports = {
+    ...
+    devServer: {
+         historyApiFallback: true,
+         hot: true,
+         inline: true,
+         progress: true
+
+     },
+    ...
+}
+</code></pre>
+<p>然后在package.json里配置一下运行的命令，npm支持自定义的一些命令</p>
+<pre><code class="javascript">...
+&quot;scripts&quot;: {
+    &quot;start&quot;: &quot;webpack-dev-server --hot --inline&quot;
+}
+...
+</code></pre>
 <p>在命令行里输入<code>npm start</code>,然后浏览器输入 localhost:8080</p>
 <ul>
 <li>添加CSS样式，<strong>webpack使用loader的方式来处理各种各样的资源</strong>，如样式文件，会用css-loader和style-loader，css-loader会遍历css文件，找到所有的url(…)并处理，style.loader会吧所有的样式插入到你页面的style tag中<br>安装loader<br><code>npm install css-loader style-loader --save-dev</code></li>
 </ul>
-<p>在config文件中，配置loader<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">devServer: &#123;</div><div class="line">    historyApiFallback: <span class="literal">true</span>,</div><div class="line">    hot: <span class="literal">true</span>,</div><div class="line">    inline: <span class="literal">true</span>,</div><div class="line">    progress: <span class="literal">true</span></div><div class="line">&#125;,</div><div class="line">...</div><div class="line">module: &#123;</div><div class="line">    loaders: [</div><div class="line">        &#123;</div><div class="line">            test: <span class="regexp">/\.css$/</span>,</div><div class="line">            loaders: [<span class="string">'style'</span>, <span class="string">'css'</span>],</div><div class="line">            include: APP_PATH</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;,</div><div class="line">...</div><div class="line">plugins: [</div><div class="line">    <span class="keyword">new</span> HtmlwebpackPlugin(&#123;</div><div class="line">        title: <span class="string">"hello world app"</span></div><div class="line">    &#125;)</div><div class="line">]</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>在config文件中，配置loader</p>
+<pre><code class="javascript">    devServer: {
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        progress: true
+    },
+    ...
+    module: {
+        loaders: [
+            {
+                test: /\.css$/,
+                loaders: [&#39;style&#39;, &#39;css&#39;],
+                include: APP_PATH
+            }
+        ]
+    },
+    ...
+    plugins: [
+        new HtmlwebpackPlugin({
+            title: &quot;hello world app&quot;
+        })
+    ]
+    ...
+</code></pre>
 <p>新建main.css文件，并把css在入口文件中引用：<br><code>require(&#39;./main.css&#39;);</code></p>
 <ul>
 <li>css预编译程序，sass，其实再添加一个loader就行啦，但是，在我实践之后，出现了上面的坑1，就要按照上面的方法解决，即可</li>
 </ul>
 <p><code>npm install sass-loader --save-dev</code></p>
-<p>修改config文件，删去之前添加的css规则，加上下面的loader<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    test: <span class="regexp">/\.scss$/</span>,</div><div class="line">    loaders: [<span class="string">'style'</span>, <span class="string">'css'</span>, <span class="string">'sass'</span>],</div><div class="line">    include: APP_PATH</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>修改config文件，删去之前添加的css规则，加上下面的loader</p>
+<pre><code class="javascript">{
+    test: /\.scss$/,
+    loaders: [&#39;style&#39;, &#39;css&#39;, &#39;sass&#39;],
+    include: APP_PATH
+},
+</code></pre>
 <p>再添加两个sass文件，variables.sass和main.scss<br>variables.scss<br><code>$red: red</code></p>
-<p>main.scss<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">import</span> <span class="string">"./variables.scss"</span>;</div><div class="line"><span class="selector-tag">h1</span> &#123;</div><div class="line">    <span class="attribute">color</span>: $red;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>main.scss</p>
+<pre><code class="css">@import &quot;./variables.scss&quot;;
+h1 {
+    color: $red;
+}
+</code></pre>
 <ul>
 <li>处理图片和其他静态文件 和上面一样，安装loader，处理文件。eg: 图片，字体等等，图片可以根据你的需求，将一些图片自动转成base64编码的，减轻不少网络请求吧<br>安装url-loader:<br><code>npm install url-loader --save-dev</code></li>
 </ul>
-<p>配置config文件：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    test: <span class="regexp">/\.(png|jpg)$/</span>,</div><div class="line">    loader: <span class="string">'url?limit=40000'</span> <span class="comment">// 当图片大小小于这个限制时，就会自动转成base64编码</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>配置config文件：</p>
+<pre><code class="javascript">{
+    test: /\.(png|jpg)$/,
+    loader: &#39;url?limit=40000&#39; // 当图片大小小于这个限制时，就会自动转成base64编码
+}
+</code></pre>
 <ul>
 <li>添加第三方库 当你需要jquery，moment，underscore等库时，webpack很容易就能做到这点<br>安装jq，moment<br><code>npm install jquery moment --save-dev</code></li>
 </ul>
 <p>在js中引用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $ = <span class="built_in">require</span>(<span class="string">'jquery'</span>);</div><div class="line"><span class="keyword">var</span> moment = <span class="built_in">require</span>(<span class="string">'moment'</span>);</div><div class="line">$(<span class="string">'p'</span>).append(<span class="string">'&lt;p&gt; hello world '</span> + moment().format() + <span class="string">'&lt;/p&gt;'</span>);</div></pre></td></tr></table></figure>
+<pre><code class="javascript">var $ = require(&#39;jquery&#39;);
+var moment = require(&#39;moment&#39;);
+$(&#39;p&#39;).append(&#39;&lt;p&gt; hello world &#39; + moment().format() + &#39;&lt;/p&gt;&#39;);
+</code></pre>
 <ul>
 <li>添加ES6的支持，用babel转译</li>
 </ul>
-<p>装各种loader<br><code>npm install babel-loader babel-preset-es2015 --save-dev</code><br>配置config文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&#123;</div><div class="line">    test: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">    loader: <span class="string">'babel'</span>,</div><div class="line">    include: APP_PATH,</div><div class="line">    query: &#123;</div><div class="line">        presets: [<span class="string">'es2015'</span>]</div><div class="line">    &#125;</div><div class="line">&#125;,</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>装各种loader<br><code>npm install babel-loader babel-preset-es2015 --save-dev</code><br>配置config文件</p>
+<pre><code class="javascript">...
+{
+    test: /\.jsx?$/,
+    loader: &#39;babel&#39;,
+    include: APP_PATH,
+    query: {
+        presets: [&#39;es2015&#39;]
+    }
+},
+...
+</code></pre>
 
-      
-    </div>
+				</div>
+			</div>
+			<div class="subinfo">
+				<a href="">
+					2016-08-08
+				</a>
+				
+  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
 
-    <div>
-      
-        
-      
-    </div>
+			</div>
+		</div>
+		<!--文章列表 end-->
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/webpack/" rel="tag">#webpack</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/07/10/数组迭代方法之reduce/" rel="next" title="数组迭代方法之reduce">
-                <i class="fa fa-chevron-left"></i> 数组迭代方法之reduce
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/10/handlerbars的使用/" rel="prev" title="handlerbars的使用">
-                handlerbars的使用 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/08/08/webpack学习一之配置环境/"
-           data-title="webpack学习一之配置环境" data-url="https://github.com/tvChan/2016/08/08/webpack学习一之配置环境/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="tvChan" />
-          <p class="site-author-name" itemprop="name">tvChan</p>
-          <p class="site-description motion-element" itemprop="description">Welcome to tvChan's Blog!</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">11</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">13</span>
-                <span class="site-state-item-name">标签</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/tvChan" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#起始篇"><span class="nav-number">1.</span> <span class="nav-text">起始篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#我会遇到的坑："><span class="nav-number">1.1.</span> <span class="nav-text">我会遇到的坑：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack理解："><span class="nav-number">1.2.</span> <span class="nav-text">webpack理解：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤："><span class="nav-number">1.3.</span> <span class="nav-text">步骤：</span></a></li></ol></li></ol></div>
-            
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">tvChan</span>
+		<!--分页 start-->
+		<div class="m-page f-cb">
+	
+		
+			<a class="f-fl" href="/2016/08/10/handlerbars的使用/">
+				上一篇
+			</a>
+		
+		
+			<a class="f-fr" href="/2016/07/10/数组迭代方法之reduce/">
+				下一篇
+			</a>
+		
+	
+</div>
+		<!--分页 end-->
+	</div>
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+
+
+
+			<div class="main-footer">
+	<div class="m-ft container"><span title="Copyright">©</span>
+		<a href="http://tvwawawa.lofter.com/">tv_哇</a> | Powered by
+		<a href="https://hexo.io/">Hexo</a>
+	</div>
 </div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  
-		 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="20" height="50" src="https://music.163.com/outchain/player?type=2&id=30621922&auto=1&height=32"></iframe>
-   
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+		</div>
+		<script>
+	window.onload = function() {
+		// 可爱title切换
+		var OriginTitile = document.title;
+		var st;
+		document.addEventListener('visibilitychange', function() {
+			if(document.hidden) {
+				document.title = unescape("%28%u3064%u30A7%u2282%29%u6211%u85CF%u597D%u4E86%u54E6") + "★" + OriginTitile;
+				clearTimeout(st);
+			} else {
+				document.title = unescape("%28*%B4%u2207%uFF40*%29%20%20%u88AB%u4F60%u53D1%u73B0%u5566%7E%20") + "★" + OriginTitile;
+				st = setTimeout(function() {
+					document.title = OriginTitile;
+				}, 4000);
+			}
+		});
+	}
 </script>
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script> 
 
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"tvChan"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
-
-
-
-
-
-
-  
-  
-  
-
-  
-
-  
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
-  
-
-
-  <script type="text/javascript" src="/js/src/particles.js?v=5.0.1" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
-
-
-  <canvas id="background" width="1920" height="926" style="position:fixed;top:0;left:0;z-index:-2;opacity:1">
-
-</body>
+		<!--google analytics--> 
+		
+	</body>
 </html>
