@@ -51,12 +51,161 @@
 			<div class="article-summary m-post m-post-text">
 	<div class="cont ">
 		<div class="text f-cb">
-			<h2><a href="/2016/04/23/hexo安装错误/">hexo安装问题集</a></h2>
-			
+			<h2><a href="/2016/08/30/angular web端开发文档/">angular web端开发文档</a></h2>
+			<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><blockquote>
+<p>components    //第三方组件</p>
+<blockquote>
+<p>bootstrap-datatimepicker    //基于boostrap的日期选择器<br>font-awesome-4.5.0    //字体图标<br>layer    //弹出层插件<br>qrcode    //JQuery二维码插件</p>
+</blockquote>
+<p>framework    //全局框架</p>
+<blockquote>
+<p>angular-1.3.0.14    //Anguler<br>angular-ui-router    //基于Angular的第三方路由<br>bootstrap-3.3.5    //UI框架<br>jquery </p>
+</blockquote>
+<p>src    //源代码</p>
+<blockquote>
+<p>common    //公共资源</p>
+<blockquote>
+<p>css</p>
+<blockquote>
+<p>base.css    //基础样式：标签初始化<br>common.css    //自定义公共UI组件</p>
+</blockquote>
+<p>js</p>
+<blockquote>
+<p>app.js    //Angular启动js：主要是配置路由代码<br>controllers.js    //Controller（控制器）：主要js代码都在里面<br>filters.js    //Filter（过滤器）：过滤data，类似handlebars里面的Handlebars.register<br>services.js    //Service（服务）：自定义服务</p>
+</blockquote>
+</blockquote>
+<p>page    //子页面</p>
+<blockquote>
+<p>bank.html    //提现帐户<br>comment.html    //评价管理<br>commodity.html    //商品管理（未完成）<br>home.html    //主子页<br>member.html    //会员管理<br>notice.html    //公告设置<br>qrcode.html    //二维码<br>recharge.html    //积分充值<br>withdraw.html    //提现</p>
+</blockquote>
+<p>panel    //面板（子页面中的功能板块区域）</p>
+<blockquote>
+<p>account.html    //子主页面 - 用户帐户板块<br>finance.html    //子主页面 - 用户账务板块<br>shortCut.html    //子主页面 - 快捷功能板块</p>
+</blockquote>
+</blockquote>
+<p>api-conf.js    //路径配置<br>fis-conf.js    //fis配置<br>index.html    //入口页面：包括页面头部和左菜单列表</p>
+</blockquote>
 		</div>
 	</div>
 	<div class="subinfo">
-		<a href="">2016-04-23</a>
+		<a href="">2016-08-30</a>
+	</div>
+</div>
+			
+			<div class="article-summary m-post m-post-text">
+	<div class="cont ">
+		<div class="text f-cb">
+			<h2><a href="/2016/08/10/handlerbars的使用/">handlerbars的使用</a></h2>
+			<p><span style="color:red">p.s: 文中出现的==  ==，均为大胡子<strong>两对花括号</strong>的替换，好像是hexo不支持两对花括号，编译时会出错，又找到一个坑(⊙﹏⊙)b</span></p>
+<h3 id="自定义helper"><a href="#自定义helper" class="headerlink" title="自定义helper"></a>自定义helper</h3><pre><code class="html">&lt;div class=&quot;post&quot;&gt;
+  &lt;h1&gt;By {{fullName author}}&lt;/h1&gt;
+  &lt;div class=&quot;body&quot;&gt;{{body}}&lt;/div&gt;
+
+  &lt;h1&gt;Comments&lt;/h1&gt;
+
+  {{#each comments}}
+  &lt;!--下面{{fullName author}}调用自定义模板，fullName是模板名，后面的author才是函数参数--&gt;
+  &lt;h2&gt;By {{fullName author}}&lt;/h2&gt;   
+  &lt;div class=&quot;body&quot;&gt;{{body}}&lt;/div&gt;
+  {{/each}}
+&lt;/div&gt;
+</code></pre>
+<pre><code class="javascript">var context = {
+  author: {firstName: &quot;Alan&quot;, lastName: &quot;Johnson&quot;},
+  body: &quot;I Love Handlebars&quot;,
+  comments: [{
+    author: {firstName: &quot;Yehuda&quot;, lastName: &quot;Katz&quot;},
+    body: &quot;Me too!&quot;
+  }]
+};
+//自定义Helper
+Handlebars.registerHelper(&#39;fullName&#39;, function(person) {
+  return person.firstName + &quot; &quot; + person.lastName;
+});
+</code></pre>
+		</div>
+	</div>
+	<div class="subinfo">
+		<a href="">2016-08-10</a>
+	</div>
+</div>
+			
+			<div class="article-summary m-post m-post-text">
+	<div class="cont ">
+		<div class="text f-cb">
+			<h2><a href="/2016/08/08/webpack学习一之配置环境/">webpack学习一之配置环境</a></h2>
+			<h3 id="起始篇"><a href="#起始篇" class="headerlink" title="起始篇"></a>起始篇</h3><ol>
+<li>模块是你需要哪个模块才自己手动当初模块，包括jq也一样。</li>
+<li>配环境步骤  <a href="https://zhuanlan.zhihu.com/p/20367175?refer=FrontendMagazine">https://zhuanlan.zhihu.com/p/20367175?refer=FrontendMagazine</a>  傻瓜式教程</li>
+</ol>
+<h4 id="我会遇到的坑："><a href="#我会遇到的坑：" class="headerlink" title="我会遇到的坑："></a>我会遇到的坑：</h4><ul>
+<li><p>在进行css预编译时，换成sass写，教程没说要安装什么东西，但是就是一直出现这个问题，后来查了一下是还要安装 node-sass</p>
+<p>  <img src="/img/webpack1.jpg" alt="webpack1"></p>
+<p>  <code>npm install node-sass --save-dev</code></p>
+</li>
+<li><p>在二“加载jQuery plugin或者其他legacy第三方库”中，第一种方法，使用webpack.ProvidePlugin,在config中加入代码时，</p>
+<pre><code class="javascript">...
+plugins: [
+  new HtmlwebpackPlugin({
+    title: &#39;Hello World app&#39;
+  }),
+  //provide $, jQuery and window.jQuery to every script
+  new webpack.ProvidePlugin({
+    $: &quot;jquery&quot;,
+    jQuery: &quot;jquery&quot;,
+    &quot;window.jQuery&quot;: &quot;jquery&quot;
+  })
+]
+...
+</code></pre>
+</li>
+</ul>
+<p>出现了以下的错误：</p>
+<p><img src="/img/webpack2.jpg" alt="webpack2"></p>
+<p>原来是，在config开始时没有对引入webpack，引入代码并定义：<br><code>var webpack = require(&#39;webpack&#39;);</code></p>
+		</div>
+	</div>
+	<div class="subinfo">
+		<a href="">2016-08-08</a>
+	</div>
+</div>
+			
+			<div class="article-summary m-post m-post-text">
+	<div class="cont ">
+		<div class="text f-cb">
+			<h2><a href="/2016/07/10/数组迭代方法之reduce/">数组迭代方法之reduce</a></h2>
+			<p>昨天因为数据结构的封装上有点问题，就分别在开源中国和segmentFault上面提了问题，别问为什么不在stackoverflow里面提。。。</p>
+<p>segmentFault里面的大神的答案果然不失所望。</p>
+<p>其中有个答案是结合了reduce和map来编写的。map留着下次再说~请期待O(∩_∩)O~</p>
+<p>所以今晚就看了一下关于reduce()的资料，才发现自己底子不行，之前理解的很多细节都没有注意到。翻回犀牛书认真读了一遍才茅塞顿开。</p>
+		</div>
+	</div>
+	<div class="subinfo">
+		<a href="">2016-07-10</a>
+	</div>
+</div>
+			
+			<div class="article-summary m-post m-post-text">
+	<div class="cont ">
+		<div class="text f-cb">
+			<h2><a href="/2016/07/10/动态创建html节点方法/">动态创建html节点方法</a></h2>
+			<h3 id="常见方法"><a href="#常见方法" class="headerlink" title="常见方法"></a>常见方法</h3><p>《JavaScript高级程序》里介绍到动态创建html节点的几种方法，常见的有以下几种： </p>
+<ul>
+<li><p>crateAttribute(name)：　　　　　 　　用指定名称name创建特性节点</p>
+</li>
+<li><p>createComment(text)：　　　　　　　创建带文本text的注释节点</p>
+</li>
+<li><p>createDocumentFragment()：　　　　创建文档碎片节点</p>
+</li>
+<li><p>createElement(tagname)：　　　　　  创建标签名为tagname的节点</p>
+</li>
+<li><p>createTextNode(text)：　　　　　　   创建包含文本text的文本节点</p>
+</li>
+</ul>
+		</div>
+	</div>
+	<div class="subinfo">
+		<a href="">2016-07-10</a>
 	</div>
 </div>
 			
@@ -71,6 +220,10 @@
 				上一页
 			</a>
 		
+		
+			<a class="f-fr" href="/page/3/">
+				下一页
+			</a>
 		
 	
 </div>

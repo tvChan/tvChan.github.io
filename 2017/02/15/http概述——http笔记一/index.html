@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Welcome to tvChan&#39;s Blog!">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="tvChan">
+    
+
+    <!-- Title -->
+    
+    <title>http概述——http笔记一 | tvChan&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//at.alicdn.com/t/font_1of8hhckxro7ds4i.css" rel="stylesheet" type="text/css">
+    <!-- Highlight -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/tomorrow.min.css">
+
+</head>
+	<body>
+		<div class="bg"></div>
+		<div class="wrapper">
+			<div class="main-header container">
+	<div class="box">
+		<h1 class="u-tit"><a href="/">tv_哇</a></h1>
+		<div class="m-nav">
+			<a href="https://github.com/tvChan" target="_blank" class="nav1_4 iconfont icon-github"></a>
+			<a href="http://music.163.com/#/user/home?id=10020158" target="_blank" class="nav1_5 iconfont icon-musiccloud"></a>
+			<a href="https://www.zhihu.com/people/tv_wawawa" target="_blank" class="iconfont icon-zhihu"></a>
+			<a href="https://www.douban.com/people/tv_wawawa/" target="_blank" class="iconfont icon-douban"></a>
+		</div>
+	</div>
+</div>
+			<div class="article-all g-mn" style="padding:0 0 50px">
+	<div class="g-box f-cb container">
+
+		<!--文章列表 start-->
+		<div class="m-post m-post-text" style="padding-top:68px">
+			<div class="cont ">
+				<div class="text f-cb">
+					<h1 class="title">http概述——http笔记一</h1>
+					<p>之前想深入的了解学习下HTTP，所以就买了本砖头《HTTP权威指南》。最近一直在看，可是发现看书只有输入并没有输出，不行。所以就打算把自己的理解写成一系列的笔记，供以后翻阅。</p>
+<p>大概画了张本章内容的思维导图：（画工渣渣，字丑(⊙﹏⊙)b）将就呗~<br><img src="/img/http1-1.jpg" alt="browserFlow"></p>
+<p>第一章 HTTP概述 其实就是简要的概述了接下来每一章的点。</p>
+<p>可以用一句话来概括本章的内容：web客户端通过和服务器端建立连接，建立连接成功就通过HTTP传递请求，往服务器的特定位置获取需要的多媒体资源，再返回给web客户端。</p>
+<h3 id="1-HTTP——互联网的多媒体信使"><a href="#1-HTTP——互联网的多媒体信使" class="headerlink" title="1.HTTP——互联网的多媒体信使"></a>1.HTTP——互联网的多媒体信使</h3><p>HTTP其实是web客户端和服务端的信使。通俗的可以这样理解：用户在京东上买东西，快递员就充当信使的角色。这里的用户就是web客户端，京东就是服务器，而快递员就是我们的HTTP了。</p>
+<h3 id="2-web客户端和服务器"><a href="#2-web客户端和服务器" class="headerlink" title="2.web客户端和服务器"></a>2.web客户端和服务器</h3><p>上面提及的web客户端和服务器端，一般情况下，我们用浏览器访问一个页面就会涉及到HTTP，而我们的浏览器就充当web客户端的角色，然后通过输入的网址<strong>发送请求</strong>，访问远端的服务器索取需要的资源，而服务器就是存放各类资源的容器，服务器获取到请求后，知道浏览器要什么，就告诉浏览器<strong>响应请求</strong>，把浏览器需要的资源返回给它，浏览器就能显示漂亮的界面啦。</p>
+<a id="more"></a>
+<h3 id="3-资源"><a href="#3-资源" class="headerlink" title="3.资源"></a>3.资源</h3><p>刚刚说到了，web服务器是存放资源的容器。资源有很多，比如一般的静态文件：文本文件，HTML文件等等，也还有其他非静态文件，图片，视频等等。</p>
+<blockquote>
+<ol>
+<li>资源是分类型的，HTTP给它加了个<strong>MIME类型</strong>来辨别！</li>
+</ol>
+</blockquote>
+<ul>
+<li>HTML格式文本由<code>text/html</code>类型来标记</li>
+<li>普通的ASCII文本由<code>text/plain</code>类型来标记</li>
+<li>JPEG格式的图片由<code>image/jpeg</code>类型来标记</li>
+<li>GIF格式的图片为<code>image/gif</code>类型来标记<br>…</li>
+</ul>
+<blockquote>
+<ol>
+<li>每个资源都有一个名字，HTTP用URI（统一资源标识符）进行唯一标识并进行资源定位</li>
+</ol>
+</blockquote>
+<p>URI有两种形式： URL和URN</p>
+<ul>
+<li>URL（统一资源定位符）就是对特定的服务器里的某资源找到其特定位置。URL = 方案(HTTP/HTTPS) + 服务器地址 + 服务器某个资源。</li>
+<li>URN（统一资源名）就是对某个资源的唯一名称，与当前资源的位置无关。</li>
+</ul>
+<h3 id="3-事务"><a href="#3-事务" class="headerlink" title="3.事务"></a>3.事务</h3><p>上面说到web客户端会发送请求，服务器会响应请求。<br>所以事务 = 请求命令 + 响应结果。</p>
+<p>HTTP支持几种请求命令，这些命令称为方法；可以理解为，用户可以通过不同方式在京东上买东西，可以通过手机端，PC端，打电话购买。这些方式就称为方法啦。<br>列举常用的几种方法：</p>
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>DELETE</li>
+<li>PUT</li>
+<li>HEAD</li>
+</ul>
+<p>HTTP响应会携带一个状态码，用来告诉请求是否成功。可以理解为，你在京东上买东西，会告诉你是否有货，是否能立即发送等状态，这些状态可以用状态码来表示。<br>列举常用的几种状态码：</p>
+<ul>
+<li>200</li>
+<li>302</li>
+<li>404</li>
+</ul>
+<h3 id="4-报文"><a href="#4-报文" class="headerlink" title="4.报文"></a>4.报文</h3><p>报文其实是一种数据结构块。HTTP的请求和响应都是由报文进行结构化之后再通信的。其实报文就等于帮请求和响应命令化了下妆。<br>给它们各自添加了以下部分：</p>
+<ul>
+<li>起始行</li>
+<li>首部</li>
+<li>主体</li>
+</ul>
+<h3 id="5-连接"><a href="#5-连接" class="headerlink" title="5.连接"></a>5.连接</h3><p>HTTP就是通过建立连接之后才能让客户端和服务器端通信。这么理解，河两岸的想要互相探望怎么办，我们可以建桥梁进行人与人之间的来往。我们的连接就等于是河里桥梁。我们的TCP连接就是属于万能的桥梁~</p>
+<h3 id="6-web的结构组件"><a href="#6-web的结构组件" class="headerlink" title="6. web的结构组件"></a>6. web的结构组件</h3><p>web客户端和服务器端进行通信可能还会经过很多的组件，比如：</p>
+<ul>
+<li>代理</li>
+<li>缓存</li>
+<li>网关</li>
+<li>隧道</li>
+<li>Agent代理<br>以上的组件后面章节会提及。就先不详说、</li>
+</ul>
+<p>磨刀不误砍柴工，相信学好HTTP，肯定能对前端的理解能更深入的~</p>
+
+				</div>
+			</div>
+			<div class="subinfo">
+				<a href="">
+					2017-02-15
+				</a>
+				
+  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
+
+			</div>
+		</div>
+		<!--文章列表 end-->
+
+		<!--分页 start-->
+		<div class="m-page f-cb">
+	
+		
+		
+			<a class="f-fr" href="/2016/09/13/重排and重绘——高性能JavaScript笔记 - 副本/">
+				下一篇
+			</a>
+		
+	
+</div>
+		<!--分页 end-->
+	</div>
+</div>
+
+
+
+
+			<div class="main-footer">
+	<div class="m-ft container"><span title="Copyright">©</span>
+		<a href="http://tvwawawa.lofter.com/">tv_哇</a> | Powered by
+		<a href="https://hexo.io/">Hexo</a>
+	</div>
+</div>
+		</div>
+		<script>
+	window.onload = function() {
+		// 可爱title切换
+		var OriginTitile = document.title;
+		var st;
+		document.addEventListener('visibilitychange', function() {
+			if(document.hidden) {
+				document.title = unescape("%28%u3064%u30A7%u2282%29%u6211%u85CF%u597D%u4E86%u54E6") + "★" + OriginTitile;
+				clearTimeout(st);
+			} else {
+				document.title = unescape("%28*%B4%u2207%uFF40*%29%20%20%u88AB%u4F60%u53D1%u73B0%u5566%7E%20") + "★" + OriginTitile;
+				st = setTimeout(function() {
+					document.title = OriginTitile;
+				}, 4000);
+			}
+		});
+	}
+</script>
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script> 
+
+		<!--google analytics--> 
+		
+	</body>
+</html>

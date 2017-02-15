@@ -17,7 +17,7 @@
 
     <!-- Title -->
     
-    <title>archive_b | tvChan&#39;s Blog</title>
+    <title>tvChan&#39;s Blog</title>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/style.css">
@@ -42,63 +42,69 @@
 		</div>
 	</div>
 </div>
-			
-<!-- Main Content -->
-<div class="g-mn">
+			<div class="g-mn">
 	<div class="g-box f-cb container">
-		<header class="tag-title">2016/9</header>
+
 		<!--文章列表 start-->
 		<div class="m-posts">
-            
-                <!-- 文字 start-->
-<div class="article-summary m-post m-post-text">
+			
+			<div class="article-summary m-post m-post-text">
 	<div class="cont ">
 		<div class="text f-cb">
-			<h2><a href="/2016/09/13/重排and重绘——高性能JavaScript笔记 - 副本/">重排and重绘</a></h2>
+			<h2><a href="/2016/06/01/js原型&对象理解/">js原型&对象理解</a></h2>
+			<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>对象：在js里，除了字符串，数字，boolean，null和undefined之外，其他的js值都是对象。</p>
+<p>js中对象可以分为普通对象和函数对象。</p>
+<p>普通对象：是除函数对象外的，都可以成为普通对象。</p>
+<p>函数对象：是通过new Function产生的对象。</p>
+<p>这一种是最常见的定义函数的方法：</p>
+<pre><code class="javascript">function foo1(){
+}
+</code></pre>
+<p>这一种就是定义了一个匿名函数，然后赋值到foo2　　</p>
+<pre><code class="javascript">var foo2=function{
+}
+</code></pre>
+<p>而以下这一种是通过对象实例的方式定义了一个匿名函数，赋值到foo3</p>
+<pre><code class="javascript">var foo3=new Function(&#39;x&#39;,&#39;console.log(&#39;I&#39;m a Function!&#39;)&#39;);
+</code></pre>
+<p>以上三个都属于函数对象，不信？咱来瞅瞅：</p>
+<p><img src="/img/prototype1.png" alt="pro1"><br>　　<br>
 		</div>
 	</div>
 	<div class="subinfo">
-		<a href="">2016-09-13</a>
+		<a href="">2016-06-01</a>
 	</div>
 </div>
-<!-- 文字 end-->
-            
-                <!-- 文字 start-->
-<div class="article-summary m-post m-post-text">
+			
+			<div class="article-summary m-post m-post-text">
 	<div class="cont ">
 		<div class="text f-cb">
-			<h2><a href="/2016/09/13/浏览器工作流/">浏览器工作流</a></h2>
+			<h2><a href="/2016/04/23/hexo安装错误/">hexo安装问题集</a></h2>
+			
 		</div>
 	</div>
 	<div class="subinfo">
-		<a href="">2016-09-13</a>
+		<a href="">2016-04-23</a>
 	</div>
 </div>
-<!-- 文字 end-->
-            
-                <!-- 文字 start-->
-<div class="article-summary m-post m-post-text">
-	<div class="cont ">
-		<div class="text f-cb">
-			<h2><a href="/2016/09/05/module模式/">module模式</a></h2>
+			
 		</div>
-	</div>
-	<div class="subinfo">
-		<a href="">2016-09-05</a>
-	</div>
-</div>
-<!-- 文字 end-->
-            
-            <div class="m-page f-cb">
-	
-		
-		
-	
-</div>
-        </div>
-    </div>
-</div>
+		<!--文章列表 end-->
 
+		<!--分页 start-->
+		<div class="m-page f-cb">
+	
+		
+			<a class="f-fl" href="/page/2/">
+				上一页
+			</a>
+		
+		
+	
+</div>
+		<!--分页 end-->
+	</div>
+</div>
 			<div class="main-footer">
 	<div class="m-ft container"><span title="Copyright">©</span>
 		<a href="http://tvwawawa.lofter.com/">tv_哇</a> | Powered by
